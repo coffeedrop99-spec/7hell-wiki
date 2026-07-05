@@ -391,6 +391,7 @@ nav {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
+  z-index: 1;
   font-family: var(--font-mono);
   font-size: 0.52rem;
   letter-spacing: 0.1em;
@@ -400,6 +401,23 @@ nav {
   padding: 0.18rem 0.45rem;
   border-radius: 2px;
   border: 1px solid var(--fc, var(--border));
+  backdrop-filter: blur(4px);
+}
+
+.char-card-community {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(8,8,8,0.88);
+  color: #555;
+  padding: 0.18rem 0.45rem;
+  border-radius: 2px;
+  border: 1px solid #2a2a2a;
   backdrop-filter: blur(4px);
 }
 
@@ -515,6 +533,24 @@ nav {
   text-transform: uppercase;
   color: var(--fc, var(--text-muted));
   margin-bottom: 0.3rem;
+}
+
+.modal-community {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: #4a4a4a;
+  margin-bottom: 0.3rem;
+}
+
+.modal-community a {
+  color: #5a5a5a;
+  text-decoration: none;
+}
+
+.modal-community a:hover {
+  color: var(--text-muted);
+  text-decoration: underline;
 }
 
 .modal-name {

@@ -30,6 +30,22 @@ function openModal(char) {
     imgEl.style.display = 'none'; phEl.style.display = 'flex';
   }
 
+  // community
+  const commEl = modalEl.querySelector('.modal-community');
+  if (commEl) {
+    if (char.community) {
+      const c = char.community;
+      const byPart = c.creator
+        ? ` · by ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener">${c.creator}</a>` : c.creator}`
+        : '';
+      commEl.innerHTML = `✦ community submission${byPart}`;
+      commEl.style.display = '';
+    } else {
+      commEl.innerHTML = '';
+      commEl.style.display = 'none';
+    }
+  }
+
   // traits
   modalEl.querySelector('.modal-traits').innerHTML =
     (char.traits || []).map(t => `<span class="modal-trait">${t}</span>`).join('');
@@ -95,6 +111,7 @@ function buildCharGrid() {
 
     card.innerHTML = `
       <span class="char-card-faction">${faction?.label || ''}</span>
+      ${char.community ? `<span class="char-card-community">✦ OC</span>` : ''}
       ${char.img
         ? `<img class="char-card-img" src="${char.img}" alt="${char.name}" loading="lazy">`
         : `<div class="char-card-placeholder">?</div>`}

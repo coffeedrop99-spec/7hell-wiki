@@ -318,7 +318,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'silas', name: 'Silas "Cy" Vance', age: 22,
+    id: 'silas', name: 'Silas "Cy" Vance', age: 22, community: { creator: 'ouroborost' },
     role: 'Deal Dungeon — Graveyard Shift / Fence',
     faction: 'dungeon',
     img: 'img/characters/Silas.jpg',
@@ -728,7 +728,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'bishop', name: 'Bishop Kelley', age: 21,
+    id: 'bishop', name: 'Bishop Kelley', age: 21, community: { creator: 'tokiut' },
     role: 'Baby Burgers — Baby Bear Mascot',
     faction: 'npc',
     img: 'img/characters/Bishop.png',
@@ -742,7 +742,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'cassy', name: 'Cassy Anderson', age: 21,
+    id: 'cassy', name: 'Cassy Anderson', age: 21, community: { creator: '' },
     role: 'Florist / Town Eccentric / Rat Hunter',
     faction: 'npc',
     img: 'img/characters/Casey.png',
