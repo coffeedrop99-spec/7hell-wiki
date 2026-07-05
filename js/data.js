@@ -318,7 +318,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'silas', name: 'Silas "Cy" Vance', age: 22, community: { creator: 'ouroborost' },
+    id: 'silas', name: 'Silas "Cy" Vance', age: 22, community: { creator: '𝑺𝖊𝖗𝖕𝖊𝖓𝖙𝖎𝖓𝖊', url: 'https://janitorai.com/profiles/c8dfa02f-59f5-4260-a2b8-8d170c9870bf_profile-of-𝑺-𝖊-𝖗-𝖕-𝖊-𝖓-𝖙-𝖎-𝖓-𝖊' },
     role: 'Deal Dungeon — Graveyard Shift / Fence',
     faction: 'dungeon',
     img: 'img/characters/Silas.jpg',
@@ -728,7 +728,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'bishop', name: 'Bishop Kelley', age: 21, community: { creator: 'tokiut' },
+    id: 'bishop', name: 'Bishop Kelley', age: 21, community: { creator: 'Yoha_', url: 'https://janitorai.com/profiles/47691ee8-1c21-4cfd-8819-0a3657dce2ca_profile-of-yoha-79' },
     role: 'Baby Burgers — Baby Bear Mascot',
     faction: 'npc',
     img: 'img/characters/Bishop.png',
@@ -742,7 +742,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'cassy', name: 'Cassy Anderson', age: 21, community: { creator: '' },
+    id: 'cassy', name: 'Cassy Anderson', age: 21, community: { creator: 'Tenbluee', url: 'https://janitorai.com/profiles/ad7c12b0-ba52-475c-aa53-31f9021751de_profile-of-tenbluee' },
     role: 'Florist / Town Eccentric / Rat Hunter',
     faction: 'npc',
     img: 'img/characters/Casey.png',
