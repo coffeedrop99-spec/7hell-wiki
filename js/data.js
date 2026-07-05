@@ -317,6 +317,20 @@ const CHARACTERS = [
       'Tensions': 'Constant friction with Jermaine — she cuts corners; he is constitutionally incapable of letting that go.',
     }
   },
+  {
+    id: 'silas', name: 'Silas "Cy" Vance', age: 22,
+    role: 'Deal Dungeon — Graveyard Shift / Fence',
+    faction: 'dungeon',
+    img: 'img/characters/Silas.jpg',
+    desc: 'Works graveyard to avoid home. Runs a side operation fencing burned CDs and questionable electronics out of the warehouse\'s quieter corners. Knows everyone\'s business because people talk around him assuming he isn\'t paying attention.',
+    traits: ['Apathetic', 'Resourceful', 'Loyal when it counts', 'Always listening'],
+    details: {
+      'Appearance': 'Bleached frosted tips, oversized band tee over a long-sleeve waffle shirt, baggy JNCO-style jeans, studded belt. Smells faintly of Monster Energy and cheap weed.',
+      'Side hustle': 'Fences burned CDs and questionable electronics. Sourced locally, sold quietly. Never asks where they came from.',
+      'Home life': 'Chaotic. Graveyard shift is the escape.',
+      'Secret': 'Every dollar from the side hustle goes into a fund to get his little sister out of Marsten and into a good college. Doesn\'t mention her to anyone.',
+    }
+  },
   // ─── IRON LUNG ───────────────────────────────────────
   {
     id: 'michael', name: 'Michael Harmon', age: 34,
@@ -711,6 +725,34 @@ const CHARACTERS = [
       'Habits': 'Buys scratch tickets religiously, immediately reinvests small winnings. Makes improvised gas station meals (hot dog cut into KD, taquito pieces in ramen). Throws gum on the pavement instead of using trash cans.',
       'Self-awareness': 'Genuinely believes he\'s subtle about his attachment. He is not subtle.',
       'Relationships': 'Ongoing passive-aggressive rivalry with Romeo, who intentionally provokes him. Genuine enemy of Dallas. Despises Cory.',
+    }
+  },
+  {
+    id: 'bishop', name: 'Bishop Kelley', age: 21,
+    role: 'Baby Burgers — Baby Bear Mascot',
+    faction: 'npc',
+    img: 'img/characters/Bishop.png',
+    desc: 'Nu-metal kid who left a strict religious household at 18. Now wears a baby pink bear mascot suit because Austin offered extra money and the rent doesn\'t care about dignity. Has pastel pink streaks in his hair for the same reason.',
+    traits: ['Grumpy', 'Alternative', 'Frustrated dreamer', 'Private'],
+    details: {
+      'Appearance': 'Black wolf-cut with pastel pink streaks. Smudged eyeliner, eyebrow piercing, industrial bar in one ear, side lip ring. Chipped black nail polish. Black band tees, baggy pants, Vans Old Skools.',
+      'Mascot': 'The Baby Bear suit is baby pink. He hates it. He shows up on time.',
+      'Music': 'Sings and plays guitar in a nu-metal band. Performs at clubs and dive bars at night. His real life.',
+      'Secret': 'Obsessed with Cardcaptor Sakura. Has a growing tarot card collection. Would not survive being caught.',
+    }
+  },
+  {
+    id: 'cassy', name: 'Cassy Anderson', age: 21,
+    role: 'Florist / Town Eccentric / Rat Hunter',
+    faction: 'npc',
+    img: 'img/characters/Casey.png',
+    desc: 'Raised by her grandparents above the family flower shop after a teen-pregnancy birth and an absent father. Her mother has since moved to the US. Her grandparents are getting old. She stays. Spends her days tending plants, feeding strays, and hunting rats by the 7-Hell dumpsters with quiet professional focus.',
+    traits: ['Socially awkward', 'Nature obsessed', 'Unashamed weirdo', 'Loyal to family'],
+    details: {
+      'Appearance': 'Short dark brown hair, disheveled — butterfly clips, occasionally a dried leaf. Slim with slightly strong arms from outdoor work. Small scars on arms and shoulders. Wood bead bracelets, dirt under fingernails. Black tank top, olive cargo pants, Columbia boots. Second-hand and patched.',
+      'Role in town': 'Flower shop florist, stray animal guardian, and semi-professional rat hunter. The town weirdo. Embraced the label young and never looked back.',
+      'Speech': 'Polite small talk until biology enters the conversation. Will describe your interaction in terms of mutualism, symbiosis, or reproductive function.',
+      'Secret': 'Knows her grandma keeps "the good stuff" in the back room. Has never asked. Maintains total obliviousness when the subject comes up.',
     }
   },
   {
