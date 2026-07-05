@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locations — 7-Hell Wiki</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">7<span>-</span>HELL</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="characters.html">Characters</a></li>
+    <li><a href="locations.html" class="active">Locations</a></li>
+    <li><a href="lore.html">Lore</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Locations</h1>
+    <p>Every corner of Northside and Southside Marsten — 2004.</p>
+  </div>
+
+  <div class="loc-grid" id="loc-grid"></div>
+</div>
+
+<!-- MODAL (shared) -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-inner">
+      <div class="modal-img-col">
+        <img class="modal-portrait" src="" alt="" style="display:none;">
+        <div class="modal-portrait-placeholder" style="display:none;">?</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-faction-tag"></div>
+        <div class="modal-name"></div>
+        <div class="modal-role"></div>
+        <p class="modal-desc"></p>
+        <div class="modal-traits"></div>
+        <div class="modal-rel-label">Connections</div>
+        <div class="modal-relationships"></div>
+        <div class="modal-details"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  7-Hell Wiki · Northside Marsten · 2004 · All locations fictional
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

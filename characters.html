@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Characters — 7-Hell Wiki</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">7<span>-</span>HELL</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="characters.html" class="active">Characters</a></li>
+    <li><a href="locations.html">Locations</a></li>
+    <li><a href="lore.html">Lore</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Characters</h1>
+    <p>The full cast of Northside Marsten. Click any card for a full profile.</p>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="char-search" type="text" placeholder="Search by name...">
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-faction="all">All</button>
+      <button class="filter-btn" data-faction="nightshift" data-color="#b8ff02">Night Shift</button>
+      <button class="filter-btn" data-faction="dayshift"   data-color="#ffaa00">Day Shift</button>
+      <button class="filter-btn" data-faction="conxtion"   data-color="#ff4db8">The ConXtion</button>
+      <button class="filter-btn" data-faction="dungeon"    data-color="#ff6b35">Deal Dungeon</button>
+      <button class="filter-btn" data-faction="ironlung"   data-color="#00c8e0">Iron Lung</button>
+      <button class="filter-btn" data-faction="beanies"    data-color="#8855ff">Beanie Baby Boys</button>
+      <button class="filter-btn" data-faction="southside"  data-color="#e05c3a">Southside</button>
+      <button class="filter-btn" data-faction="npc"        data-color="#888888">Northside</button>
+    </div>
+  </div>
+
+  <div class="char-grid" id="char-grid"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-inner" style="">
+      <div class="modal-img-col">
+        <img class="modal-portrait" src="" alt="" style="display:none;">
+        <div class="modal-portrait-placeholder" style="display:none;">?</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-faction-tag"></div>
+        <div class="modal-name"></div>
+        <div class="modal-role"></div>
+        <p class="modal-desc"></p>
+        <div class="modal-traits"></div>
+        <div class="modal-rel-label">Connections</div>
+        <div class="modal-relationships"></div>
+        <div class="modal-details"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  7-Hell Wiki · Northside Marsten · 2004 · All characters fictional
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
