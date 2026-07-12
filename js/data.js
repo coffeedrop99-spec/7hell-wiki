@@ -43,6 +43,7 @@ const CHARACTERS = [
       { id: 'presley', name: 'Presley', note: 'Gary is more scared of Presley\'s silence than Romeo\'s aggression.' },
       { id: 'sidney',  name: 'Sidney',  note: 'Step-dad. Lectures him constantly about "manning up." Gary just wants to play Halo.' },
       { id: 'clem-kit', name: 'Clem & Kit', note: '"Loitering liabilities." Genuinely freaks him out.' },
+      { id: 'zak',     name: 'Zak',     note: 'The employee he relies on most — without realizing just how much.' },
     ],
     details: {
       'Appearance': '5\'8", scrawny, pale. Soft features and a constant worried crease between his eyebrows. Chronic blusher.',
@@ -112,21 +113,24 @@ const CHARACTERS = [
   },
   {
     id: 'zak', name: 'Zak', age: 23,
-    role: 'Night Shift — Role Unknown',
+    role: 'Night Shift — Clerk / Trainer',
     faction: 'nightshift',
     img: 'img/characters/Zak.png',
-    desc: 'Clean-cut, efficient, unfailingly polite. Nobody can remember when he started, who assigned him anything, or what he was doing before. Things just get done when Zak is around. He knows something is wrong. He\'s scared.',
-    traits: ['Calm', 'Efficient', 'Evasive', 'Anomalous', 'Afraid'],
+    desc: 'Clean-cut, efficient, unfailingly polite. Nobody can remember when he started — he\'s been there longer than almost anyone still on staff. Things just get done when Zak is around. Now Gary has him training the new hire, and the auditor has started paying attention to her. Zak has noticed.',
+    traits: ['Calm', 'Observant', 'Evasive', 'Protective', 'Afraid'],
     relationships: [
+      { id: 'gary',    name: 'Big Gary',   note: 'Trusts Zak almost blindly. Has no idea how much Zak quietly carries for him.' },
       { id: 'miller',  name: 'Dr. Miller', note: 'Miller cannot classify him. This is the one thing that genuinely disturbs Miller.' },
       { id: 'holden',  name: 'Holden',     note: 'Holden is convinced Zak is running a long con. He keeps poking.' },
-      { id: 'maisy',   name: 'Maisy',      note: 'Maisy has noticed things about Zak that others haven\'t.' },
+      { id: 'maisy',   name: 'Maisy',      note: 'They meet behind the store — irregularly, on no schedule, on purpose.' },
+      { id: 'sawyer',  name: 'Sawyer White', note: 'Zak pays very close attention whenever the auditor visits. He has never said why.' },
     ],
     details: {
-      'Appearance': 'Well-groomed Korean man. Always looks put-together — conspicuously out of place with the rest of the store.',
-      'The gap': 'Schedule discrepancies. Tasks completed without clear assignment. No one can confirm his arrival or departure times.',
-      'Warning': 'His accent slips when he\'s tired, irritated, or under pressure. It\'s not the accent anyone expected.',
-      'What he knows': 'He\'s aware something is wrong in this store. He has not told anyone. He is scared.',
+      'Appearance': 'Well-groomed Korean man, warm brown eyes, soft features. Always looks put-together — conspicuously out of place with the rest of the store.',
+      'The gap': 'Parks somewhere different every shift. Takes different routes home. Different doors in, different doors out. No one can confirm his arrival or departure times. There is no pattern — and that is the pattern.',
+      'The training': 'His trainees\' break times shift. Their exits vary. Their tasks rotate nightly. They come out competent and impossible to predict. He will not explain this.',
+      'Warning': 'His accent slips when he\'s tired, under pressure, or genuinely comfortable. It\'s not the accent anyone expected.',
+      'What he knows': 'He\'s aware something is wrong in this store. He has not told anyone. He\'s been quietly doing something about it for four years.',
     }
   },
   // ─── 7-HELL DAYSHIFT ────────────────────────────────
@@ -474,6 +478,7 @@ const CHARACTERS = [
     relationships: [
       { id: 'romeo',   name: 'Romeo',   note: 'Ex-boyfriend. Still too comfortable in each other\'s space.' },
       { id: 'russell', name: 'Russell', note: 'Obsessively asks where "the conspiracy guy" went. Nobody knows why she cares.' },
+      { id: 'zak',     name: 'Zak',     note: 'The only other person who takes it seriously. They meet on no schedule, on purpose.' },
     ],
     details: {
       'Public role': 'Jealous ex. Clings to Romeo. Whispers things in his ear when she hugs him.',
@@ -488,6 +493,9 @@ const CHARACTERS = [
     img: 'img/characters/Sawyer.png',
     desc: 'Well-dressed, precise, calm. Arrives unannounced for corporate compliance audits. Stays near entrances and exits. Takes notes that aren\'t always visible. Nobody can confirm exactly when he arrives or leaves.',
     traits: ['Controlled', 'Precise', 'Authoritative', 'Wrong'],
+    relationships: [
+      { id: 'zak', name: 'Zak', note: 'The one staff member whose schedule he has never managed to map.' },
+    ],
     details: {
       'Behavior': 'Maintains consistent eye contact. Speaks clearly. Observes for extended periods without interrupting.',
       'Anomalies': 'No one recalls scheduling his visits. His documentation isn\'t always visible. He consistently positions himself near exits rather than work areas.',

@@ -978,6 +978,12 @@ nav {
   border-radius: 2px;
   display: inline-block;
   margin-bottom: 0.6rem;
+  text-decoration: none;
+}
+
+a.timeline-card-tag:hover {
+  color: var(--accent);
+  background: var(--accent-glow);
 }
 
 .timeline-body {
