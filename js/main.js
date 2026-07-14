@@ -46,6 +46,23 @@ function openModal(char) {
     }
   }
 
+  // bot links
+  let botsEl = modalEl.querySelector('.modal-bots');
+  if (!botsEl) {
+    botsEl = document.createElement('div');
+    botsEl.className = 'modal-bots';
+    modalEl.querySelector('.modal-desc').insertAdjacentElement('afterend', botsEl);
+  }
+  if (char.bots?.length) {
+    botsEl.innerHTML = char.bots.map(b =>
+      `<a class="bot-tag" href="${b.url}" target="_blank" rel="noopener">▶ ${b.label} ↗</a>`
+    ).join('');
+    botsEl.style.display = 'flex';
+  } else {
+    botsEl.innerHTML = '';
+    botsEl.style.display = 'none';
+  }
+
   // traits
   modalEl.querySelector('.modal-traits').innerHTML =
     (char.traits || []).map(t => `<span class="modal-trait">${t}</span>`).join('');
@@ -198,7 +215,57 @@ document.addEventListener('DOMContentLoaded', () => {
   buildLocGrid();
   setupFilters();
   buildStartHere();
+  buildHelpButton();
 });
+
+// ── EMERGENCY "HELP" ─────────────────────────────────────
+function buildHelpButton() {
+  const btn = document.createElement('button');
+  btn.className = 'help-btn';
+  btn.innerHTML = '⚠ HELP';
+
+  const overlay = document.createElement('div');
+  overlay.className = 'help-overlay';
+  overlay.innerHTML = `
+    <div class="help-panel">
+      <button class="help-close" aria-label="Close">✕</button>
+      <p class="help-eyebrow">Marsten Community Assistance</p>
+      <h2 class="help-title">DO NOT PANIC</h2>
+      <p class="help-flicker"><span class="hf-a">HELP IS ON THE WAY</span><span class="hf-b">HELP IS NOT COMING</span></p>
+      <ul class="help-list">
+        <li>Most disappearances resolve themselves.</li>
+        <li>If you have noticed a pattern, stop noticing it.</li>
+        <li>The auditor's visits are routine. His schedule is not your concern.</li>
+        <li>Do not swim in Queasy Lake. There is no particular reason.</li>
+        <li>Officer Ward is available around the clock and is very helpful.</li>
+        <li>The plaza is not for sale. Stop asking.</li>
+        <li>If you feel you are being watched, consider that you may simply be interesting.</li>
+      </ul>
+      <p class="help-footer">This page is maintained by no one. Last reviewed: 1992.</p>
+    </div>`;
+
+  function openHelp() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; return; }
+    btn.disabled = true;
+    document.documentElement.classList.add('glitching');
+    setTimeout(() => {
+      document.documentElement.classList.remove('glitching');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      btn.disabled = false;
+    }, 1300);
+  }
+  function closeHelp() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  btn.addEventListener('click', openHelp);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeHelp(); });
+  overlay.querySelector('.help-close').addEventListener('click', closeHelp);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeHelp(); });
+
+  document.body.appendChild(btn);
+  document.body.appendChild(overlay);
+}
 
 // ── LOST? START HERE ─────────────────────────────────────
 function buildStartHere() {

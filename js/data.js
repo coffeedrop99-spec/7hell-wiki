@@ -16,6 +16,9 @@ const CHARACTERS = [
     role: 'Night Shift — Muscle',
     faction: 'nightshift',
     img: 'img/characters/Romeo.png',
+    bots: [
+      { label: 'Chapter I — Romeo\'s World', url: 'https://janitorai.com/characters/89f9f4d5-6af2-4030-8a6d-19f129afce22_character-romeo-𝐂-𝐚-𝐧-𝐭-𝐄-𝐬-𝐜-𝐚-𝐩-𝐞-𝐇-𝐞-𝐫' },
+    ],
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
     relationships: [
@@ -80,6 +83,9 @@ const CHARACTERS = [
     role: 'Night Shift Regulars / Chaos Agents',
     faction: 'nightshift',
     img: 'img/characters/Clem&Kit.png',
+    bots: [
+      { label: 'Chapter II — Clem & Kit\'s Orbit', url: 'https://janitorai.com/characters/86b563f3-1355-40d7-9ff9-902e543b8c66_character-clem-and-kit-alt-𝐅-𝐮-𝐜-𝐤-𝐢-𝐧-𝐠-𝐀-𝐫-𝐨-𝐮-𝐧-𝐝' },
+    ],
     desc: 'An inseparable duo that functions as a single chaotic entity. Clem philosophizes slowly about frequencies and government conspiracies; Kit amplifies everything at 200 words per minute. Together they narrate, escalate, and survive on Flower\'s caretaker checks.',
     traits: ['Conspiratorial', 'Impulsive', 'Inseparable', 'Perpetually altered'],
     relationships: [
@@ -101,6 +107,9 @@ const CHARACTERS = [
     role: '7-Hell Pharmacist',
     faction: 'nightshift',
     img: 'img/characters/Dr.Miller.png',
+    bots: [
+      { label: 'Chapter III — Anthony Miller\'s Record', url: 'https://janitorai.com/characters/c22d9dae-757e-4eb6-be8e-b606892ed49d_character-dr-miller-𝐏-𝐚-𝐭-𝐡-𝐞-𝐭-𝐢-𝐜-𝐚-𝐥-𝐥-𝐲-𝐎-𝐛-𝐬-𝐞-𝐬-𝐬-𝐞-𝐝' },
+    ],
     desc: 'Full name: Anthony Miller. Graduated top of his class. One quiet criminal incident later, he ended up in a plexiglass cage at a gas station. Operates on dry sarcasm, caffeine, compression socks, and the knowledge that strangling people is a felony.',
     traits: ['Sarcastic', 'Overqualified', 'Entomologist at heart', 'POTS'],
     relationships: [
@@ -121,6 +130,9 @@ const CHARACTERS = [
     role: 'Night Shift — Clerk / Trainer',
     faction: 'nightshift',
     img: 'img/characters/Zak.png',
+    bots: [
+      { label: 'Chapter V — Zak\'s Watch', url: 'https://janitorai.com/characters/1a645348-79e9-4285-962d-5d0dc626b881_character-zak-𝗗-𝗼-𝗻-𝘁-𝗔-𝘀-𝗸-𝗤-𝘂-𝗲-𝘀-𝘁-𝗶-𝗼-𝗻-𝘀' },
+    ],
     desc: 'Clean-cut, efficient, unfailingly polite. Nobody can remember when he started — he\'s been there longer than almost anyone still on staff. Things just get done when Zak is around. Now Gary has him training the new hire, and the auditor has started paying attention to her. Zak has noticed.',
     traits: ['Calm', 'Observant', 'Evasive', 'Protective', 'Afraid'],
     relationships: [
@@ -732,6 +744,9 @@ const CHARACTERS = [
     role: 'Northside Police Intern',
     faction: 'npc',
     img: 'img/characters/Holden.png',
+    bots: [
+      { label: 'Chapter IV — Holden\'s Playground', url: 'https://janitorai.com/characters/b8408886-bd2b-43fb-a507-672d8d14e28f_character-holden-𝐒-𝐚-𝐝-𝐢-𝐬-𝐭-𝐢-𝐜-𝐂-𝐮-𝐭-𝐢-𝐞' },
+    ],
     desc: 'Human. 6\'3", reddish-brown hair, light green eyes, boyishly handsome with freckles and deep dimples. Looks like a trustworthy college intern. His family shipped him to Northside Marsten after one too many scandals, expecting it to humble him. It did not.',
     traits: ['Charming (on surface)', 'Manipulative', 'Corrupt', 'Wolf in sheep\'s clothing'],
     relationships: [
