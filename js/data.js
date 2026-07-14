@@ -191,7 +191,7 @@ const CHARACTERS = [
     role: 'Day Shift Employee / Local Skater',
     faction: 'dayshift',
     img: 'img/characters/Dylan.png',
-    desc: 'Split-dyed hair (black and white), heterochromia, permanent mild disappointment. Detached and emotionally stagnant on the surface. Confessed his feelings at 18 and watched the person leave without closure. Now she\'s back in town.',
+    desc: 'Split-dyed hair (black and white), heterochromia, permanent mild disappointment. Detached and emotionally stagnant on the surface. Confessed his feelings at 18 and watched the person leave without closure. Now they\'re back in town.',
     traits: ['Detached', 'Low-energy', 'Pop-punk', 'Still hasn\'t moved on'],
     relationships: [
       { id: 'tyler',   name: 'Tyler', note: 'Tyler fills the silences Dylan creates.' },
@@ -834,14 +834,14 @@ const CHARACTERS = [
     role: 'Presley\'s Mother',
     faction: 'npc',
     img: null,
-    desc: 'A faded woman on the north end who talks to the walls — has since Presley was a boy, still does. The neighborhood quietly keeps an eye on her without ever calling it that.',
+    desc: 'A faded woman on the north end who talks to the walls — decades of hallucinogens that never fully wore off. She talked to them through Presley\'s whole childhood. Still does. The neighborhood quietly keeps an eye on her without ever calling it that.',
     traits: ['Faded', 'Elsewhere', 'Looked after'],
     relationships: [
-      { id: 'presley', name: 'Presley', note: 'Her son. Her groceries, her meds, her lightbulbs. He has never told a coworker she exists.' },
+      { id: 'presley', name: 'Presley', note: 'Her son. He doesn\'t visit. He checks.' },
       { id: 'flower',  name: 'Flower',  note: 'Has quietly checked in on her for thirty years.' },
     ],
     details: {
-      'The thing nobody knows': 'The 6\'7" burnout everyone assumes is barely functional has been his mother\'s caregiver his whole life. He chose a different fog than hers. He has never once left her alone in it.',
+      'The arrangement': 'Estranged in every way except the groceries. Presley doesn\'t visit — he pokes his head in to make sure she\'s still alive, walks her street to see the light on, keeps her cell number in a phone that never dials it. Groceries and her pharmacy pickups appear anyway. He won\'t have a relationship. He can\'t help but check.',
     }
   },
   {
@@ -858,6 +858,25 @@ const CHARACTERS = [
       'Fairview': 'The deliberately boring holding company that owns the 7-Hell plaza, Dead Dog Rentals\' building, and a scatter of other Northside parcels. It refuses every purchase offer, at any price, with no explanation. Nobody understands why a shabby gas station plaza is unsellable.',
       'The office': 'Top floor of the Fairview building — the best view in Northside. She likes the height for exactly the reason people joke about.',
       'Reputation': 'A quiet legend across the bridge; a quiet irritation on this side of it. Doug Hickman, Ashley\'s father, has contracted for Fairview for years and describes Vera as "professional" in the tone of a man who has decided not to wonder about something.',
+    }
+  },
+  {
+    id: 'mercy', name: 'Mercy Nix', age: 25, community: { creator: null, url: null },
+    role: 'Riot on Wheels — Board Repair / Local Skater',
+    faction: 'npc',
+    img: 'img/characters/Nix.jpg',
+    desc: 'Skateboard repair tech at Riot on Wheels and a fixture at every Northside skate spot. 5\'0" of smudged eyeliner and patchouli. Weirdly wise, more observant than she lets on, friendly in a way that never quite turns into hanging out. Moved to Marsten at 20 because it was cheap and wouldn\'t expect too much from her.',
+    traits: ['Weirdly wise', 'Observant', 'Keeps to herself', 'Griptape hands'],
+    relationships: [
+      { id: 'dylan',    name: 'Dylan',      note: 'Shop regular. She\'s re-gripped his deck more times than he\'s paid for.' },
+      { id: 'sancho',   name: 'Sancho',     note: 'Keeps breaking things at speed and bringing her the pieces.' },
+      { id: 'clem-kit', name: 'Clem & Kit', note: 'Loyal customers. Not for skate parts.' },
+    ],
+    details: {
+      'Appearance': 'Short messy black hair, tired hooded grey eyes, snake bites and a Medusa piercing. Tank top under an unzipped hoodie, cut-offs over ripped fishnets, slip-on Vans. Eyeliner like she slept in it. She probably did.',
+      'The bench': 'Decks, trucks, bearings — if it rolls, she can fix it. Hands out advice that lands harder than it should coming from someone covered in griptape dust.',
+      'Side hustle': 'Sells weed for extra cash. Quiet about it. Careful about who asks.',
+      'Speech': '"Nah, man. Ain\'t no thing I can\'t handle."',
     }
   },
 ];
@@ -942,6 +961,16 @@ const LOCATIONS = [
     desc: 'Matte-black, reinforced utility truck. Mobile fortress and neutral ground for the trade of "Static" — industrial-grade substances. It moves. It has no fixed address. That\'s the point.',
     atmosphere: 'Hierarchy inside: Michael plans, James enforces, Cody acts, Allan sells, Echo watches. The older members treat the younger three like a daycare from hell — brutal internally, a unified front to outsiders.',
     key_people: ['Michael', 'James', 'Cody', 'Allan', 'Echo'],
+  },
+  {
+    id: 'riotonwheels',
+    name: 'Riot on Wheels',
+    icon: '🛹',
+    zone: 'Northside',
+    color: '#4caf50',
+    desc: 'Northside\'s skate shop — decks on the wall, a glass counter of bearings and wax, and a repair bench buried under griptape dust. The stereo plays whatever burned CD a customer left behind last.',
+    atmosphere: 'Mercy runs the repair bench. The local skaters treat the shop as a clubhouse; actual purchases optional. Sancho is technically banned. The ban has never once been enforced.',
+    key_people: ['Mercy Nix', 'Dylan', 'Tyler', 'Nate', 'Sancho'],
   },
   {
     id: 'southside',
