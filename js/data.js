@@ -861,7 +861,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'mercy', name: 'Mercy Nix', age: 25, community: { creator: null, url: null },
+    id: 'mercy', name: 'Mercy Nix', age: 25, community: { creator: 'GoldenFaeKing', url: 'https://janitorai.com/profiles/e6605686-5e2f-4204-a9c4-8a250456f24f_profile-of-golden-fae-king' },
     role: 'Riot on Wheels — Board Repair / Local Skater',
     faction: 'npc',
     img: 'img/characters/Nix.jpg',
