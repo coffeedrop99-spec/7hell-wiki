@@ -755,6 +755,7 @@ const CHARACTERS = [
     relationships: [
       { id: 'holden', name: 'Holden', note: 'Sees straight through his golden-boy act. Openly despises him.' },
       { id: 'daniel', name: 'Daniel Ward', note: 'Aware of the corruption. Watching.' },
+      { id: 'jett',   name: 'Jett Bear', note: 'Same 3 AM hours, same curb. Cigarettes and comfortable silence, a couple nights a week, for years. Neither would call it friendship. It\'s friendship.' },
     ],
     details: {
       'Role': 'Southside PD border precinct. Low-key affiliated with the Rig.',
@@ -769,6 +770,10 @@ const CHARACTERS = [
     img: 'img/characters/Jett.png',
     desc: 'Indigenous Canadian (Cree). 6\'4", long dark hair usually unwashed a day too long, heavy-lidded exhausted eyes, sharp tired expression. Construction worker during the warmer months. During off-season, haunts 7-Hell on increasingly flimsy excuses.',
     traits: ['Possessive', 'Clingy in denial', 'Stubborn', 'Low-energy', 'Deeply attached'],
+    relationships: [
+      { id: 'jasper', name: 'Jasper', note: 'The other 3 AM fixture. They share the curb, the cigarettes, and the silence. Neither has ever named it.' },
+      { id: 'romeo',  name: 'Romeo',  note: 'Passive-aggressive rivalry. Romeo provokes it on purpose. It\'s the most consistent relationship either of them has.' },
+    ],
     details: {
       'Truck': 'Beat-up green 2001 GMC Sierra, almost always parked outside 7-Hell. Occasionally tinkered with for over an hour just to maintain a line of sight through the windows.',
       'Habits': 'Buys scratch tickets religiously, immediately reinvests small winnings. Makes improvised gas station meals (hot dog cut into KD, taquito pieces in ramen). Throws gum on the pavement instead of using trash cans.',
