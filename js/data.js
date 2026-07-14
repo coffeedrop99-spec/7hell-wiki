@@ -416,6 +416,9 @@ const CHARACTERS = [
     img: 'img/characters/Julien.png',
     desc: 'Bilingual Québécois leader. Dark hair, weary features, functional pessimist. Handles strategy and the exit plan that never quite materializes. Considers their product a mercy for a world already gone to shit.',
     traits: ['Pessimistic', 'Strategic', 'Bilingual', 'Carrying the most'],
+    relationships: [
+      { id: 'dante', name: 'Dante Serrata', note: 'The crew calls him "the Investor." Julien takes the money and trusts him exactly zero.' },
+    ],
     details: {
       'Beanie': 'Black. His toy is Zip the Black Cat.',
       'Role': 'Macro-strategy, logistics, and maintaining the theoretical exit plan.',
@@ -602,9 +605,31 @@ const CHARACTERS = [
     img: null,
     desc: 'Well-dressed, compact, greying temples, composed expression. Cousin to the Serrata family\'s mob boss. Always appears calm and in control. His presence immediately changes the tone of any room.',
     traits: ['Composed', 'Decisive', 'Quiet authority', 'Resolves things'],
+    relationships: [
+      { id: 'dante', name: 'Dante Serrata', note: 'The Don\'s adopted son. Eros taught him to drive. Neither talks about the other thing.' },
+    ],
     details: {
       'Method': 'Uses minimal force but maintains absolute control. Treats conflict as a task to complete, not something emotional.',
       'Presence': 'Speaks quietly and doesn\'t raise his voice regardless of the situation.',
+    }
+  },
+  {
+    id: 'dante', name: 'Dante Serrata', age: 29,
+    role: 'Serrata Family — The Adopted Heir',
+    faction: 'npc',
+    img: 'img/characters/Dante.png',
+    desc: 'The Don\'s adopted son — a Black man raised in a white Italian crime family that officially does not exist. Soft afro of loose curls, heavy-lidded brown eyes, a silver chain, a white tank under a shirt that costs more than it looks. Nobody in Marsten believes that man is mafia royalty. He has been unbelieved his whole life. He resents it, and he weaponizes it, often in the same afternoon.',
+    traits: ['Composed', 'Ambitious', 'Underestimated on purpose', 'Coca-Cola habit'],
+    relationships: [
+      { id: 'eros',    name: 'Eros Serrata', note: 'The one member of the family who never once made him feel adopted. Also the one who gets sent.' },
+      { id: 'holden',  name: 'Holden',       note: 'Clocked Dante as "a wannabe with a nice car." The most dangerous underestimate in town.' },
+      { id: 'colton',  name: 'Colton',       note: 'Takes his meetings at Colton\'s Cups. Orders a Coke every time. Tips well specifically so he can keep doing it.' },
+      { id: 'russell', name: 'Russell',      note: 'The old errand runner is one of the few people in Northside who knows exactly who Dante is.' },
+    ],
+    details: {
+      'The chip': 'Somewhere in the family\'s orbit, someone once said he isn\'t really a Serrata. He has been answering that sentence ever since. Blood inherits by default. He has to build.',
+      'His own thing': 'Officially, he does nothing. Unofficially, he has money moving somewhere in Northside his father would never think to look — and he\'s been seen near a certain condemned daycare exactly twice, which is two more times than coincidence.',
+      'Habits': 'Never touches alcohol — control, always control. Goes through Coca-Colas like a chain-smoker. Sits on public steps like he owns the block, because in a sense his family does.',
     }
   },
   {
