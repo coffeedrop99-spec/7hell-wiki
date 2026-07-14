@@ -19,7 +19,7 @@ const CHARACTERS = [
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
     relationships: [
-      { id: 'gary',     name: 'Big Gary',   note: 'Technically his manager. Does not acknowledge this.' },
+      { id: 'gary',     name: 'Big Gary',   note: 'Technically his manager. Their moms made them do playdates at twelve. Neither fact gets acknowledged.' },
       { id: 'maisy',    name: 'Maisy',      note: 'Ex-girlfriend. Still too comfortable in each other\'s space.' },
       { id: 'presley',  name: 'Presley',    note: 'Coworker. Romeo yells. Presley does not react.' },
       { id: 'clem-kit', name: 'Clem & Kit', note: 'Physically removes them from the store. They wave on the way out.' },
@@ -44,11 +44,13 @@ const CHARACTERS = [
       { id: 'sidney',  name: 'Sidney',  note: 'Step-dad. Lectures him constantly about "manning up." Gary just wants to play Halo.' },
       { id: 'clem-kit', name: 'Clem & Kit', note: '"Loitering liabilities." Genuinely freaks him out.' },
       { id: 'zak',     name: 'Zak',     note: 'The employee he relies on most — without realizing just how much.' },
+      { id: 'sawyer',  name: 'Sawyer White', note: 'The only person from corporate who has ever believed in him.' },
     ],
     details: {
       'Appearance': '5\'8", scrawny, pale. Soft features and a constant worried crease between his eyebrows. Chronic blusher.',
       'Coping': 'Expert-level Minesweeper. The back office is where he goes to spiral in private.',
       'Home': 'Still lives in his childhood bedroom. Step-dad Sidney has been in his life for a decade. Gary has his late father\'s Super Nintendo.',
+      'The notebook': 'Keeps a small notebook of the auditor\'s management advice and quotes it unprompted — "people are patterns, if you pay attention." He means it kindly. He uses it to notice when Presley skips meals.',
       'Note': 'Genuinely trying his best. That\'s the sad part.',
     }
   },
@@ -63,7 +65,8 @@ const CHARACTERS = [
       { id: 'gary',   name: 'Big Gary', note: 'Gary is afraid of him. Presley hasn\'t noticed.' },
       { id: 'romeo',  name: 'Romeo',    note: 'Romeo yells. It slides off Presley like rain.' },
       { id: 'peter',  name: 'Peter',    note: 'The only person he actually respects.' },
-      { id: 'clem-kit', name: 'Clem & Kit', note: 'He likes the vibrations they bring.' },
+      { id: 'clem-kit', name: 'Clem & Kit', note: 'He likes the vibrations they bring. They\'ve known each other longer than anyone realizes.' },
+      { id: 'lorraine', name: 'Lorraine', note: 'His mother. He has never once mentioned her to a coworker.' },
     ],
     details: {
       'Appearance': '6\'7", skeletal, pale translucent skin. 2004 burnout emo. Looks like a discarded marionette.',
@@ -89,6 +92,8 @@ const CHARACTERS = [
       'Kit Dominguez (20)': '5\'9", sandy blonde, backwards visor, silver tongue stud, blown-out blue eyes. Hyper, loud, hype man energy. Technically employed as Flower\'s caregiver — a state loophole that funds both their lifestyles. Same "X-Ray Vision" delusion as Clem.',
       'Home': 'Flower\'s house — beaded curtains, shag carpet, incense, and decor that never left 1960. Also the "Vibe Van," an Econoline parked for optimal cosmic energy.',
       'Dynamic': 'Clem "theorizes." Kit "confirms." Together they treat 7-Hell like a nature documentary they\'re also starring in.',
+      'The dynamic (really)': 'Codependent life besties — never one without the other. Not a couple; don\'t ask, they wouldn\'t think twice about it either way. Clem would be nothing without Kit getting him out the door; Kit would spiral without Clem\'s grounding presence.',
+      'Maxwell (Clem)': 'Clem\'s dad died at Marsten Industrial Port in 1999. Official story: operator error. Clem never bought it. It\'s the one theory nobody laughs at to his face.',
     }
   },
   {
@@ -145,6 +150,7 @@ const CHARACTERS = [
       'Method': 'Doesn\'t exaggerate. Makes accurate, unflattering observations in a tone that makes them worse.',
       'Weakness': 'Completely folds when trying to impress women. Becomes inconsistent and accommodating.',
       'Family': 'Son of Collin. Quiet, mutual disappointment on both sides.',
+      'Trivia': 'He and Gary were born the same year — their dads were friends who compared baby stories. Neither of them knows.',
     }
   },
   {
@@ -158,6 +164,7 @@ const CHARACTERS = [
       'Appearance': 'Long black hair he refuses to cut (tied back loosely), light stubble, band tees, worn boots.',
       'Self-narrative': 'Claims he turned down the manager position because it would be "lame." Backtracks around Gary.',
       'Relationships': 'Tries to bond with Romeo (dismissed), overcompensates around Ashley, treats Presley like he\'s "going through a phase."',
+      'Graham': 'The third member of his old trio was Gary\'s dad — league nights at Marsten Lanes, ConXtion weekends, baby stories. He has never once mentioned it to Gary. Ask Collin about 1989 and cancel your plans; ask about 1992 and he changes the subject.',
     }
   },
   {
@@ -494,12 +501,14 @@ const CHARACTERS = [
     desc: 'Well-dressed, precise, calm. Arrives unannounced for corporate compliance audits. Stays near entrances and exits. Takes notes that aren\'t always visible. Nobody can confirm exactly when he arrives or leaves.',
     traits: ['Controlled', 'Precise', 'Authoritative', 'Wrong'],
     relationships: [
-      { id: 'zak', name: 'Zak', note: 'The one staff member whose schedule he has never managed to map.' },
+      { id: 'zak',  name: 'Zak',      note: 'The one staff member whose schedule he has never managed to map.' },
+      { id: 'gary', name: 'Big Gary', note: 'Has taken a professional interest in the night manager lately. One-on-one coaching. Gary keeps a notebook.' },
     ],
     details: {
       'Behavior': 'Maintains consistent eye contact. Speaks clearly. Observes for extended periods without interrupting.',
       'Anomalies': 'No one recalls scheduling his visits. His documentation isn\'t always visible. He consistently positions himself near exits rather than work areas.',
       'Effect': 'Conflicts and complaints reduce immediately when he\'s present. Nobody questions his authority. Nobody knows why.',
+      'Lately': 'His visits run longer than they used to, and more of that time lands on the night shift. Management advice, delivered one-on-one. Staff joke that corporate finally found a teacher\'s pet. Zak doesn\'t laugh.',
     }
   },
   {
@@ -680,10 +689,17 @@ const CHARACTERS = [
     faction: 'npc',
     img: 'img/characters/Flower.png',
     desc: 'Kit\'s grandmother. Old-school hippie who never left the 1960s — her house is all beaded curtains, shag carpet, and incense. Provides the home base for Kit and Clem, and technically employs Kit as her state-funded caregiver. She supports their lifestyle without question.',
-    traits: ['Hippie', 'Supportive', 'Caretaker'],
+    traits: ['Hippie', 'Supportive', 'Caretaker', 'Knows more than she says'],
+    relationships: [
+      { id: 'clem-kit', name: 'Clem & Kit', note: 'Her boys. She keeps them fed, keeps the kettle on, and has exactly one rule about the Vibe Van and driving.' },
+      { id: 'lorraine', name: 'Lorraine',   note: 'Has quietly checked in on her for thirty years. Nobody asked her to.' },
+      { id: 'presley',  name: 'Presley',    note: 'Fed him at her kitchen table all through his teens. Little Clem and Kit orbited him there.' },
+    ],
     details: {
       'Home': 'A sanctuary of beaded curtains, shag carpet, and incense whose decor never left 1960.',
       'Role': 'Kit\'s caretaker arrangement is technically a government loophole that funds both his and Clem\'s lifestyle.',
+      'Sonny': 'Her late husband. Acoustic guitar, could actually make a flower crown, and they were so, so happy. The house never left the 60s because he hung the beaded curtains.',
+      'On Kit\'s parents': 'Holds nothing against them for leaving — she understands why. She just knows Kit doesn\'t. She feels bad for him, not them.',
     }
   },
   {
@@ -776,6 +792,72 @@ const CHARACTERS = [
     details: {
       'Dynamic': 'Frequently lectures Gary on "firm handshakes" and "eye contact." Occasionally drags him out to "toss the pigskin around." Gary complies without pushing back.',
       'Marsha': 'Gary\'s mother. Asks Sidney to "take it easy on the boy." Sidney tries. Mostly.',
+      'History': 'One of Graham McKenzie\'s closest friends — the jock of a trio with Graham and Collin. Bowling league Tuesdays at Marsten Lanes, ConXtion weekends, late 80s. He has never told Gary how well he knew his father.',
+    }
+  },
+  {
+    id: 'marsha', name: 'Marsha', age: null,
+    role: 'Gary\'s Mother',
+    faction: 'npc',
+    img: null,
+    desc: 'Sweet, slightly over-protective, and the reason Gary\'s khakis are always freshly ironed. A maternal warmth that works as the counterweight to Sidney\'s bluster. Widowed in 1992; remarried in 1994. Still irons everything.',
+    traits: ['Warm', 'Over-protective', 'Gossip girlie', 'The reason Gary turned out decent'],
+    relationships: [
+      { id: 'gary',   name: 'Big Gary', note: 'Her son. Protective in the way that mortifies him.' },
+      { id: 'sidney', name: 'Sidney',   note: 'Second husband. She reins in the "man up" lectures — "take it easy on the boy."' },
+      { id: 'helen',  name: 'Helen',    note: 'Best friend since 1992. Weekly coffee. Zero missed weeks.' },
+    ],
+    details: {
+      'Graham': 'Her first husband died in a car accident in 1992. She rebuilt, slowly, with casseroles and Helen.',
+      'The playdates': 'She and Helen forced their boys to hang out as kids. Gary and Romeo have awkwardly known each other since they were twelve. Ask either of them about it and watch what happens to their faces.',
+    }
+  },
+  {
+    id: 'helen', name: 'Helen Byers', age: null,
+    role: 'Romeo\'s Mother / Claims Clerk',
+    faction: 'npc',
+    img: null,
+    desc: 'Claims clerk at the Marsten insurance office — twenty years of paperwork nobody else wants to read. Practical, sharp-tongued, unimpressed by everything her son does and quietly proud of most of it.',
+    traits: ['Practical', 'Sharp-tongued', 'Gossip girlie', 'Holds the leash'],
+    relationships: [
+      { id: 'romeo',  name: 'Romeo',    note: 'Her son. The WRX insurance stays in her name. It is the only thing on earth that keeps him in check.' },
+      { id: 'marsha', name: 'Marsha',   note: 'Best friend since 1992 — Helen handled the worst paperwork of Marsha\'s life and never stopped calling.' },
+      { id: 'gary',   name: 'Big Gary', note: 'Watched him grow up across a kitchen table. Still calls him "little Gary."' },
+    ],
+    details: {
+      'At work': 'Claims. If it happened in Marsten and involved money, her office has paper on it.',
+      'The insurance': 'Keeping Romeo\'s car insurance in her name isn\'t sentiment. It\'s leverage, and she understands leverage professionally.',
+    }
+  },
+  {
+    id: 'lorraine', name: 'Lorraine', age: null,
+    role: 'Presley\'s Mother',
+    faction: 'npc',
+    img: null,
+    desc: 'A faded woman on the north end who talks to the walls — has since Presley was a boy, still does. The neighborhood quietly keeps an eye on her without ever calling it that.',
+    traits: ['Faded', 'Elsewhere', 'Looked after'],
+    relationships: [
+      { id: 'presley', name: 'Presley', note: 'Her son. Her groceries, her meds, her lightbulbs. He has never told a coworker she exists.' },
+      { id: 'flower',  name: 'Flower',  note: 'Has quietly checked in on her for thirty years.' },
+    ],
+    details: {
+      'The thing nobody knows': 'The 6\'7" burnout everyone assumes is barely functional has been his mother\'s caregiver his whole life. He chose a different fog than hers. He has never once left her alone in it.',
+    }
+  },
+  {
+    id: 'vera', name: 'Vera Fisher', age: 33,
+    role: 'Director — Fairview Property Group',
+    faction: 'southside',
+    img: null,
+    desc: 'Giraffe demi-human, Southside-born — and the only Southsider anyone can name who owns Northside property. Strikingly tall, blonde, lithe, pretty in the way people mention after meetings rather than during them. Answers questions with questions.',
+    traits: ['Secretive', 'Patient', 'Unreadable', 'Watches the town'],
+    relationships: [
+      { id: 'colton', name: 'Colton', note: 'His father keeps trying to buy her plaza. Fairview does not sell.' },
+    ],
+    details: {
+      'Fairview': 'The deliberately boring holding company that owns the 7-Hell plaza, Dead Dog Rentals\' building, and a scatter of other Northside parcels. It refuses every purchase offer, at any price, with no explanation. Nobody understands why a shabby gas station plaza is unsellable.',
+      'The office': 'Top floor of the Fairview building — the best view in Northside. She likes the height for exactly the reason people joke about.',
+      'Reputation': 'A quiet legend across the bridge; a quiet irritation on this side of it. Doug Hickman, Ashley\'s father, has contracted for Fairview for years and describes Vera as "professional" in the tone of a man who has decided not to wonder about something.',
     }
   },
 ];
@@ -788,7 +870,7 @@ const LOCATIONS = [
     zone: 'Northside',
     color: '#b8ff02',
     desc: 'The only 24-hour gas station in Northside Marsten. Unofficial meeting point for the district\'s "degenerates," insomniacs, and anyone with nowhere else to be. The fluorescent lights buzz in B-flat. It smells like menthol cigarettes, nacho cheese, and floor cleaner.',
-    atmosphere: 'Sticky counter. Beer Cave. Dumpsters out back where people smoke, loiter, and occasionally settle things. The register where Romeo intimidates and Gary plays Minesweeper.',
+    atmosphere: 'Sticky counter. Beer Cave. Dumpsters out back where people smoke, loiter, and occasionally settle things. The register where Romeo intimidates and Gary plays Minesweeper. The whole plaza is owned by Fairview Property Group. Fairview does not sell. Don\'t ask.',
     key_people: ['Big Gary', 'Romeo', 'Presley', 'Dr. Miller', 'Zak', 'Dallas', 'Collin', 'Ashley', 'Dylan', 'Jayden'],
   },
   {

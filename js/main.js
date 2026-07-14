@@ -197,4 +197,73 @@ document.addEventListener('DOMContentLoaded', () => {
   buildCharGrid();
   buildLocGrid();
   setupFilters();
+  buildStartHere();
 });
+
+// ── LOST? START HERE ─────────────────────────────────────
+function buildStartHere() {
+  const btn = document.createElement('button');
+  btn.className = 'starthere-btn';
+  btn.innerHTML = '<span class="starthere-btn-q">?</span> Lost? Start here';
+
+  const overlay = document.createElement('div');
+  overlay.className = 'starthere-overlay';
+  overlay.innerHTML = `
+    <div class="starthere-panel">
+      <button class="starthere-close" aria-label="Close">✕</button>
+      <p class="starthere-eyebrow">New here? This takes two minutes.</p>
+      <h2 class="starthere-title">LOST? START HERE</h2>
+
+      <div class="starthere-section">
+        <div class="starthere-label">The basics</div>
+        <p>It's <strong>2004</strong>. Flip phones, burned CDs, gas under a dollar a litre. <strong>Marsten</strong> is a dead-end town in southwest Canada, split by a bridge: <strong>Northside</strong> (strip malls, gas stations, the last paycheck before the highway) and <strong>Southside</strong> (docks, factories, and most of the town's <strong>demi-humans</strong> — people born with animal features, pushed south by rent and habit). Nobody famous has ever come from Marsten. Nobody is coming to save it.</p>
+      </div>
+
+      <div class="starthere-section">
+        <div class="starthere-label">The store</div>
+        <p><strong>7-Hell Convenience</strong> is the only 24-hour gas station in Northside — the unofficial living room for insomniacs, club kids, warehouse crews, dealers, and anyone with nowhere else to be. The fluorescent lights buzz in B-flat. If two characters are going to collide, they collide here, usually near the nacho cheese machine.</p>
+      </div>
+
+      <div class="starthere-section">
+        <div class="starthere-label">The people, fast</div>
+        <ul>
+          <li><strong>Night shift:</strong> Gary (anxious manager, genuinely tries, it's sad), Romeo (the muscle, ignores Gary), Presley (6'7" of unsettling calm), Zak (polite, reliable, impossible to pin down), Dr. Miller (overqualified pharmacist in a plexiglass cage).</li>
+          <li><strong>Day shift:</strong> Dallas (accurate and mean about it), his dad Collin (peaked in 1989), Ashley (zero medical knowledge, immaculate vibes).</li>
+          <li><strong>The regulars:</strong> Clem &amp; Kit (conspiracy duo), Jett (parked outside again), Maisy (Romeo's ex — knows things), Cassy (rat hunter).</li>
+          <li><strong>The club:</strong> Kaleb, Gaige, and Peter perform at the ConXtion down the street.</li>
+          <li><strong>The trade:</strong> the Beanie Baby Boys (Northside) and the Southside Rig do not like each other.</li>
+          <li><strong>The law:</strong> Officer Ward and intern Holden. Very polite. Hm.</li>
+          <li><strong>Corporate:</strong> a regional auditor named Sawyer White visits unannounced. Everyone behaves. Nobody knows why.</li>
+        </ul>
+      </div>
+
+      <div class="starthere-section">
+        <div class="starthere-label">What's going on right now</div>
+        <ul>
+          <li>Russell, a longtime regular, stopped showing up. Nobody filed anything.</li>
+          <li>Nobody — <em>nobody</em> — talks about the old staff retreats.</li>
+          <li>The auditor's visits keep running longer. Gary has started keeping a notebook of his advice.</li>
+          <li>The whole plaza is owned by a holding company that refuses to sell. At any price. To anyone.</li>
+          <li>Zak parks somewhere different every shift. There's no pattern. That's the pattern.</li>
+          <li>The Beanies and the Rig are circling each other over territory.</li>
+        </ul>
+        <p class="starthere-note">Things in Marsten feel slightly off. That's not sloppy writing — that's the show. Watch the boring people.</p>
+      </div>
+
+      <div class="starthere-section">
+        <div class="starthere-label">How to use this wiki</div>
+        <p><a href="characters.html">Characters</a> — click a card, then click the relationship tags to hop through the web. <a href="locations.html">Locations</a> — who hangs out where. <a href="lore.html">Lore</a> — the rules of the town. Pick whoever looks fun and pull the thread.</p>
+      </div>
+    </div>`;
+
+  function openStartHere()  { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeStartHere() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  btn.addEventListener('click', openStartHere);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeStartHere(); });
+  overlay.querySelector('.starthere-close').addEventListener('click', closeStartHere);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeStartHere(); });
+
+  document.body.appendChild(btn);
+  document.body.appendChild(overlay);
+}
