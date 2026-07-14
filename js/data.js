@@ -18,6 +18,10 @@ const CHARACTERS = [
     img: 'img/characters/Romeo.png',
     bots: [
       { label: 'Chapter I — Romeo\'s World', url: 'https://janitorai.com/characters/89f9f4d5-6af2-4030-8a6d-19f129afce22_character-romeo-𝐂-𝐚-𝐧-𝐭-𝐄-𝐬-𝐜-𝐚-𝐩-𝐞-𝐇-𝐞-𝐫' },
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/4cc02f04-9caf-4591-86b3-111be559f0aa_character-romeo-𝗚-𝗿-𝘂-𝗺-𝗽-𝘆-𝗕-𝗙' },
+      { label: 'OG Bot (AnyPOV)', url: 'https://janitorai.com/characters/8e989560-33d3-49d1-b867-968aaf87d823_character-romeo-any-pov-ver' },
+      { label: 'Spring Alt (Ch 1–2)', url: 'https://janitorai.com/characters/b31c804c-f956-48b5-990e-0a88b5185b4f_character-romeo-ᴀᴛᴇ-ᴀʟʟ-ᴛʜᴇ-ᴄʜᴏᴄᴏʟᴀᴛᴇꜱ' },
+      { label: 'Summer Alt (Ch 3–4)', url: 'https://janitorai.com/characters/598d067f-20ae-42ea-813b-7138cfd81e0e_character-romeo-𝗙-𝘂-𝗰-𝗸-𝗦-𝘂-𝗺-𝗺-𝗲-𝗿' },
     ],
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
@@ -39,6 +43,12 @@ const CHARACTERS = [
     role: 'Night Shift Manager',
     faction: 'nightshift',
     img: 'img/characters/Gary.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/1d6dc90f-4771-4b5a-9135-176c92335059_character-big-gary-𝚈-𝚘-𝚞-𝚛-𝙼-𝚊-𝚗-𝚊-𝚐-𝚎-𝚛' },
+      { label: 'OG Bot (MLM)', url: 'https://janitorai.com/characters/ebcbcd3c-3f40-4383-a09b-241bc132d445_character-big-gary-male-pov-ver' },
+      { label: 'Robbed Alt (Ch 1–2)', url: 'https://janitorai.com/characters/597bdf32-9bbe-47ef-927c-02a99f7868df_character-big-gary-𝚁-𝚘-𝚋-𝚋-𝚎-𝚍' },
+      { label: 'Anniversary Alt (Ch 1–2)', url: 'https://janitorai.com/characters/17e3661b-82ee-4c6d-8167-66a3c82fad8d_character-gary-alt-𝐀-𝐧-𝐧-𝐢-𝐯-𝐞-𝐫-𝐬-𝐚-𝐫-𝐲' },
+    ],
     desc: 'Ginger mop-hair, thick smudged glasses, ironed khakis. Got promoted to manager at 24 because he was the only employee without a criminal record. Lives by the employee handbook. Is terrified of Romeo, Presley, and the sound of a Subaru backfiring.',
     traits: ['Anxious', 'Rule-follower', 'Touch-starved', 'Genuinely tries'],
     relationships: [
@@ -62,6 +72,11 @@ const CHARACTERS = [
     role: 'Night Shift — Janitor / Stock',
     faction: 'nightshift',
     img: 'img/characters/Presley.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/8a34062a-1780-485d-8a44-444ec73c9d61_character-presley-𝗧-𝗵-𝗶-𝗻-𝗸-𝘀-𝗬-𝗼-𝘂-𝗿-𝗲-𝗖-𝘂-𝘁-𝗲' },
+      { label: 'No Good Very Bad Day Alt (Ch 1–2)', url: 'https://janitorai.com/characters/9aaef711-e3ed-4d03-81cc-2ab195db8ba3_character-presley-𝗡-𝗼-𝗚-𝗼-𝗼-𝗱-𝗩-𝗲-𝗿-𝘆-𝗕-𝗮-𝗱-𝗗-𝗮-𝘆' },
+      { label: 'First Meet Alt (Ch 3–4)', url: 'https://janitorai.com/characters/657c6273-2207-4450-95ed-7d94365fad81_character-presley-alt-𝐅-𝐢-𝐫-𝐬-𝐭-𝐌-𝐞-𝐞-𝐭' },
+    ],
     desc: 'Half-Japanese. 6\'7" of pure unsettling calm. Long stringy hair hiding pale green bloodshot eyes. Perpetually high on weed and gummies. Operates at a frequency slightly removed from reality.',
     traits: ['Detached', 'Unbothered', 'Stares', 'Capri Sun connoisseur'],
     relationships: [
@@ -85,6 +100,7 @@ const CHARACTERS = [
     img: 'img/characters/Clem&Kit.png',
     bots: [
       { label: 'Chapter II — Clem & Kit\'s Orbit', url: 'https://janitorai.com/characters/86b563f3-1355-40d7-9ff9-902e543b8c66_character-clem-and-kit-alt-𝐅-𝐮-𝐜-𝐤-𝐢-𝐧-𝐠-𝐀-𝐫-𝐨-𝐮-𝐧-𝐝' },
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/3b5e735b-5f0b-4d19-8c9e-3623e325af7e_character-clem-kit-𝐘-𝐨-𝐮-𝐫-𝐋-𝐨-𝐜-𝐚-𝐥-𝐓-𝐰-𝐞-𝐚-𝐤-𝐞-𝐫-𝐬' },
     ],
     desc: 'An inseparable duo that functions as a single chaotic entity. Clem philosophizes slowly about frequencies and government conspiracies; Kit amplifies everything at 200 words per minute. Together they narrate, escalate, and survive on Flower\'s caretaker checks.',
     traits: ['Conspiratorial', 'Impulsive', 'Inseparable', 'Perpetually altered'],
@@ -184,6 +200,9 @@ const CHARACTERS = [
     role: 'Pharmacy Tech',
     faction: 'dayshift',
     img: 'img/characters/Ashley.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/b711bbe5-5e20-42ac-b528-af5bba1d6779_character-ashley-𝗬-𝗼-𝘂-𝗿-𝗚-𝗶-𝗿-𝗹-𝗳-𝗿-𝗶-𝗲-𝗻-𝗱' },
+    ],
     desc: 'Full name: Ashley Hickman. Peak 2004 bimbo-core — pink velour Juicy Couture, Ugg boots, chunky highlights. Completely unqualified pharmacy tech who keeps the job because her dad knows the property owner. Lesbian. Fiercely loyal to "her people."',
     traits: ['Vapid (surface)', 'Fiercely loyal', 'High-femme lesbian', 'Zero medical knowledge'],
     relationships: [
@@ -203,6 +222,9 @@ const CHARACTERS = [
     role: 'Day Shift Employee / Local Skater',
     faction: 'dayshift',
     img: 'img/characters/Dylan.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/3a35824b-66b0-49cd-b855-6308cad532af_character-dylan-𝙲-𝚊-𝚗-𝚝-𝙶-𝚎-𝚝-𝙾-𝚟-𝚎-𝚛-𝚈-𝚘-𝚞' },
+    ],
     desc: 'Split-dyed hair (black and white), heterochromia, permanent mild disappointment. Detached and emotionally stagnant on the surface. Confessed his feelings at 18 and watched the person leave without closure. Now they\'re back in town.',
     traits: ['Detached', 'Low-energy', 'Pop-punk', 'Still hasn\'t moved on'],
     relationships: [
@@ -275,6 +297,9 @@ const CHARACTERS = [
     role: 'Deal Dungeon — Manager',
     faction: 'dungeon',
     img: 'img/characters/Orlando.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/e9a62544-7b3a-4538-a6a6-34ee10f6c0d0_character-orlando-ｉｎ-ｌｉｍｂｏ' },
+    ],
     desc: 'Danish-Canadian. 6\'2", dark brown shaggy hair, dark green eyes, blackwork tattoos across his arms and chest. Emotionally exhausted metalhead managing a warehouse full of people most employers would never hire. Tries to convince himself he has everything under control. He does not.',
     traits: ['Emotionally repressed', 'Dry', 'Protective', 'Avoidant', 'Quietly attached'],
     relationships: [
@@ -295,6 +320,9 @@ const CHARACTERS = [
     role: 'Deal Dungeon — Night Shift',
     faction: 'dungeon',
     img: 'img/characters/Cory.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/4a4fd826-0f28-49f2-a68d-e5f1e22eb4fd_character-cory-ʏᴏᴜʀ-ᴇx-ᴋɪɴᴅ-ᴏꜰ' },
+    ],
     desc: 'Full name: Cory Dotson. Liberty spikes (split-dyed black and neon green), chipped front tooth, Prince Albert piercing he\'s smug about. Night-shift loader at Deal Dungeon. Can\'t hold a job, frequently in jail, takes pride in both.',
     traits: ['Volatile', 'Possessive', 'High pain tolerance', 'Enjoys the risk'],
     relationships: [
@@ -313,6 +341,9 @@ const CHARACTERS = [
     role: 'Deal Dungeon — Night Shift',
     faction: 'dungeon',
     img: 'img/characters/Jermaine.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/ca5e3790-0c35-4687-8383-a37da10c4510_character-jermaine-𝐈-𝐬-𝐋-𝐨-𝐰-𝐤-𝐞-𝐲-𝐒-𝐜-𝐚-𝐫-𝐞-𝐝-𝐨-𝐟-𝐘-𝐨-𝐮' },
+    ],
     desc: 'Full name: Jermaine Roberts. Saskatchewan transplant who fled a devastating heartbreak. Views Northside Marsten as disorganized, lazy, and fundamentally broken. He\'s not entirely wrong. Has a chest tattoo of barbed wire he got when he arrived as a ritual to "lock his heart away."',
     traits: ['Blunt', 'Hyper-competent', 'Emotionally locked', 'Secretly feeds crows'],
     relationships: [
@@ -360,6 +391,9 @@ const CHARACTERS = [
     role: 'Iron Lung — Strategist',
     faction: 'ironlung',
     img: 'img/characters/Micheal.png',
+    bots: [
+      { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+    ],
     desc: 'Former Head of Security for Marsten Industrial Port. Left when ordered to falsify a report on a fatal accident. Founded the Iron Lung operation to run a version of order he actually controls.',
     traits: ['Stoic', 'Precise', 'Cynical', 'Iron-willed'],
     details: {
@@ -373,6 +407,9 @@ const CHARACTERS = [
     role: 'Iron Lung — Field Commander',
     faction: 'ironlung',
     img: 'img/characters/James.png',
+    bots: [
+      { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+    ],
     desc: 'Moose demi-human. Ex-construction foreman who lost his job, his marriage, and easy access to his daughter to economic collapse. Does this work for her. Hates it.',
     traits: ['Protective', 'Weary', 'Guilt-ridden', 'Immovable'],
     details: {
@@ -386,6 +423,9 @@ const CHARACTERS = [
     role: 'Iron Lung — Enforcer',
     faction: 'ironlung',
     img: 'img/characters/Cody.png',
+    bots: [
+      { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+    ],
     desc: 'Jaguar demi-human. Rejected from the foster system for being "uncontrollable" — while the Beanie Baby Boys formed a brotherhood, Cody was left in Southside gutters. Found by Michael. Still has the temper.',
     traits: ['Volatile', 'Insecure', 'Fiercely loyal', 'Terrifyingly fast'],
     details: {
@@ -399,6 +439,9 @@ const CHARACTERS = [
     role: 'Iron Lung — Street Liaison',
     faction: 'ironlung',
     img: 'img/characters/Allan.png',
+    bots: [
+      { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+    ],
     desc: 'White tiger demi-human. Joined the drug trade when he realized it\'s where the real money is. Views the Iron Lung as a temporary stepping stone to a penthouse in a better city. Has been saying that for three years.',
     traits: ['Vain', 'Manipulative', 'Witty', 'Conditionally dangerous'],
     details: {
@@ -412,6 +455,9 @@ const CHARACTERS = [
     role: 'Iron Lung — Intelligence',
     faction: 'ironlung',
     img: 'img/characters/Echo.png',
+    bots: [
+      { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+    ],
     desc: 'Bat demi-human. Pale, emo fringe, oversized ears that twitch constantly, 3XL black hoodie, foam headphones on a yellow Walkman. Looks like he\'s zoning out. He is monitoring your heartbeat.',
     traits: ['Snarky', 'Detached', 'Opportunistic', 'Listening to everything'],
     details: {
@@ -531,6 +577,9 @@ const CHARACTERS = [
     role: 'Northside Marsten Police Officer',
     faction: 'npc',
     img: 'img/characters/DanielWard.png',
+    bots: [
+      { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/892b8b32-e520-4f1d-a7f1-487adb2140e7_character-daniel-𝐒-𝐭-𝐚-𝐥-𝐤-𝐢-𝐧-𝐠-𝐏-𝐨-𝐥-𝐢-𝐜-𝐞-𝐎-𝐟-𝐟-𝐢-𝐜-𝐞-𝐫' },
+    ],
     desc: '6\'6", dark hair, neat mustache, sharp blue eyes. One of the more respected officers in Marsten. Calm, handsome, dependable. Learned early that respectable men can get away with ugly things as long as they keep calm and look professional. He applies this lesson freely.',
     traits: ['Calm under pressure', 'Observant', 'Possessive', 'Corrupt'],
     relationships: [
@@ -783,6 +832,9 @@ const CHARACTERS = [
     role: 'Construction Worker / 7-Hell Fixture',
     faction: 'npc',
     img: 'img/characters/Jett.png',
+    bots: [
+      { label: 'Jett\'s Bot (Ch 1–2)', url: 'https://janitorai.com/characters/79f84313-f8f8-4fa9-ae70-ba5a84b02044_character-jett-𝙹-𝚎-𝚊-𝚕-𝚘-𝚞-𝚜-𝙱-𝙵' },
+    ],
     desc: 'Indigenous Canadian (Cree). 6\'4", long dark hair usually unwashed a day too long, heavy-lidded exhausted eyes, sharp tired expression. Construction worker during the warmer months. During off-season, haunts 7-Hell on increasingly flimsy excuses.',
     traits: ['Possessive', 'Clingy in denial', 'Stubborn', 'Low-energy', 'Deeply attached'],
     relationships: [
@@ -936,6 +988,9 @@ const LOCATIONS = [
     desc: 'The only 24-hour gas station in Northside Marsten. Unofficial meeting point for the district\'s "degenerates," insomniacs, and anyone with nowhere else to be. The fluorescent lights buzz in B-flat. It smells like menthol cigarettes, nacho cheese, and floor cleaner.',
     atmosphere: 'Sticky counter. Beer Cave. Dumpsters out back where people smoke, loiter, and occasionally settle things. The register where Romeo intimidates and Gary plays Minesweeper. The whole plaza is owned by Fairview Property Group. Fairview does not sell. Don\'t ask.',
     key_people: ['Big Gary', 'Romeo', 'Presley', 'Dr. Miller', 'Zak', 'Dallas', 'Collin', 'Ashley', 'Dylan', 'Jayden'],
+    bots: [
+      { label: 'The Queasy Lake Retreat (RPG scenario)', url: 'https://janitorai.com/characters/f74ea06e-6e02-4823-870f-dd701cbbaf68_character-queasy-lake-retreat-7-hell-rpg' },
+    ],
   },
   {
     id: 'conxtion',

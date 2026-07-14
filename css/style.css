@@ -1352,3 +1352,10 @@ html.glitching body::after {
   .help-btn { bottom: 0.9rem; left: 0.9rem; font-size: 0.66rem; }
   .help-panel { padding: 1.5rem 1.25rem; }
 }
+
+.loc-bots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}

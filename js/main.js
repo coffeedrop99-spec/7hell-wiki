@@ -160,6 +160,10 @@ function buildLocGrid() {
       return `<span class="loc-person-tag">${name}</span>`;
     }).join('');
 
+    const botTags = (loc.bots || []).map(b =>
+      `<a class="bot-tag" href="${b.url}" target="_blank" rel="noopener">▶ ${b.label} ↗</a>`
+    ).join('');
+
     card.innerHTML = `
       <div class="loc-header">
         <div class="loc-icon">${loc.icon}</div>
@@ -170,7 +174,8 @@ function buildLocGrid() {
       </div>
       <p class="loc-desc">${loc.desc}</p>
       ${loc.atmosphere ? `<p class="loc-atmosphere">${loc.atmosphere}</p>` : ''}
-      ${loc.key_people?.length ? `<div class="loc-key-people">${peopleTags}</div>` : ''}`;
+      ${loc.key_people?.length ? `<div class="loc-key-people">${peopleTags}</div>` : ''}
+      ${botTags ? `<div class="loc-bots">${botTags}</div>` : ''}`;
 
     card.querySelectorAll('.loc-person-clickable').forEach(btn => {
       btn.addEventListener('click', () => openModalById(btn.dataset.id));
