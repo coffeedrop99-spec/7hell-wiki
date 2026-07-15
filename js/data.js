@@ -35,7 +35,7 @@ const CHARACTERS = [
       'Appearance': '6\'6", bleached-blonde with dark roots. Black 7-Hell polo, sleeves cut at shoulder to show ink. Name tag reads "RO."',
       'Car': 'Silver \'02 Subaru WRX. His mom holds the insurance. This is the only thing that keeps him in check.',
       'Habits': 'Constantly sucking on lollipops, Sour Patch Kids, or Nerds Rope. Carries a metal hot-dog tong like a weapon. Flips people off as a greeting.',
-      'Background': 'Called the cops on his own father at 14 after years of abuse. His dad is in state prison. He never talks about it.',
+      'Background': 'Called the cops on his own father at 14 after years of abuse. His dad is in federal prison. He never talks about it.',
     }
   },
   {
