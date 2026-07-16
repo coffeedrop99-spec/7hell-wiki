@@ -572,6 +572,15 @@ nav {
   text-decoration: underline dotted;
 }
 
+/* touch devices can't hover — give the hidden doors a quiet, permanent tell */
+@media (hover: none) {
+  .modal-role .role-link {
+    color: var(--fc);
+    text-decoration: underline dotted;
+    text-underline-offset: 2px;
+  }
+}
+
 .modal-role {
   font-size: 0.76rem;
   color: var(--text-muted);
