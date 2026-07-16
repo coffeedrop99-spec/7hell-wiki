@@ -84,9 +84,10 @@ function openModal(char) {
   const relLabel = modalEl.querySelector('.modal-rel-label');
   if (char.relationships?.length) {
     relEl.innerHTML = char.relationships.map(r =>
-      `<button class="rel-tag" data-id="${r.id}" title="${r.note || ''}" style="--fc:${FACTIONS[CHARACTERS.find(c=>c.id===r.id)?.faction]?.color||'#888'}">${r.name}</button>`
+      `<button class="rel-tag" data-id="${r.id}" style="--fc:${FACTIONS[CHARACTERS.find(c=>c.id===r.id)?.faction]?.color||'#888'}">${r.name}</button>`
     ).join('');
-    relEl.querySelectorAll('.rel-tag').forEach(btn => {
+    relEl.querySelectorAll('.rel-tag').forEach((btn, i) => {
+      btn.title = char.relationships[i].note || '';
       btn.addEventListener('click', () => openModalById(btn.dataset.id));
     });
     relEl.style.display = 'flex';
