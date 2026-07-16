@@ -557,6 +557,7 @@ const CHARACTERS = [
   {
     id: 'sawyer', name: 'Sawyer White', age: 32,
     role: 'Regional Auditor — 7-Hell Convenience',
+    roleLink: { text: '7-Hell Convenience', url: '7hell-2004.html' },
     faction: 'npc',
     img: 'img/characters/Sawyer.png',
     desc: 'Well-dressed, precise, calm. Arrives unannounced for corporate compliance audits. Stays near entrances and exits. Takes notes that aren\'t always visible. Nobody can confirm exactly when he arrives or leaves.',

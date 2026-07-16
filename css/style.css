@@ -562,6 +562,16 @@ nav {
   margin-bottom: 0.25rem;
 }
 
+.modal-role .role-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.modal-role .role-link:hover {
+  color: var(--fc);
+  text-decoration: underline dotted;
+}
+
 .modal-role {
   font-size: 0.76rem;
   color: var(--text-muted);

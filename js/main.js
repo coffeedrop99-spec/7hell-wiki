@@ -18,7 +18,19 @@ function openModal(char) {
   modalEl.querySelector('.modal-inner').style.setProperty('--fc', fc);
   modalEl.querySelector('.modal-faction-tag').textContent = faction?.label || '';
   modalEl.querySelector('.modal-name').textContent        = char.name;
-  modalEl.querySelector('.modal-role').textContent        = char.role + (char.age ? ` · Age ${char.age}` : '');
+  const roleEl   = modalEl.querySelector('.modal-role');
+  const roleText = char.role + (char.age ? ` · Age ${char.age}` : '');
+  if (char.roleLink && roleText.includes(char.roleLink.text)) {
+    const [before, after] = roleText.split(char.roleLink.text);
+    const link = document.createElement('a');
+    link.href        = char.roleLink.url;
+    link.textContent = char.roleLink.text;
+    link.className   = 'role-link';
+    roleEl.textContent = '';
+    roleEl.append(before, link, after);
+  } else {
+    roleEl.textContent = roleText;
+  }
   modalEl.querySelector('.modal-desc').textContent        = char.desc;
 
   // portrait

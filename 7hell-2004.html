@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7-HELL CONVENIENCE ** OFFICIAL WEB SITE ** est 1996</title>
+<!-- ============================================== -->
+<!-- 7-HELL CONVENIENCE OFFICIAL WEBSITE v3 (2004)  -->
+<!-- webmaster: submitted to regional office 03/04  -->
+<!-- do NOT edit without corporate approval         -->
+<!-- ============================================== -->
+<!-- TODO: counter logs keep showing the same visitor at the same -->
+<!-- time every night. asked corporate about it. they said leave  -->
+<!-- it alone.                                                    -->
+<style>
+  /* deliberately period-accurate. do not modernize. */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 12px 6px;
+    background-color: #0a0000;
+    background-image:
+      repeating-linear-gradient(45deg, #0a0000 0px, #0a0000 14px, #140400 14px, #140400 28px);
+    font-family: "Times New Roman", Times, serif;
+    color: #e8d9c0;
+  }
+  #page {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    background: #1a0500;
+    border: 4px ridge #a33c00;
+  }
+  /* ── header ── */
+  #hdr {
+    text-align: center;
+    padding: 14px 8px 10px;
+    background: linear-gradient(#3d0a00, #1a0500);
+    border-bottom: 3px double #a33c00;
+  }
+  #hdr .seven {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #ff6a00;
+    text-shadow: 2px 2px 0 #7a0000, -1px -1px 0 #ffd23c;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  #hdr .tag {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #ffd23c;
+    font-size: 0.85rem;
+    margin: 2px 0 0;
+  }
+  #hdr .flames { font-size: 1rem; letter-spacing: 0.4em; color: #ff3d00; }
+  .blink { animation: blink 1s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+  /* ── marquee ── */
+  #ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #000;
+    border-top: 2px solid #ff6a00;
+    border-bottom: 2px solid #ff6a00;
+    padding: 4px 0;
+  }
+  #ticker span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tick 22s linear infinite;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #7CFC00;
+  }
+  @keyframes tick { to { transform: translateX(-100%); } }
+  /* ── nav ── */
+  #nav {
+    text-align: center;
+    padding: 7px 4px;
+    background: #240800;
+    border-bottom: 2px solid #a33c00;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 0.85rem;
+  }
+  #nav a {
+    color: #ffd23c;
+    margin: 0 7px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  #nav a:hover { color: #ff6a00; }
+  /* ── sections ── */
+  .sect { padding: 16px 18px; }
+  .sect h2 {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #ff6a00;
+    font-size: 1.25rem;
+    border-bottom: 2px dashed #a33c00;
+    padding-bottom: 4px;
+    margin: 0 0 10px;
+  }
+  .sect p { font-size: 0.95rem; line-height: 1.45; }
+  .newburst {
+    display: inline-block;
+    background: #ff0000;
+    color: #ffff00;
+    font-family: "Comic Sans MS", cursive;
+    font-weight: bold;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    transform: rotate(-6deg);
+    border: 1px solid #ffff00;
+  }
+  hr.div { border: none; border-top: 3px double #a33c00; margin: 0; }
+  /* ── deals gallery ── */
+  #deals-tbl {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #deals-tbl td {
+    width: 25%;
+    padding: 8px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px dotted #5c2000;
+  }
+  #deals-tbl img {
+    width: 100%;
+    max-width: 130px;
+    border: 2px outset #a33c00;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto 6px;
+  }
+  #deals-tbl img:hover { border-style: inset; }
+  .cap {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 0.68rem;
+    color: #d9b98a;
+    line-height: 1.35;
+    text-align: left;
+  }
+  @media (max-width: 560px) {
+    #deals-tbl, #deals-tbl tbody, #deals-tbl tr { display: block; }
+    #deals-tbl td { display: inline-block; width: 49%; }
+  }
+  /* ── photo viewer "popup" ── */
+  #viewer-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 50;
+  }
+  #viewer {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 51;
+    background: #d4d0c8;
+    border: 2px outset #fff;
+    padding: 2px;
+    max-width: min(92vw, 460px);
+  }
+  #viewer-title {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #fff;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  #viewer-x {
+    background: #d4d0c8;
+    border: 1px outset #fff;
+    color: #000;
+    font-size: 0.7rem;
+    width: 18px; height: 16px;
+    line-height: 13px;
+    text-align: center;
+    cursor: pointer;
+    font-family: Tahoma, sans-serif;
+  }
+  #viewer-x:active { border-style: inset; }
+  #viewer img { display: block; width: 100%; }
+  /* ── quiz ── */
+  #quiz {
+    background: #240800;
+    border: 3px ridge #ff6a00;
+    padding: 14px;
+  }
+  #quiz h3 {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #7CFC00;
+    text-align: center;
+    font-size: 1.35rem;
+    margin: 0 0 2px;
+    text-shadow: 1px 1px 0 #003300;
+  }
+  #quiz .sub {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #d9b98a;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .q {
+    margin-bottom: 13px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #5c2000;
+  }
+  .q b {
+    color: #ffd23c;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .q label {
+    display: block;
+    font-size: 0.88rem;
+    padding: 2px 0 2px 4px;
+    cursor: pointer;
+  }
+  .q label:hover { color: #ff6a00; }
+  #quiz input[type="text"] {
+    background: #000;
+    color: #7CFC00;
+    border: 2px inset #a33c00;
+    font-family: "Courier New", monospace;
+    padding: 3px 6px;
+    width: 180px;
+  }
+  #quiz button {
+    display: block;
+    margin: 14px auto 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(#ff6a00, #a33c00);
+    border: 3px outset #ffd23c;
+    padding: 8px 26px;
+    cursor: pointer;
+  }
+  #quiz button:active { border-style: inset; }
+  #result {
+    display: none;
+    margin-top: 16px;
+    border: 2px solid #7CFC00;
+    background: #000;
+    padding: 12px 14px;
+  }
+  #result.err { border-color: #ff0000; }
+  #result h4 {
+    font-family: "Courier New", monospace;
+    color: #7CFC00;
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+  }
+  #result.err h4 { color: #ff0000; }
+  #result p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+  #result .fine {
+    font-size: 0.75rem;
+    color: #7a6a50;
+    font-style: italic;
+  }
+  #result.err .fine { color: #8a2020; }
+  /* ── footer ── */
+  #ftr {
+    text-align: center;
+    padding: 14px 10px 18px;
+    background: #000;
+    border-top: 3px double #a33c00;
+    font-size: 0.75rem;
+    color: #9a8a70;
+  }
+  #counter {
+    display: inline-block;
+    background: #000;
+    border: 2px inset #444;
+    padding: 2px 4px;
+    font-family: "Courier New", monospace;
+    font-size: 1.05rem;
+    color: #7CFC00;
+    letter-spacing: 3px;
+    margin: 4px 0;
+  }
+  #counter.glitch { animation: glitch 0.09s steps(2) 10; }
+  @keyframes glitch {
+    50% { color: #ff0000; transform: translateX(1px); }
+  }
+  .badge {
+    display: inline-block;
+    border: 1px solid #555;
+    background: #111;
+    color: #888;
+    font-family: Verdana, sans-serif;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    margin: 2px;
+  }
+  #ftr a { color: #9a8a70; }
+</style>
+</head>
+<body>
+<div id="page">
+
+  <div id="hdr">
+    <div class="flames">&#128293; &#128293; &#128293;</div>
+    <h1 class="seven">7-HELL CONVENIENCE</h1>
+    <p class="tag">~*~ HELL IS JUST THE BEGINNING ~*~ open 24/7, like hell ~*~</p>
+  </div>
+
+  <div id="ticker"><span>&#9733;&#24417; NEW: HELLFIRE MANGO SLUSHY OUT NOW &#24417;&#9733; COMMIT 2 SINS, GET 1 FREE &#9733;&#24417; LOTTERY DREAMS &mdash; PLAY TODAY, CHANGE TOMORROW &#24417;&#9733; MILK OF THE DAMNED back in stock (we think) &#9733;&#24417; OPEN 24/7 LIKE HELL &#24417;&#9733; take the PREDICTABILITY QUIZ!! new on the site!! &#9733;&#24417;</span></div>
+
+  <div id="nav">
+    <a href="#welcome">HOME</a> |
+    <a href="#deals">TODAY'S DEALS</a> |
+    <a href="#quiz-anchor">THE QUIZ <span class="newburst blink">NEW!!</span></a> |
+    <a onclick="alert('guestbook is under construction!! check back soon &#128293;')">GUESTBOOK</a> |
+    <a onclick="alert('you know where we are.')">DIRECTIONS</a>
+  </div>
+
+  <div class="sect" id="welcome">
+    <h2>welcome to the OFFICIAL 7-Hell web site!!</h2>
+    <p>thats right, we're on the INFORMATION SUPERHIGHWAY now. corporate said every location needs a "web presence" so here it is. we sell gas, slushies, lottery tickets, hot dogs of unverifiable age, and everything else you could need at 3 in the morning. we are legally required to say the coffee is "hot". we are open ALL NIGHT, EVERY NIGHT. we have always been open. come on down!!</p>
+    <p style="font-size:0.8rem; color:#9a8a70; font-style:italic;">(site best viewed on Internet Explorer 6 at 800x600. if the page looks weird on Netscape thats a YOU problem)</p>
+  </div>
+
+  <hr class="div">
+
+  <div class="sect" id="deals">
+    <h2>&#128293; TODAY'S DEALS &#128293; <span class="newburst">HOT!!</span></h2>
+    <p style="font-size:0.8rem; margin-top:0;">click any flyer to view BIG SIZE. printed flyers available in store (ask gary)</p>
+    <table id="deals-tbl">
+      <tr>
+        <td>
+          <img src="img/promo/merch-drop.jpg" alt="7-Hell merch drop flyer" loading="lazy">
+          <div class="cap">NEW!! show your 7-HELL pride!! beanies, hoodies + more. ask Gary (he probably has no idea where they are)</div>
+        </td>
+        <td>
+          <img src="img/promo/loiterer-special.jpg" alt="Loiterer Special flyer" loading="lazy">
+          <div class="cap">the LOITERER SPECIAL is back by popular demand (nobody asked) &mdash; 2 pepperoni sticks, taquito bits, instant ramen, 1 gatorade. $6.66. no substitutions, no receipts.</div>
+        </td>
+        <td>
+          <img src="img/promo/lottery-dreams.jpg" alt="Lottery Dreams flyer" loading="lazy">
+          <div class="cap">SCRATCH &amp; WIN!!! millions could be urs. (they're not.) ask about our $1 tickets at the counter, if anyone's actually working</div>
+        </td>
+        <td>
+          <img src="img/promo/milk-damned.jpg" alt="Milk of the Damned flyer" loading="lazy">
+          <div class="cap">half gallon, 64oz. EXPIRATION DATE MAY VARY. by purchasing you accept the risks. &mdash;mgmt</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/promo/hellfire-slushy.jpg" alt="Hellfire Mango Slushy flyer" loading="lazy">
+          <div class="cap">NEW FLAVOR alert!!! hellfire mango, so hot it hurts (for real, we had 2 complaints)</div>
+        </td>
+        <td>
+          <img src="img/promo/walk-of-shame.jpg" alt="Walk of Shame breakfast combo flyer" loading="lazy">
+          <div class="cap">3:17 AM special. cold pizza + toxic coffee, $2.99. we don't judge (we've seen worse). always available, we're never closed</div>
+        </td>
+        <td>
+          <img src="img/promo/cooling-ranch.jpg" alt="Blue-Bag Cooling Ranch Inferno chips flyer" loading="lazy">
+          <div class="cap">hot AND cold at the same time. science we don't understand either</div>
+        </td>
+        <td>
+          <img src="img/promo/two-sins.jpg" alt="Commit Two Sins combo flyer" loading="lazy">
+          <div class="cap">commit two sins get 1 FREE!!! (hot dog + hot dog + slushy, $5.99) limit 1 per customer. we're watching.</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="div">
+
+  <div class="sect" id="quiz-anchor">
+    <div id="quiz">
+      <h3>&#10024; how PREDICTABLE are you?? &#10024;</h3>
+      <p class="sub">do you follow patterns? take our quiz and find out!! 10 questions. be honest, nobody's checking. (nobody's checking.)</p>
+
+      <div class="q"><b>1. what's your go-to grab at 7-Hell?</b>
+        <label><input type="radio" name="q1" value="A"> same thing every time &mdash; why mess with it</label>
+        <label><input type="radio" name="q1" value="B"> whatever's closest to the register</label>
+        <label><input type="radio" name="q1" value="C"> i don't come here for the food</label>
+        <label><input type="radio" name="q1" value="D"> i don't really "grab" anything, i just end up holding something</label>
+      </div>
+
+      <div class="q"><b>2. it's 2 AM and you can't sleep. where do you end up?</b>
+        <label><input type="radio" name="q2" value="A"> 7-Hell, same spot by the slushie machine, same time as always</label>
+        <label><input type="radio" name="q2" value="B"> wherever my feet take me</label>
+        <label><input type="radio" name="q2" value="C"> somewhere i can watch people without being watched</label>
+        <label><input type="radio" name="q2" value="D"> home. i don't leave the house after dark.</label>
+      </div>
+
+      <div class="q"><b>3. describe your typical tuesday.</b>
+        <label><input type="radio" name="q3" value="A"> same as every other tuesday</label>
+        <label><input type="radio" name="q3" value="B"> there's no such thing as a typical day for me</label>
+        <label><input type="radio" name="q3" value="C"> depends who's asking and why</label>
+        <label><input type="radio" name="q3" value="D"> i couldn't tell you. they blur.</label>
+      </div>
+
+      <div class="q"><b>4. the slushie machine's broken again. you:</b>
+        <label><input type="radio" name="q4" value="A"> wait it out, same flavor next time it's fixed</label>
+        <label><input type="radio" name="q4" value="B"> get something completely different, who cares</label>
+        <label><input type="radio" name="q4" value="C"> notice who else is annoyed and file it away</label>
+        <label><input type="radio" name="q4" value="D"> didn't notice it was broken</label>
+      </div>
+
+      <div class="q"><b>5. how do people usually describe you?</b>
+        <label><input type="radio" name="q5" value="A"> reliable. predictable, honestly.</label>
+        <label><input type="radio" name="q5" value="B"> impossible to pin down</label>
+        <label><input type="radio" name="q5" value="C"> quiet. watchful. hard to remember, somehow.</label>
+        <label><input type="radio" name="q5" value="D"> they don't, really.</label>
+      </div>
+
+      <div class="q"><b>6. you clock someone doing the exact same thing, same time, three days running. you:</b>
+        <label><input type="radio" name="q6" value="A"> feel a little comforted by it, honestly</label>
+        <label><input type="radio" name="q6" value="B"> don't notice things like that</label>
+        <label><input type="radio" name="q6" value="C"> start wondering what day four looks like</label>
+        <label><input type="radio" name="q6" value="D"> already knew. i was counting.</label>
+      </div>
+
+      <div class="q"><b>7. your route home &mdash; same every night, or different?</b>
+        <label><input type="radio" name="q7" value="A"> same. every turn, every time.</label>
+        <label><input type="radio" name="q7" value="B"> i switch it up, keeps things interesting</label>
+        <label><input type="radio" name="q7" value="C"> depends what i'm walking away from</label>
+        <label><input type="radio" name="q7" value="D"> i don't remember walking home most nights</label>
+      </div>
+
+      <div class="q"><b>8. if you disappeared tomorrow, how long before someone noticed the pattern was broken?</b>
+        <label><input type="radio" name="q8" value="A"> immediately &mdash; i'm like clockwork</label>
+        <label><input type="radio" name="q8" value="B"> might take a while, i'm all over the place</label>
+        <label><input type="radio" name="q8" value="C"> someone would notice. whether they'd say anything is different.</label>
+        <label><input type="radio" name="q8" value="D"> honestly? longer than it should.</label>
+      </div>
+
+      <div class="q"><b>9. what's something about you nobody could predict?</b>
+        <label><input type="radio" name="q9" value="A"> nothing, really. i'm an open book.</label>
+        <label><input type="radio" name="q9" value="B"> everything. i contain multitudes.</label>
+        <label><input type="radio" name="q9" value="C"> i'd rather not say.</label>
+        <label><input type="radio" name="q9" value="D"> (no answer)</label>
+      </div>
+
+      <div class="q"><b>10. do you believe people can actually change?</b>
+        <label><input type="radio" name="q10" value="A"> sure, if they work at it</label>
+        <label><input type="radio" name="q10" value="B"> people change constantly, it's the only constant</label>
+        <label><input type="radio" name="q10" value="C"> some do. doesn't always save them.</label>
+        <label><input type="radio" name="q10" value="D"> i used to think so.</label>
+      </div>
+
+      <div class="q" style="border-bottom:none;"><b>enter ur name for your results!! (optional)</b>
+        <input type="text" id="qname" maxlength="24" autocomplete="off">
+      </div>
+
+      <button onclick="scoreQuiz()">GET MY RESULTS!!</button>
+
+      <div id="result">
+        <h4 id="result-title"></h4>
+        <div id="result-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ftr">
+    <div>you are visitor number</div>
+    <div id="counter">000000</div>
+    <div>since 03/17/2004 &mdash; last updated 03/17/2004</div>
+    <div style="margin-top:8px;">
+      <span class="badge">BEST VIEWED IN IE6</span>
+      <span class="badge">800 x 600</span>
+      <span class="badge">MARSTEN WEB RING &#8592; prev | next &#8594;</span>
+    </div>
+    <div style="margin-top:8px;">&copy; 2004 7-Hell Convenience. site maintained by the regional office.<br>
+    questions? comments? <a onclick="alert('mailbox full.')" style="cursor:pointer; text-decoration:underline;">email the webmaster</a></div>
+  </div>
+
+</div>
+
+<!-- photo viewer -->
+<div id="viewer-bg" onclick="closeViewer()"></div>
+<div id="viewer" style="display:none;">
+  <div id="viewer-title"><span>7-HELL PHOTO VIEWER v1.2</span><span id="viewer-x" onclick="closeViewer()">&#10005;</span></div>
+  <img id="viewer-img" src="" alt="">
+</div>
+
+<script>
+// ── photo viewer ──
+document.querySelectorAll('#deals-tbl img').forEach(function (im) {
+  im.addEventListener('click', function () {
+    document.getElementById('viewer-img').src = im.src;
+    document.getElementById('viewer-img').alt = im.alt;
+    document.getElementById('viewer-bg').style.display = 'block';
+    document.getElementById('viewer').style.display = 'block';
+  });
+});
+function closeViewer() {
+  document.getElementById('viewer-bg').style.display = 'none';
+  document.getElementById('viewer').style.display = 'none';
+}
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeViewer(); });
+
+// ── hit counter ──
+(function () {
+  var n = parseInt(localStorage.getItem('hell7-hits') || '346', 10) + 1;
+  localStorage.setItem('hell7-hits', String(n));
+  document.getElementById('counter').textContent = String(n).padStart(6, '0');
+})();
+
+// ── quiz ──
+var RESULTS = {
+  A: {
+    title: '&#9733; YOUR RESULT: THE CLOCKWORK &#9733;',
+    err: false,
+    body: '<p>you run like a machine, and there\'s nothing wrong with that &mdash; until the day the machine\'s the whole reason someone can find you. same spot, same snack, same time, every single night. it\'s efficient. it\'s comforting. it also means anyone paying attention could set a watch by you.</p><p class="fine">hope nobody\'s paying attention. &#9734;</p>'
+  },
+  B: {
+    title: '&#9733; YOUR RESULT: THE WILDCARD &#9733;',
+    err: false,
+    body: '<p>nobody\'s got you figured out, least of all you. you zigzag, you double back, you buy the weird thing just to see. unpredictable people are hard to plan around &mdash; which, statistically, might be the safest thing about you.</p><p class="fine">keep it up.</p>'
+  },
+  C: {
+    title: '&#9733; YOUR RESULT: THE WATCHER &#9733;',
+    err: false,
+    body: '<p>you notice things. who\'s late, who\'s not, who buys the same drink every night until they don\'t. most people go through life without ever clocking the shape of anything. you\'re not most people.</p><p class="fine">careful with that &mdash; noticing patterns is a habit some people never grow out of, and it doesn\'t always end well for the ones who keep at it too long.</p>'
+  },
+  D: {
+    title: '[ERROR &mdash; RESULT ALREADY ON FILE]',
+    err: true,
+    body: '' // built at runtime, uses the name
+  }
+};
+
+function scoreQuiz() {
+  var counts = { A: 0, B: 0, C: 0, D: 0 }, answered = 0;
+  for (var i = 1; i <= 10; i++) {
+    var sel = document.querySelector('input[name="q' + i + '"]:checked');
+    if (sel) { counts[sel.value]++; answered++; }
+  }
+  if (answered < 10) {
+    alert('you skipped ' + (10 - answered) + ' question(s)!! answer all 10, it only works if you\'re honest');
+    return;
+  }
+  // tie-break priority: D, then C, then A, then B
+  var order = ['D', 'C', 'A', 'B'];
+  var winner = order[0];
+  for (var j = 0; j < order.length; j++) {
+    if (counts[order[j]] > counts[winner]) winner = order[j];
+  }
+
+  var name = (document.getElementById('qname').value || '').trim().slice(0, 24);
+  var r = RESULTS[winner];
+  var box = document.getElementById('result');
+  var body;
+
+  if (winner === 'D') {
+    var who = name ? name : 'friend';
+    body = '<p>huh. that\'s strange, ' + escapeHtml(who) + ' &mdash; the counter says this exact combination has come through before. different name, different time. same shape.</p>' +
+           '<p>don\'t worry about it. some patterns are more common than they feel.</p>' +
+           '<p class="fine">(some of them aren\'t. but you\'ll never know which one you were.)</p>';
+    document.title = '7-HELL CONVENIENCE ** result on file **';
+    var c = document.getElementById('counter');
+    c.classList.remove('glitch'); void c.offsetWidth; c.classList.add('glitch');
+  } else {
+    body = (name ? '<p><b>' + escapeHtml(name) + '</b>, here\'s what the machine says about you:</p>' : '') + r.body;
+  }
+
+  box.className = r.err ? 'err' : '';
+  box.style.display = 'block';
+  document.getElementById('result-title').innerHTML = r.title;
+  document.getElementById('result-body').innerHTML = body;
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, function (ch) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+  });
+}
+</script>
+</body>
+</html>
