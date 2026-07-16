@@ -14,6 +14,7 @@ const CHARACTERS = [
   {
     id: 'romeo', name: 'Romeo Byers', age: 24,
     role: 'Night Shift — Muscle',
+    roleLink: { text: 'Night Shift', url: 'fiendspace.html#romeo' },
     faction: 'nightshift',
     img: 'img/characters/Romeo.png',
     bots: [

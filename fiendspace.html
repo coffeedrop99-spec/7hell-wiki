@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FiendSpace - a place for fiends</title>
+<!-- ==================================================== -->
+<!-- fiendspace.com profile mirror, cached 06/2004         -->
+<!-- ==================================================== -->
+<!-- moderation log 06/2004: 3 comments removed from       -->
+<!-- profile 'xmaisyx' per request. requester: [field       -->
+<!-- empty]. do not restore.                               -->
+<!-- ==================================================== -->
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #6699cc;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 11px;
+    color: #000;
+  }
+  a { color: #003399; }
+  #shell { max-width: 800px; margin: 0 auto; background: #fff; min-height: 100vh; }
+
+  /* ── site chrome ── */
+  #topbar {
+    background: #003366;
+    color: #fff;
+    padding: 6px 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #topbar .logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -1px;
+  }
+  #topbar .logo .fiend { color: #ff6600; }
+  #topbar .slogan { font-size: 10px; color: #99bbdd; font-style: italic; }
+  #sitenav {
+    background: #6699cc;
+    padding: 4px 10px;
+    font-size: 10px;
+    color: #fff;
+  }
+  #sitenav a { color: #fff; text-decoration: none; margin-right: 2px; }
+  #sitenav a:hover { text-decoration: underline; }
+  #searchbar {
+    background: #dce9f5;
+    border-bottom: 1px solid #99bbdd;
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+  #searchbar input {
+    font-size: 10px;
+    border: 1px solid #7a99b8;
+    padding: 1px 3px;
+    width: 130px;
+  }
+  #searchbar button { font-size: 10px; }
+
+  /* ── profile layout ── */
+  #profile { padding: 10px; }
+  #ptitle { font-size: 16px; font-weight: bold; margin: 2px 0 8px; }
+  .cols { display: flex; gap: 10px; flex-wrap: wrap; }
+  .col-l { flex: 0 0 260px; max-width: 260px; }
+  .col-r { flex: 1 1 300px; min-width: 280px; }
+
+  .pbox { border: 1px solid #99bbdd; margin-bottom: 10px; }
+  .pbox .bh {
+    background: #6699cc;
+    color: #fff;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+  .pbox .bb { padding: 6px; }
+
+  .avatar-row { display: flex; gap: 8px; }
+  .avatar-row img.pic {
+    width: 110px; height: 110px;
+    object-fit: cover;
+    border: 1px solid #888;
+  }
+  .avatar-row .noPic {
+    width: 110px; height: 110px;
+    border: 1px solid #888;
+    background: #e8e8e8;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 9px;
+  }
+  .avatar-meta { font-size: 10px; line-height: 1.5; }
+  .avatar-meta .mood b { color: #cc3300; }
+
+  .contact-tbl { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .contact-tbl td { padding: 2px 4px; width: 50%; }
+  .contact-tbl a { text-decoration: none; }
+  .contact-tbl a:hover { text-decoration: underline; }
+
+  .details-tbl { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .details-tbl td { padding: 3px 5px; vertical-align: top; }
+  .details-tbl td.k {
+    background: #b1c9e3;
+    font-weight: bold;
+    width: 34%;
+  }
+  .details-tbl tr:nth-child(even) td.v { background: #eef4fa; }
+
+  .player {
+    background: #222;
+    color: #7CFC00;
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+    padding: 5px 7px;
+    border: 2px inset #555;
+  }
+  .player .btns { color: #ccc; letter-spacing: 2px; }
+
+  .blurb h4 {
+    margin: 8px 0 3px;
+    font-size: 12px;
+    color: #ff6600;
+  }
+  .blurb p { margin: 0 0 6px; line-height: 1.5; }
+
+  .top8-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    text-align: center;
+  }
+  .top8-grid .f8 { font-size: 9px; cursor: pointer; }
+  .top8-grid .f8 .ph {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid #888;
+    display: block;
+  }
+  .top8-grid .f8 .ph-none {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid #888;
+    background: #ddd;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+  }
+  .top8-grid .f8 a { font-weight: bold; text-decoration: none; }
+
+  .cmt { border-top: 1px solid #b1c9e3; padding: 6px 4px; }
+  .cmt:first-child { border-top: none; }
+  .cmt .who { font-weight: bold; color: #003399; }
+  .cmt .when { color: #888; font-size: 9px; }
+  .cmt .txt { margin-top: 3px; line-height: 1.5; }
+  .cmt.gone {
+    color: #aaa;
+    font-style: italic;
+    font-size: 10px;
+  }
+
+  .blog-box .bb a { font-weight: bold; }
+  .blog-box .bdate { color: #888; font-size: 9px; }
+
+  /* ── pixel flair ── */
+  .flair-row { margin: 2px 0 10px; line-height: 1; }
+  .pxwrap { display: inline-block; position: relative; margin: 0 5px 0 0; vertical-align: middle; }
+  .pxdot { position: absolute; top: 0; left: 0; display: block; background: transparent; }
+
+  /* ── blog view ── */
+  .blog-full p { font-size: 11px; line-height: 1.65; margin: 0 0 10px; }
+  .blog-full .bdate { margin-bottom: 10px; display: block; }
+  .blog-foot {
+    border-top: 1px dotted #99bbdd;
+    margin-top: 12px;
+    padding-top: 6px;
+    font-size: 9px;
+    color: #888;
+  }
+  .blog-cutoff { color: #888; font-style: italic; font-size: 10px; }
+
+  /* ── pics album ── */
+  #pics-head { font-size: 13px; font-weight: bold; margin: 4px 0 2px; }
+  #pics-sub { font-size: 9px; color: #888; margin-bottom: 10px; }
+  .pics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .pics-grid .pcell {
+    border: 1px solid #99bbdd;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(255,255,255,0.04);
+  }
+  .pics-grid .pcell img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid #888;
+    display: block;
+  }
+  .pics-grid .pcell .pcap {
+    font-size: 9px;
+    margin-top: 4px;
+    line-height: 1.35;
+    text-align: left;
+  }
+  #bigpic { text-align: center; }
+  #bigpic img {
+    max-width: 100%;
+    max-height: 70vh;
+    border: 1px solid #888;
+  }
+  #bigpic .bigcap {
+    font-size: 11px;
+    margin: 8px auto 4px;
+    max-width: 480px;
+    line-height: 1.5;
+    text-align: center;
+  }
+  #bigpic .bignav { font-size: 10px; margin-top: 6px; }
+  #bigpic .bignav a { margin: 0 8px; cursor: pointer; text-decoration: underline; }
+  .pics-empty {
+    border: 1px dashed #99bbdd;
+    padding: 24px 12px;
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+  }
+
+  #ftr {
+    text-align: center;
+    font-size: 9px;
+    color: #667;
+    padding: 14px 8px 20px;
+    background: #dce9f5;
+    border-top: 1px solid #99bbdd;
+  }
+
+  /* ══ PER-PROFILE CUSTOM THEMES (the whole point of 2004) ══ */
+
+  /* romeo: black+red flame kid energy */
+  body.t-romeo { background: #000; }
+  body.t-romeo #shell { background: #0d0d0d; color: #ddd; }
+  body.t-romeo #profile a { color: #ff3300; }
+  body.t-romeo .pbox { border-color: #ff3300; }
+  body.t-romeo .pbox .bh { background: #ff3300; color: #000; font-family: Impact, Arial, sans-serif; letter-spacing: 1px; }
+  body.t-romeo .details-tbl td.k { background: #330800; color: #ff6a00; }
+  body.t-romeo .details-tbl tr:nth-child(even) td.v { background: #1a0400; }
+  body.t-romeo #ptitle { color: #ff3300; font-family: Impact, Arial, sans-serif; font-size: 22px; letter-spacing: 1px; }
+  body.t-romeo .blurb h4 { color: #ff3300; }
+  body.t-romeo .cmt { border-top-color: #331111; }
+
+  /* maisy: goth glitter */
+  body.t-maisy {
+    background: #1a0022;
+    background-image: radial-gradient(#3d0a52 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+  body.t-maisy #shell { background: #12001a; color: #d8c8e8; }
+  body.t-maisy #profile a { color: #cc66ff; }
+  body.t-maisy .pbox { border-color: #663388; }
+  body.t-maisy .pbox .bh { background: #663388; color: #f0e0ff; font-style: italic; }
+  body.t-maisy .details-tbl td.k { background: #2a0a3a; color: #cc99ee; }
+  body.t-maisy .details-tbl tr:nth-child(even) td.v { background: #1e0530; }
+  body.t-maisy #ptitle { color: #cc66ff; font-style: italic; font-size: 20px; }
+  body.t-maisy .blurb h4 { color: #cc66ff; }
+  body.t-maisy .cmt { border-top-color: #2a0a3a; }
+
+  /* presley: barely styled, dark, small */
+  body.t-presley { background: #111; }
+  body.t-presley #shell { background: #161616; color: #888; }
+  body.t-presley #profile a { color: #6a8a6a; }
+  body.t-presley .pbox { border-color: #333; }
+  body.t-presley .pbox .bh { background: #222; color: #888; }
+  body.t-presley .details-tbl td.k { background: #1e1e1e; color: #777; }
+  body.t-presley .details-tbl tr:nth-child(even) td.v { background: #191919; }
+  body.t-presley #ptitle { color: #999; }
+  body.t-presley .blurb h4 { color: #6a8a6a; }
+  body.t-presley .cmt { border-top-color: #262626; }
+
+  /* clem & kit: sensory assault */
+  body.t-clemkit {
+    background: repeating-linear-gradient(45deg, #39ff14 0 18px, #ff00ff 18px 36px);
+  }
+  body.t-clemkit #shell { background: #000; color: #39ff14; }
+  body.t-clemkit #profile a { color: #ff00ff; }
+  body.t-clemkit .pbox { border: 2px dashed #ff00ff; }
+  body.t-clemkit .pbox .bh { background: #ff00ff; color: #000; font-weight: bold; }
+  body.t-clemkit .details-tbl td.k { background: #103300; color: #39ff14; }
+  body.t-clemkit .details-tbl tr:nth-child(even) td.v { background: #0a2200; }
+  body.t-clemkit #ptitle { color: #39ff14; text-shadow: 2px 2px 0 #ff00ff; font-size: 20px; }
+  body.t-clemkit .blurb h4 { color: #ff00ff; }
+  body.t-clemkit .cmt { border-top-color: #103300; }
+  body.t-clemkit .blink { animation: blink 0.7s steps(2, start) infinite; }
+  @keyframes blink { to { visibility: hidden; } }
+
+  /* gary + zak + store + miller: default theme. gary never customized his.
+     zak's is ALSO default. that is not the same thing. miller's is default
+     because he refuses to acknowledge the page exists. */
+
+  /* peter: one photo, no text, black void */
+  body.t-peter { background: #050505; }
+  body.t-peter #shell { background: #0a0a0a; color: #777; }
+  body.t-peter #profile a { color: #a33; }
+  body.t-peter .pbox { border-color: #222; }
+  body.t-peter .pbox .bh { background: #161616; color: #999; letter-spacing: 2px; }
+  body.t-peter .details-tbl td.k { background: #141414; color: #666; }
+  body.t-peter .details-tbl tr:nth-child(even) td.v { background: #101010; }
+  body.t-peter #ptitle { color: #aaa; font-weight: normal; letter-spacing: 4px; }
+  body.t-peter .blurb h4 { color: #a33; }
+  body.t-peter .cmt { border-top-color: #1c1c1c; }
+
+  /* gaige: the glitter incident */
+  body.t-gaige {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.7) 0 1px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,0.6) 0 1px, transparent 2px),
+      linear-gradient(135deg, #00e5ff 0%, #ff4db8 40%, #b8ff02 80%, #00e5ff 100%);
+    background-size: 90px 90px, 130px 130px, 70px 70px, 400% 400%;
+    animation: gaigebg 12s linear infinite;
+  }
+  @keyframes gaigebg { to { background-position: 0 0, 0 0, 0 0, 400% 400%; } }
+  body.t-gaige #shell { background: rgba(10,0,20,0.92); color: #aff; }
+  body.t-gaige #profile a { color: #ff4db8; }
+  body.t-gaige .pbox { border: 2px dotted #00e5ff; }
+  body.t-gaige .pbox .bh { background: linear-gradient(90deg, #ff4db8, #00e5ff); color: #fff; }
+  body.t-gaige .details-tbl td.k { background: #24003a; color: #00e5ff; }
+  body.t-gaige .details-tbl tr:nth-child(even) td.v { background: #180028; }
+  body.t-gaige #ptitle { color: #ff4db8; text-shadow: 0 0 6px #00e5ff; font-size: 20px; }
+  body.t-gaige .blurb h4 { color: #00e5ff; }
+  body.t-gaige .cmt { border-top-color: #24003a; }
+  body.t-gaige .blink { animation: blink 0.7s steps(2, start) infinite; }
+
+  /* austin: baby burgers executive suite */
+  body.t-austin { background: #ffd9ec; }
+  body.t-austin #shell { background: #fff5fa; color: #4a3340; }
+  body.t-austin #profile a { color: #d4438f; }
+  body.t-austin .pbox { border-color: #f0a6ce; }
+  body.t-austin .pbox .bh { background: #ff8fc6; color: #fff; font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+  body.t-austin .details-tbl td.k { background: #ffd0e8; color: #a63d75; }
+  body.t-austin .details-tbl tr:nth-child(even) td.v { background: #ffeaf5; }
+  body.t-austin #ptitle { color: #d4438f; font-family: Georgia, "Times New Roman", serif; }
+  body.t-austin .blurb h4 { color: #d4438f; }
+  body.t-austin .cmt { border-top-color: #ffd0e8; }
+
+  @media (max-width: 620px) {
+    .col-l { flex: 1 1 100%; max-width: none; }
+  }
+</style>
+</head>
+<body>
+<div id="shell">
+
+  <div id="topbar">
+    <span class="logo">Fiend<span class="fiend">Space</span></span>
+    <span class="slogan">a place for fiends&trade;</span>
+    <span style="margin-left:auto; font-size:10px;"><a href="#" onclick="return dead('you are not signed in. (you were never signed in.)')" style="color:#fff;">Sign In</a> | <a href="#" onclick="return dead('registration is closed.')" style="color:#fff;">Sign Up!</a></span>
+  </div>
+  <div id="sitenav">
+    <a href="#store">Home</a> |
+    <a href="#" onclick="return dead('browse is down for maintenance!!')">Browse</a> |
+    <a href="#" onclick="return dead('search is broken. try knowing where things are.')">Search</a> |
+    <a href="#" onclick="return dead('invite who? everyone in marsten is already here.')">Invite</a> |
+    <a href="#" onclick="return dead('mail server melted. literally.')">Mail</a> |
+    <a href="#" onclick="return dead('blogs are for the ConXtion kids')">Blog</a> |
+    <a href="#" onclick="return dead('the forum was deleted. nobody will say why.')">Forum</a> |
+    <a href="#" onclick="return dead('no events. there are never events. this is Marsten.')">Events</a>
+  </div>
+  <div id="searchbar">
+    find a fiend: <input type="text" id="findbox"> <button onclick="findFiend()">go!!</button>
+    <span style="color:#889;">&nbsp;try: romeo, gary, presley, clem, zak, maisy, miller, gaige, peter, austin</span>
+  </div>
+
+  <div id="profile"><!-- rendered by js --></div>
+
+  <div id="ftr">
+    &copy;2003-2004 FiendSpace.com | <a href="#" onclick="return dead('terms: don\'t.')">Terms</a> | <a href="#" onclick="return dead('privacy is not really our thing')">Privacy</a> | <a href="#" onclick="return dead('safety tips: stay predictable so people notice when you stop.')">Safety Tips</a><br>
+    FiendSpace is not responsible for anything that happens in, around, or because of Marsten.
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// profile data. all in-world, all 2004.
+// ─────────────────────────────────────────────
+var LOU = { id: null, name: 'Lou', pic: null, note: 'FiendSpace founder. everyone\'s first friend. nobody\'s met him.' };
+
+var PROFILES = {
+
+  store: {
+    theme: '',
+    handle: '7hellconvenience',
+    title: '7-HELL CONVENIENCE (OFFICIAL)',
+    pic: 'img/promo/merch-drop.jpg',
+    meta: { sex: 'Corporation', age: 'est 1996', loc: 'Northside Marsten', lastLogin: '5/30/2004', memberSince: '11/2003' },
+    mood: 'open. always.',
+    song: { title: 'smooth_jazz_loop_final(2).mid', by: 'unknown', deadMsg: 'the .mid file lives in the ceiling radio. the radio is not connected to anything. neither is the file.' },
+    flair: ['flame', 'flame', 'flame'],
+    extended: '7-HELL CONVENIENCE is in your extended network. it always was.',
+    blog: [
+      { date: 'May 28 2004', title: 'NEW: HELLFIRE MANGO SLUSHY (so hot it hurts)', mood: 'open', body: [
+        'the hellfire mango slushy is now available at the slushie station. it is the red one. the OTHER red one. do not confuse them.',
+        'per corporate, we are required to state that the slushy is a food product. per us: it has made two grown men cry this week and one of them said thank you.',
+        '$1.49. bring exact change or don\'t. the drawer has seen everything.'
+      ] },
+      { date: 'Apr 11 2004', title: 'to whoever keeps moving the magazines: we see you', mood: 'patient', body: [
+        'items keep migrating off the magazine rack to other parts of the store. racing magazines in the freezer aisle. a crossword book behind the motor oil. one (1) catalogue on the roof.',
+        'we are not mad. we are just saying: we see you.',
+        'items left ON the rack will be held at the counter. ask for gary.'
+      ] },
+      { date: 'Mar 17 2004', title: 'we have a web site now!! (link in interests)', mood: 'online', body: [
+        'corporate says every location needs a "web presence." ours is <a href="7hell-2004.html">here</a>. it has today\'s deals and a quiz.',
+        'the quiz was submitted by the regional office. jury\'s out on how it knows what it knows.',
+        'the guestbook is under construction. it will remain under construction.'
+      ] }
+    ],
+    about: 'the OFFICIAL fiendspace of 7-Hell Convenience!! gas, slushies, lottery, hot dogs, and everything else you need at 3AM. we are open 24/7. we have always been open. corporate made us make this page. visit our web site!!',
+    meet: 'customers. loiterers (tolerated). whoever keeps leaving exact change on pump 4 without prepaying, we need to talk.',
+    interests: {
+      'General': 'commerce. being open. <a href="7hell-2004.html">our official web site!!</a>',
+      'Music': 'whatever the radio in the ceiling decides. it is not connected to anything.',
+      'Movies': 'the security tapes (staff only)',
+      'Heroes': 'the employee of the month board (discontinued 2001)'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/store-1.jpg', cap: 'our store at dusk!! yes the sign says 24 HURS. the sign guy knows. he has known since 2001.' },
+      { src: 'img/fiendspace-pics/store-2.jpg', cap: 'one of our employees with the parking lot cat. (we do not have a parking lot cat. we checked.)' },
+      { src: 'img/fiendspace-pics/store-3.jpg', cap: 'our pharmacy staff departing for the regional pharmacy conference. they did not arrive at the regional pharmacy conference.' },
+      { src: 'img/fiendspace-pics/store-4.jpg', cap: 'day shift manager dallas explaining store policy. this is the whole policy.' },
+      { src: 'img/fiendspace-pics/store-5.jpg', cap: 'officer ward keeps an eye on the lot most nights. we didn\'t ask him to. he\'s just there.' },
+      { src: 'img/fiendspace-pics/store-6.jpg', cap: 'halloween \'03. one of our night shift dressed as some kind of video game cop. the hot dogs were not safe that night.' }
+    ],
+    friendCount: 132,
+    top8: [
+      { ref: 'romeo', label: 'RO.' },
+      { ref: 'gary', label: 'gary(manager)' },
+      { ref: 'zak', label: 'zak' },
+      { ref: 'presley', label: 'pres' },
+      { ref: 'clemkit', label: 'CLEM_N_KIT' },
+      { ref: 'maisy', label: 'xmaisyx' },
+      { ref: 'miller', label: 'dr.miller (pharmacy)' },
+      { dead: 'you must be logged in to view this profile!!', label: 'ashley&lt;3', pic: 'img/characters/Ashley.png' }
+    ],
+    comments: { shown: 5, total: 87, list: [
+      { who: 'sancho!!', when: 'Jun 9 2004 2:14 AM', txt: 'FIRST' },
+      { who: 'sancho!!', when: 'Jun 9 2004 2:15 AM', txt: 'wait am i first' },
+      { who: 'CLEM_N_KIT', when: 'May 30 2004 3:33 AM', txt: 'kit says the new slushy flavor unlocked something in him. clem says it closed something. 5 stars' },
+      { who: 'gaige', when: 'May 22 2004 11:58 PM', txt: 'rawr xD stopped by after the set, the pizza was SO random (it was iconic) &lt;3' },
+      { who: 'jayden_star', when: 'May 14 2004 4:02 AM', txt: 'the girl on register didnt smile back. fix your staff attitude problem. anyway im here every thursday' }
+    ]}
+  },
+
+  romeo: {
+    theme: 't-romeo',
+    handle: 'RO_wrx',
+    title: 'RO.',
+    pic: 'img/characters/Romeo.png',
+    meta: { sex: 'Male', age: '24', loc: 'Northside Marsten', lastLogin: '6/12/2004', memberSince: '01/2004' },
+    mood: 'pissed off (default)',
+    song: { title: 'Break Stuff', by: 'Limp Bizkit', url: 'https://open.spotify.com/search/Limp%20Bizkit%20Break%20Stuff' },
+    flair: ['lolly', 'lolly', 'lolly'],
+    extended: 'RO. is in your extended network. he knows.',
+    blog: [
+      { date: 'Jun 2 2004', title: '[no subject] people need to learn respect', mood: 'pissed off', body: [
+        'you know who you are.',
+        'thats the whole post.'
+      ] },
+      { date: 'May 19 2004', title: 'if you touched my car i will find out', mood: 'investigating', body: [
+        'there was a handprint on the hood this morning. small. like a kid, or a cowardly adult.',
+        'i have narrowed it down to four people.',
+        'update: it was clem. we\'re good now. (we\'re not)'
+      ] }
+    ],
+    about: 'RO. i work nights at 7-hell. dont start anything in my store. yes MY store, the name tag doesnt say manager but everyone knows. i like my car, candy, and people who mind their business. thats the whole list.',
+    meet: 'nobody. stop messaging me. (maisy this doesnt mean you)',
+    interests: {
+      'General': 'my WRX. sour patch kids. nerds rope. minding MY business (you should try it)',
+      'Music': 'nu metal. dont ask for the list, ur not ready',
+      'Movies': 'the fast and the furious (the first one. the real one)',
+      'Television': 'whatever\'s on in the store. presley controls the remote. i let him.',
+      'Heroes': 'people who pay and LEAVE'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/romeo-1.jpg', cap: 'beach. yes the tattoos are real. no you cant touch them' },
+      { src: 'img/fiendspace-pics/romeo-2.jpg', cap: 'maisy took this. said the light was "doing something". i just stood there' },
+      { src: 'img/fiendspace-pics/romeo-3.jpg', cap: 'the blue slushie machine exploded on me. a regular got me this from the laundromat. i know what it says. stop asking about the shirt' },
+      { src: 'img/fiendspace-pics/romeo-4.jpg', cap: 'lake retreat. me and zak. nobody believes he came outside. here\'s proof' },
+      { src: 'img/fiendspace-pics/romeo-5.jpg', cap: 'kit drew this. i look nothing like this. (i kept it)' },
+      { src: 'img/fiendspace-pics/romeo-6.jpg', cap: 'gaige made this after the slushie machine thing. everyone saved it. i give up' }
+    ],
+    friendCount: 34,
+    top8: [
+      { ref: 'maisy', label: 'xmaisyx' },
+      { ref: 'presley', label: 'pres' },
+      { pic: null, label: 'my WRX', dead: 'it\'s a car. it doesn\'t have a profile. it\'s still in his top 8.' },
+      { ref: 'store', label: '7-HELL' },
+      { ref: 'clemkit', label: 'CLEM_N_KIT' },
+      { ref: 'gaige', label: 'gaige (enter at own risk)' },
+      { pic: null, label: '(empty)', dead: 'this slot has been empty since january. it used to be somebody.' },
+      { pic: null, label: '(empty)', dead: 'romeo does not fill slots to fill slots.' }
+    ],
+    comments: { shown: 5, total: 41, list: [
+      { who: 'CLEM_N_KIT', when: 'Jun 11 2004 3:12 AM', txt: 'GUARDIAN OF THE GATE!!! kit made u a soundboard of u yelling at us. its 40 minutes long. do u want it' },
+      { who: 'xmaisyx', when: 'Jun 8 2004 1:47 AM', txt: 'you looked tired tonight. eat something that isn\'t candy. ~*m*~' },
+      { who: 'gary_manager7', when: 'Jun 5 2004 9:15 PM', txt: 'Hey Romeo! Great job this week (with the incident). Also corporate says the fire lane is for emergencies only. No offense!! The parking rules are in the handbook if you want a copy. OK see you tonight' },
+      { who: 'gaige', when: 'May 30 2004 11:03 PM', txt: 'ur so scary xD anyway kaleb says hi (he told me to say that specifically to make u mad) (its working isnt it) rawr' },
+      { who: 'xmaisyx', when: 'May 25 2004 2:20 AM', txt: 'thank you for walking me out. you didn\'t have to. (i know you\'d say you didn\'t.) ~*m*~' }
+    ]}
+  },
+
+  gary: {
+    theme: '',
+    handle: 'gary_manager7',
+    title: 'Gary (Night Manager!)',
+    pic: 'img/characters/Gary.png',
+    meta: { sex: 'Male', age: '24', loc: 'Northside Marsten', lastLogin: '6/14/2004', memberSince: '02/2004' },
+    mood: 'optimistic :)',
+    song: { title: 'Halo Theme (MJOLNIR Mix)', by: 'Bungie', url: 'https://open.spotify.com/search/Halo%20Theme%20MJOLNIR%20Mix' },
+    flair: ['mushroom', 'mushroom', 'mushroom'],
+    extended: 'Gary is in your extended network. He is so glad you stopped by!',
+    blog: [
+      { date: 'Jun 13 2004', title: 'management tip of the week :) — "people are patterns, if you pay attention"', mood: 'motivated', body: [
+        'That\'s a quote from my mentor at corporate. He says it all the time and I finally get it!!',
+        'For example: Presley skips meals on truck days. So now I leave a granola bar in his locker on truck days. He hasn\'t said anything, but the granola bars are gone, so. Management!',
+        'That\'s the whole tip. Notice things and then be nice about the things you notice. See you next week!!'
+      ] },
+      { date: 'Jun 6 2004', title: 'beat my minesweeper record (expert, 141 sec)!!', mood: 'proud', body: [
+        '141 SECONDS. The trick is you have to stop being scared of the corners. (This might also be a management tip? Still working that one out.)',
+        'Zak watched me do the last 30 seconds. He said "good time." I think about it a lot.'
+      ] },
+      { date: 'May 30 2004', title: 'my mentor says I have "unusual potential." !!!', mood: 'hopeful', body: [
+        'I\'ve never had a mentor before!! He visits on audits and always makes time for a one-on-one, even though he\'s very busy. He says things like "you notice more than you act on, Gary. we\'ll fix the second part."',
+        'I wrote it in the notebook. Mom says he sounds like a keeper. Sidney said "finally, a man\'s influence," which is. Whatever!',
+        'Anyway. Unusual potential!!! Me!!'
+      ] }
+    ],
+    about: 'Hi! I\'m Gary, night shift manager at 7-Hell Convenience (yes, THE 7-Hell, haha). I take my job seriously and I\'m always trying to improve as a leader. I like Halo, Minesweeper (expert), and my dad\'s old Super Nintendo. My door is always open! (Please knock. Please.)',
+    meet: 'Other managers in the retail/convenience space! Also literally anyone who wants to co-op Halo. Anyone. Please.',
+    interests: {
+      'General': 'management best practices, Halo LAN parties (hosting one someday!), the employee handbook (I\'ve read it 9 times, it\'s actually really interesting)',
+      'Music': 'video game soundtracks mostly! and whatever mom plays in the car',
+      'Movies': 'Office Space (it\'s a comedy but honestly there are some good lessons in it?)',
+      'Books': 'Who Moved My Cheese, the handbook (see above)',
+      'Heroes': 'my dad. and lately, a mentor from corporate who actually believes in me. first person in a long time.'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/gary-1.jpg', cap: 'Beach day!!! First day off since February. (It was a date. It went well!! I think!!)' },
+      { src: 'img/fiendspace-pics/gary-2.jpg', cap: 'From the staff retreat. I do not remember taking this one.' },
+      { src: 'img/fiendspace-pics/gary-3.jpg', cap: 'Romeo put a note on me while I was asleep. Management is about compromise.' },
+      { src: 'img/fiendspace-pics/gary-4.jpg', cap: 'The AC situation, July. I handled it. (Rule 41: improvise responsibly!)' },
+      { src: 'img/fiendspace-pics/gary-5.jpg', cap: 'Supervising the retreat!! Only lost track of 4 people total (they came back)' },
+      { src: 'img/fiendspace-pics/gary-6.jpg', cap: 'Clem and Kit made this "scientific diagram" of me. I have decided to be flattered.' }
+    ],
+    friendCount: 6,
+    top8: [
+      { ref: 'zak', label: 'zak (my most reliable!!)' },
+      { ref: 'romeo', label: 'RO. (coworker!)' },
+      { ref: 'store', label: '7-HELL (work!)' },
+      { pic: null, label: 'mom &lt;3', dead: 'marsha\'s profile is 3 chain letters deep. do not enter.' },
+      { pic: 'img/characters/Presley.png', label: 'presley (cowork', dead: 'the label got cut off and gary doesn\'t know how to fix it. presley has never accepted the request. it shows anyway. nobody knows why.' },
+      { pic: null, label: 'S. White (pending)', dead: 'friend request pending since April. Gary checks every day.' },
+      { pic: null, label: '(empty)', dead: '' },
+      { pic: null, label: '(empty)', dead: '' }
+    ],
+    comments: { shown: 4, total: 9, list: [
+      { who: 'marsha', when: 'Jun 12 2004 6:30 PM', txt: 'So proud of my little manager!!! Don\'t forget Sunday dinner. Sidney is making his ribs. Love MOM. p.s. FW: FW: FW: this angel has been sent to watch over you' },
+      { who: 'zak', when: 'Jun 9 2004', txt: 'Good week, boss. Don\'t stay past close doing counts again — I already did them.' },
+      { who: 'CLEM_N_KIT', when: 'Jun 1 2004 4:44 AM', txt: 'gary the vending machine in the BACK back room. the one with no plug. what does it want' },
+      { who: 'gary_manager7', when: 'May 28 2004 10:11 PM', txt: '(this is my own profile but I wanted to test the comment feature! It works! Great feature. OK bye!)' }
+    ]}
+  },
+
+  presley: {
+    theme: 't-presley',
+    handle: 'pres',
+    title: 'pres',
+    pic: 'img/characters/Presley.png',
+    meta: { sex: 'Male', age: '28', loc: 'basement', lastLogin: '4/02/2004', memberSince: '03/2004' },
+    mood: 'n/a',
+    song: { title: 'Change (In the House of Flies)', by: 'Deftones', url: 'https://open.spotify.com/search/Deftones%20Change%20In%20the%20House%20of%20Flies' },
+    flair: ['moon'],
+    extended: 'pres is in your extended network. he was already here when you got here.',
+    blog: [],
+    about: 'no',
+    meet: 'the bachelorette (season 5) casting department. i have notes.',
+    interests: {
+      'General': 'no',
+      'Music': 'deftones. hum. loveless (the album not the feeling. or both. whatever)',
+      'Television': 'the bachelorette. i\'ve called the winner 4 seasons straight. it\'s not hard. people are obvious.',
+      'Books': 'FRUiTS (it\'s a magazine. it\'s from japan. it\'s the only print media worth anything)',
+      'Heroes': 'the guy who invented pacific cooler'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/presley-1.jpg', cap: 'break' },
+      { src: 'img/fiendspace-pics/presley-2.jpg', cap: 'they can hear you walk away. so i don\'t' },
+      { src: 'img/fiendspace-pics/presley-3.jpg', cap: 'home' },
+      { src: 'img/fiendspace-pics/presley-4.jpg', cap: 'bug summer. window duty. i kept the suit' },
+      { src: 'img/fiendspace-pics/presley-5.jpg', cap: 'peter drew this. i don\'t know when he saw the pajamas' },
+      { src: 'img/fiendspace-pics/presley-6.jpg', cap: 'retreat, day 2' }
+    ],
+    friendCount: 9,
+    top8: [
+      { ref: 'peter', label: 'peter' },
+      { ref: 'clemkit', label: 'CLEM_N_KIT' },
+      { pic: null, label: 'pacific cooler', dead: 'it\'s a juice pouch. presley made it a fake profile. it has 2 friends.' },
+      { ref: 'store', label: 'work i guess' },
+      { pic: null, label: '(empty)', dead: '' },
+      { pic: null, label: '(empty)', dead: '' },
+      { pic: null, label: '(empty)', dead: '' },
+      { pic: null, label: '(empty)', dead: '' }
+    ],
+    comments: { shown: 3, total: 6, list: [
+      { who: 'CLEM_N_KIT', when: 'May 15 2004 3:58 AM', txt: 'pres. PRES. clem says ur aura went a different color tuesday. we just want to know if u felt it' },
+      { who: 'gary_manager7', when: 'Apr 20 2004 8:02 PM', txt: 'Hi Presley! Great work this month! I noticed you skipped break Tuesday AND Thursday so I left a granola bar in your locker. No pressure! OK bye' },
+      { who: 'peter', when: 'Apr 4 2004 1:11 AM', txt: '...' }
+    ]}
+  },
+
+  clemkit: {
+    theme: 't-clemkit',
+    handle: 'CLEM_N_KIT',
+    title: '<span class="blink">CLEM</span> N <span class="blink">KIT</span> (shared acct) (its both of us)',
+    pic: 'img/characters/Clem&Kit.png',
+    meta: { sex: 'Male x2', age: '21 / 20', loc: 'flower\'s house / the vibe van', lastLogin: 'Online Now!', memberSince: '12/2003' },
+    mood: 'ACTIVATED',
+    song: { title: 'Get Low', by: 'Lil Jon & The East Side Boyz', url: 'https://open.spotify.com/search/Lil%20Jon%20Get%20Low' },
+    flair: ['invader', 'invader', 'invader'],
+    extended: 'CLEM_N_KIT is in your extended network. they have always been in your extended network. think about what that means. (kit typed this)',
+    blog: [
+      { date: 'Jun 13 2004', title: 'THEY REPAVED THE LOT AGAIN. WHY. what\'s UNDER it', mood: 'VIGILANT', body: [
+        'second repave in three years. asphalt does not wear out that fast. we measured the lot (kit stepped it off. 40 kit-feet. consistent with last year).',
+        'the crew was not the usual crew. the cones were a different brand of cone. nobody talks about the cones but us.',
+        'we are not saying it\'s a cover-up. we are saying it is EXACTLY what a cover-up would look like. — c',
+        'THE NEW ASPHALT SMELLS DIFFERENT — k'
+      ] },
+      { date: 'Jun 10 2004', title: '5 years. i didn\'t forget. — c', mood: '', body: [
+        'no jokes in this one.',
+        'five years ago today my dad clocked into the port for a night shift and didn\'t clock out. they wrote "operator error" on a form and mailed us his boots.',
+        'my dad ran that crane for eleven years. he used to say the machine tells you when something\'s wrong, you just have to listen. he listened better than anyone i ever met.',
+        'i don\'t know what happened out there. but "operator error" isn\'t it.',
+        'kit\'s making dinner tonight. flower\'s lighting the incense. we do this every year. — c'
+      ] },
+      { date: 'Jun 4 2004', title: 'kit ranked every slushie flavor by frequency (the vibrational kind)', mood: 'SCIENTIFIC', body: [
+        'METHODOLOGY: kit held each cup for one minute and reported what he felt. i took notes. peer review was flower. — c',
+        '1. BLUE RASPBERRY: highest frequency. tastes like the color of a fire exit sign feels. — k',
+        '2. CHERRY: solid. dependable. the gary of flavors. — k',
+        '3. HELLFIRE MANGO: i felt something OPEN — k (we stopped the test — c)',
+        'full chart taped inside the vibe van. ask before entering the van.'
+      ] }
+    ],
+    about: 'clem: i observe. i theorize. i see the systems underneath the systems. kit: WE LIVE AT FLOWERS HOUSE AND ITS AWESOME. clem: the beaded curtain keeps out surveillance. kit: IT SOUNDS LIKE RAIN WHEN U RUN THROUGH IT. clem: we are watching the watchers. kit: WE\'RE AT 7-HELL LIKE EVERY NIGHT COME SAY HI',
+    meet: 'clem: whoever is doing this. you know what. you know WHAT. kit: TONY HAWK',
+    interests: {
+      'General': 'frequencies. the lot. the port (dont). flower\'s stories from the 60s (she KNEW people)',
+      'Music': 'kit: CRUNK. clem: tape hiss (there are voices in it if the tape is old enough)',
+      'Movies': 'they will not show the movies we need to see',
+      'Heroes': 'flower. tony hawk. the guy at the army surplus who doesn\'t ask questions'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/clemkit-1.jpg', cap: 'FOOT HEART. clem said it aligns the energy — k. (it does) — c' },
+      { src: 'img/fiendspace-pics/clemkit-2.jpg', cap: 'clem found the moth INSIDE the nerds box. sealed box. THINK about it — k. it means something. — c' },
+      { src: 'img/fiendspace-pics/clemkit-3.jpg', cap: 'cart speed record attempt 14. the record stands — k' },
+      { src: 'img/fiendspace-pics/clemkit-4.jpg', cap: 'meeting of the board — c' },
+      { src: 'img/fiendspace-pics/clemkit-5.jpg', cap: 'sponsored post (not sponsored) (monster please) — k' },
+      { src: 'img/fiendspace-pics/clemkit-6.jpg', cap: 'honey hemp o\'s at flower\'s. she says we\'re growing boys. we are 21 and 20 — k' },
+      { src: 'img/fiendspace-pics/clemkit-7.jpg', cap: 'no context. — c. (there was context) — k' },
+      { src: 'img/fiendspace-pics/clemkit-8.jpg', cap: 'training — c' }
+    ],
+    friendCount: 666,
+    top8: [
+      { pic: 'img/characters/Flower.png', label: 'FLOWER (sponsor)', dead: 'flower\'s profile is one scanned photo of her and sonny, 1967, flower crowns and all. kit set it up for her. she has never once logged in. she just likes knowing it\'s there.' },
+      { ref: 'presley', label: 'pres (same frequency)' },
+      { ref: 'romeo', label: 'GUARDIAN OF THE GATE' },
+      { ref: 'store', label: 'THE MOTHERSHIP' },
+      { pic: null, label: 'THE TRUTH', dead: 'this profile was deleted by fiendspace moderation. clem prints the error page and files it.' },
+      { pic: 'img/characters/Sancho.png', label: 'sancho!!', dead: 'sancho\'s profile is 400 blurry photos of him arm wrestling strangers. loads slow. worth it.' },
+      { ref: 'maisy', label: 'xmaisyx (she KNOWS)' },
+      { ref: 'gary', label: 'gary (asset)' }
+    ],
+    comments: { shown: 4, total: 203, list: [
+      { who: 'sancho!!', when: 'Jun 13 2004 4:01 AM', txt: 'REMATCH. TONIGHT. LEFT ARM THIS TIME' },
+      { who: 'xmaisyx', when: 'Jun 7 2004 2:33 AM', txt: 'clem. the thing you said tuesday about the schedules. come find me next time you\'re in. don\'t post about it. ~*m*~' },
+      { who: 'gaige', when: 'Jun 2 2004 12:15 AM', txt: 'ur page gave me a headache AND a seizure warning xD its so epic. PC4PC??' },
+      { who: 'CLEM_N_KIT', when: 'May 29 2004 3:33 AM', txt: 'clem here. if anything happens to us this page auto-posts. kit set it up. (kit: I DID NOT KNOW HOW TO DO THAT SO IT\'S NOT REAL) clem: it\'s real.' }
+    ]}
+  },
+
+  zak: {
+    theme: '',
+    handle: 'zak',
+    title: 'Zak',
+    pic: 'img/characters/Zak.png',
+    pics: null,
+    meta: { sex: 'Male', age: '23', loc: 'Northside Marsten', lastLogin: 'Online Now!', memberSince: '&mdash;' },
+    mood: '',
+    song: null,
+    extended: 'Zak is in your extended network.',
+    blog: [],
+    about: 'I work at 7-Hell.',
+    meet: '',
+    interests: {
+      'General': '',
+      'Music': '',
+      'Movies': '',
+      'Heroes': ''
+    },
+    friendCount: 2,
+    top8: [
+      { ref: 'gary', label: 'Gary' },
+      { pic: null, label: 'Lou', dead: 'the founder. everyone\'s first friend. zak\'s only other one.' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 3, total: 3, list: [
+      { who: 'holden_s', when: 'Jun 10 2004 5:40 PM', txt: 'no pics, no posts, no comments, member since [blank]. you\'re either the most boring man alive or the most interesting one. i\'ll figure out which. :) — H' },
+      { who: 'xmaisyx', when: 'Jun 3 2004 2:02 AM', txt: 'you know when. ~*m*~' },
+      { who: 'gary_manager7', when: 'May 26 2004 9:44 PM', txt: 'Zak!! You have a FiendSpace! That\'s great! When did you join? Anyway see you tonight!' }
+    ]}
+  },
+
+  miller: {
+    theme: '',
+    handle: 'AMiller_PharmD',
+    title: 'Anthony Miller, PharmD.',
+    pic: 'img/characters/Dr.Miller.png',
+    meta: { sex: 'Male', age: '27', loc: 'the pharmacy. where else.', lastLogin: '6/01/2004', memberSince: '05/2004 (against my will)' },
+    mood: 'employed',
+    song: null,
+    extended: 'Dr. Miller is in your extended network. He would like to be removed from your extended network.',
+    blog: [
+      { date: 'Jun 1 2004', title: 'The pharmacy closes at 22:00. The shutter is not a suggestion.', mood: 'professional', body: [
+        'At 21:58 tonight, a man knocked on the shutter. At 21:59 he knocked louder. At 22:00 exactly, he began sliding his prescription under the shutter like a hostage note.',
+        'The pharmacy opens at 08:00. The medication in question is taken with breakfast. I am not angry. I am a professional. I simply want it noted, publicly, on the internet, that the shutter is not a suggestion.',
+        '(He was back at 07:45. I filled it. Obviously.)'
+      ] },
+      { date: 'May 24 2004', title: 'A clarification regarding "quick medical questions" at parties', mood: 'clinical', body: [
+        'I attended a social gathering (Ashley\'s; attendance was not optional). I was asked eleven "quick medical questions." A representative sample:',
+        '&mdash; whether a person can "build up an immunity" to energy drinks (no). &mdash; whether a rash "counts" if it is only there sometimes (see a doctor. a real one. with an office). &mdash; whether I could "take a quick look" at something, in a hallway, in poor lighting (I dispense medication. I am not a flashlight).',
+        'I have a Doctorate. It is in pharmacy. The next person who presents a rash at a party will be invoiced.'
+      ] }
+    ],
+    about: 'This page exists because Ashley made it while I was on lunch. I have been unable to delete it, which I resent, because I have a Doctorate. I dispense medication at a gas station. Do not message me about your rash.',
+    meet: 'A locksmith. She changed the password.',
+    interests: {
+      'General': 'formerly entomology. currently: closing on time.',
+      'Music': 'the pharmacy has a radio. it receives one station. I have made my peace.',
+      'Books': 'peer-reviewed journals. Ashley has added "The Devil Wears Prada" to this field four times. I keep removing it.',
+      'Heroes': 'whoever invents a customer that reads the label'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/miller-1.jpg', cap: 'Lunch. Eleven minutes. Ashley documented it.' },
+      { src: 'img/fiendspace-pics/miller-2.jpg', cap: 'Inventory audit. The count was off by three. It is always off by three.' },
+      { src: 'img/fiendspace-pics/miller-3.jpg', cap: 'Ashley calls this my "summer era." It is a Tuesday and I am drinking electrolytes in a parking lot.' },
+      { src: 'img/fiendspace-pics/miller-4.jpg', cap: 'The stockroom. Ashley says there is "someone in the doorway." There is no one in the doorway.' },
+      { src: 'img/fiendspace-pics/miller-5.jpg', cap: 'I did not upload this. I do not know who took it. I want it removed and cannot figure out how.' }
+    ],
+    friendCount: 4,
+    top8: [
+      { pic: 'img/characters/Ashley.png', label: 'ashley&lt;3 (unauthorized)', dead: 'she made this page. she set the password. she knows what she did.' },
+      { ref: 'zak', label: 'Zak [unclassified]' },
+      { ref: 'store', label: 'place of employment' },
+      { pic: null, label: 'Lou', dead: 'the founder. he added me. I never accepted. we are, apparently, "friends."' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 7, list: [
+      { who: 'ashley&lt;3', when: 'Jun 12 2004 1:15 PM', txt: 'SURPRISE!!! ur welcome!!! ps ur password is Bugs123 now (it was already something with bugs, i just made it cuter)' },
+      { who: 'zak', when: 'Jun 8 2004', txt: 'Good talk yesterday.' },
+      { who: 'CLEM_N_KIT', when: 'Jun 3 2004 4:12 AM', txt: 'hypothetically. and this is hypothetical. how much cough syrup is a normal amount to' },
+      { who: 'AMiller_PharmD', when: 'Jun 3 2004 9:00 AM', txt: 'Whoever is asking hypotheticals in my comments: no. And the pharmacy log says it was not hypothetical.' }
+    ]}
+  },
+
+  austin: {
+    theme: 't-austin',
+    handle: 'austin_sweet',
+    title: 'Austin Sweet ✦ (Manager. Owner\'s son. Both.)',
+    pic: 'img/characters/Austin.png',
+    meta: { sex: 'Male', age: '26', loc: 'Baby\'s Burgers (corner office*)', lastLogin: 'Online Now!', memberSince: '11/2003' },
+    mood: 'thriving (documented)',
+    song: { title: 'This Love', by: 'Maroon 5', url: 'https://open.spotify.com/search/Maroon%205%20This%20Love' },
+    flair: ['crown', 'crown', 'crown'],
+    extended: 'Austin is in your extended network. Consider yourself lucky.',
+    blog: [
+      { date: 'Jun 14 2004', title: 'An open letter to a certain coffee establishment (you know who you are)', mood: 'gracious', body: [
+        'I want to be gracious about this. I am nothing if not gracious.',
+        'But when a certain frosted-glass "coffee concept" at the foot of the bridge bans warehouse workers over a "dress code," and then has the audacity to launch a cinnamon special the same week we launch the Sticky-Wicky... I notice. Visionaries notice.',
+        'Baby\'s Burgers seats everyone. That\'s the brand. That\'s the difference. That\'s the whole letter.',
+        '(Colton, if you\'re reading this: I know you\'re reading this.)'
+      ] },
+      { date: 'Jun 7 2004', title: 'Q3 vision: Baby\'s Burgers is not a restaurant, it\'s a lifestyle brand', mood: 'visionary', body: [
+        'People ask me: Austin, why does a burger place need a creative director? I\'ll tell you what I told my father. McDonald\'s sells burgers. WE sell a feeling. The feeling is baby pink and slightly humiliating, and people line up for it.',
+        'Q3 initiatives: (1) more glitter in the Glitter Goo &mdash; legal says there is a "ceiling," I say ceilings are for corporate thinkers. (2) Igor gets his own poster. He doesn\'t know yet. He\'s going to wave at it. (3) The office renovation completes.',
+        'That\'s the vision. Write it down.'
+      ] },
+      { date: 'May 31 2004', title: 'new polo (pics soon)', mood: 'coral', body: [
+        'It\'s the same as the old polo but newer. Retail says "salmon." My mother says "coral." She\'s in fashion, so: coral.',
+        'Pics soon. The lighting in the office isn\'t ready. (The office is being renovated.)'
+      ] }
+    ],
+    about: 'Manager and creative director of Baby\'s Burgers, Northside\'s premier lifestyle dining concept. I handle vision, brand, and culture. My team handles the rest — that\'s called delegation, look it up. The polo is Ralph Lauren. The cologne is Ralph Lauren. The mindset is mine. (*the office is being renovated. it has been being renovated.)',
+    meet: 'Investors. Visionaries. My mother, who is very busy. Also whoever keeps writing "colton\'s is better" on the bathroom wall — I just want to talk.',
+    interests: {
+      'General': 'brand synergy, the Razr (business), the OTHER Razr (personal), collecting vintage polos (they\'re new, I collect them new)',
+      'Music': 'whatever\'s on at the club when I arrive. it changes when I arrive. I\'ve noticed that.',
+      'Movies': 'American Psycho (it\'s a comedy about business)',
+      'Heroes': 'my father, William Sweet (legally required). my mother, Evelyn Sweet (she\'s in fashion, it\'s kind of a big deal)'
+    },
+    pics: [
+      { src: 'img/fiendspace-pics/austin-1.jpg', cap: 'Networking at the galleria. The shades were a gift from my mother. She\'s in fashion. It\'s kind of a big deal.' },
+      { src: 'img/fiendspace-pics/austin-2.jpg', cap: 'Self-care is a leadership skill. Write that down. (The note is from me, to me. That\'s called discipline.)' },
+      { src: 'img/fiendspace-pics/austin-3.jpg', cap: 'Our new campaign. Concept: me. Creative direction: me. Model: me. You\'re welcome, dad.' },
+      { src: 'img/fiendspace-pics/austin-4.jpg', cap: 'Fan art. We have fans. (Colton doesn\'t have fans.)' }
+    ],
+    friendCount: 52,
+    top8: [
+      { pic: 'img/characters/Austin.png', label: 'austin_sweet', dead: 'yes, he added himself. the site let him. nobody knows how.' },
+      { pic: 'img/characters/Igor.png', label: 'igor (our best guy)', dead: 'igor does not know what fiendspace is. he waves at the computer. sincerely.' },
+      { pic: 'img/characters/Nate.png', label: 'nate (staff)', dead: 'nate\'s profile is one song (loud) and a photo of the fryer. he calls it "art."' },
+      { pic: 'img/characters/Lucy.png', label: 'lucy (inventory)', dead: 'lucy\'s profile photo is the beanie. just the beanie. no face. no text. 5-star page honestly.' },
+      { pic: 'img/characters/Colton.png', label: 'colton (rival)', dead: 'colton\'s entire profile says "busy." austin checks it daily.' },
+      { pic: null, label: 'mother (pending)', dead: 'request sent 11/2003.' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 19, list: [
+      { who: 'nate', when: 'Jun 13 2004 6:40 PM', txt: 'the fryer is broken again. anyway love the new profile, chief. really captures how the office is being renovated' },
+      { who: 'igor', when: 'Jun 10 2004 2:05 PM', txt: 'Very nice page Austin!! You want Big Sip with that? (it is joke. i am learning them. lucy says i am close)' },
+      { who: 'jayden_star', when: 'Jun 6 2004 11:58 PM', txt: 'networking KING. lets link. i have demos. serious inquiries only (you) (im serious)' },
+      { who: 'austin_sweet', when: 'Jun 5 2004 9:00 AM', txt: 'Reminder that comments are moderated. Positivity only. — Management' }
+    ]}
+  },
+
+  gaige: {
+    theme: 't-gaige',
+    handle: 'gaige',
+    title: '★彡 GAIGE 彡★ (rawr)',
+    pic: 'img/characters/Gaige.png',
+    meta: { sex: 'Male', age: '20', loc: 'northside (the loud part)', lastLogin: 'Online Now!', memberSince: '08/2003' },
+    mood: 'SPARKLING',
+    song: { title: 'The Taste of Ink', by: 'The Used', url: 'https://open.spotify.com/search/The%20Used%20The%20Taste%20of%20Ink' },
+    flair: ['star', 'heart', 'star', 'heart', 'star'],
+    extended: 'gaige is in your extended network!!! (the exclamation points are load-bearing. your browser is doing its best.)',
+    blog: [
+      { date: 'Jun 14 2004', title: 'POLL: cherry vs blue raspberry (there is a right answer and u know it)', mood: 'DEMOCRATIC', body: [
+        'ok so me and ashley have been fighting about this for TWO WEEKS and we agreed the internet decides. the rules: one vote each, no take-backs, kaleb\'s vote counts half (he said "both" last time. that\'s not a vote kaleb).',
+        'CHERRY: a classic. iconic, even. BUT. it is also the flavor of cough syrup and lying.',
+        'BLUE RASPBERRY: not a real fruit. does not care. turns ur whole mouth the color of victory.',
+        'vote in the comments!! votes for "suicide mix" will be counted as blue raspberry because that\'s what it mostly is. rawr xD'
+      ] },
+      { date: 'Jun 9 2004', title: 'kaleb did something INSANE at the set last night (comments for deets)', mood: 'STILL SCREAMING', body: [
+        'i cant even type it. ok. i\'ll type it. he did the thing from the movie. THE THING. FROM THE MOVIE. on the SPEAKER STACK. during the DROP.',
+        'romeo was in line for slushies after and even HE said "huh." for romeo that is a standing ovation.',
+        'peter filmed it?? peter has a camera??? new lore just dropped. he won\'t post it because he\'s peter. comments for deets. PC4PC.'
+      ] },
+      { date: 'Jun 2 2004', title: 'hair tutorial part 3: THE BLUE (finally)', mood: 'BLUE', body: [
+        'part 1 was bleach. part 2 was crying about the bleach. welcome to part 3, the reason we\'re all here.',
+        'u will need: manic panic (atomic turquoise, accept NO substitutes), gloves (learn from my mistakes), vaseline for ur hairline, and a friend u trust with ur LIFE. i used ashley. she used me. matching streaks!!',
+        'leave it 45 minutes. yes the shower will look like a crime scene. it\'s supposed to. that\'s how u know it\'s working. rawr.'
+      ] }
+    ],
+    about: 'HIIII ok so. gaige. 20. i dance at the conxtion (ur welcome). i like: blue slushies, blue hair dye, gossip (affectionate), my boys, and YOU probably!! i use "iconic" correctly (every time). ashley is my bestie and we have matching phone charms. rawr xD',
+    meet: 'EVERYONE. literally everyone. if we haven\'t met that\'s a clerical error and i apologize',
+    interests: {
+      'General': 'glitter (see: incident), septum jewelry rotation, making gary blush (gare-bear if ur nasty), the drama (observing) (causing a little)',
+      'Music': 'the used, underoath, from first to last, whatever peter is listening to (he won\'t say) (i WILL find out)',
+      'Movies': 'mean girls (came out in april and changed my LIFE)',
+      'Heroes': 'ashley. also whoever invented body glitter. also ashley again'
+    },
+    pics: [],
+    picsNote: 'photo albums disabled by fiendspace moderation after the glitter incident (43 complaints). (worth it — g)',
+    friendCount: 178,
+    top8: [
+      { pic: 'img/characters/Kaleb.png', label: 'kaleb!!', dead: 'kaleb\'s profile has been mid-flash-animation since january. it is still loading. he says that\'s "part of it."' },
+      { ref: 'peter', label: 'peter (mysterious)' },
+      { pic: 'img/characters/Ashley.png', label: 'ashley&lt;3 BESTIE', dead: 'you must be logged in to view this profile!! (gaige is logged in. gaige is ALWAYS logged in.)' },
+      { ref: 'romeo', label: 'RO. (scariest man alive &lt;3)' },
+      { ref: 'maisy', label: 'xmaisyx (eyeliner QUEEN)' },
+      { ref: 'store', label: '7-HELL (4am food)' },
+      { ref: 'clemkit', label: 'the static bros' },
+      { pic: null, label: '(rotating slot)', dead: 'this slot rotates weekly. current holder: the ice machine at 7-hell. it earned it.' }
+    ],
+    comments: { shown: 5, total: 156, list: [
+      { who: 'ashley&lt;3', when: 'Jun 14 2004 12:01 AM', txt: 'PC4PC BESTIE!!! also bring the blue dye thursday. ur math was right, one box is NOT enough' },
+      { who: 'gary_manager7', when: 'Jun 11 2004 8:15 PM', txt: 'Hi Gaige! Quick question. What does PC4PC mean? Everyone says it. Please advise. Thank you!!' },
+      { who: 'romeo (RO_wrx)', when: 'Jun 10 2004 3:22 AM', txt: 'stop calling gary gare-bear at the register. he short circuits and the line stops moving' },
+      { who: 'CLEM_N_KIT', when: 'Jun 7 2004 4:44 AM', txt: 'kit stared at ur background for 40 minutes. clem says the sparkles are a signal. (THEY\'RE SO SPARKLY — k)' },
+      { who: 'kaleb', when: 'Jun 5 2004 11:11 PM', txt: 'ur page crashed my mom\'s computer. she says hi. she also says the blue suits you' }
+    ]}
+  },
+
+  peter: {
+    theme: 't-peter',
+    handle: 'peter',
+    title: 'peter',
+    pic: 'img/characters/Peter.png',
+    meta: { sex: 'Male', age: '21', loc: 'the conxtion', lastLogin: '6/14/2004', memberSince: '09/2003' },
+    mood: '&mdash;',
+    song: { title: 'The Quiet Things That No One Ever Knows', by: 'Brand New', url: 'https://open.spotify.com/search/Brand%20New%20The%20Quiet%20Things%20That%20No%20One%20Ever%20Knows' },
+    extended: 'peter is in your extended network.',
+    blog: [],
+    about: '&mdash;',
+    meet: '',
+    interests: {
+      'General': '',
+      'Music': 'yes',
+      'Movies': '',
+      'Heroes': ''
+    },
+    pics: [],
+    picsNote: 'peter has uploaded one (1) photo. it is the profile photo. it is enough.',
+    friendCount: 6,
+    top8: [
+      { ref: 'gaige', label: 'gaige' },
+      { pic: 'img/characters/Kaleb.png', label: 'kaleb', dead: 'still loading. since january.' },
+      { ref: 'presley', label: 'pres' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 6, total: 214, list: [
+      { who: 'gaige', when: 'Jun 14 2004 12:03 AM', txt: 'FIRST!!! (im always first on ur page. it\'s tradition. it\'s ours)' },
+      { who: 'xX_venuswept_Xx', when: 'Jun 12 2004 1:47 AM', txt: 'you don\'t know me but you nodded at me at the conxtion on friday. i have told everyone i know.' },
+      { who: 'kaleb', when: 'Jun 11 2004 11:11 PM', txt: 'killer set. drinks on me (i will forget) (someone remind me)' },
+      { who: 'ashley&lt;3', when: 'Jun 9 2004 3:30 PM', txt: 'ur hair defies science. miller agrees (he didn\'t say that) (but he looked)' },
+      { who: 'brokenwings_marsten', when: 'Jun 8 2004 2:12 AM', txt: 'wrote a poem about the red streak. it\'s 9 pages. where do i send it' },
+      { who: 'pres', when: 'Jun 5 2004 4:01 AM', txt: '..' }
+    ]}
+  },
+
+  maisy: {
+    theme: 't-maisy',
+    handle: 'xmaisyx',
+    title: '~*~ maisy ~*~',
+    pic: 'img/characters/Maisy.png',
+    pics: [],
+    picsNote: 'maisy\'s pics are set to private. (they weren\'t always.)',
+    meta: { sex: 'Female', age: '24', loc: 'around.', lastLogin: '6/13/2004', memberSince: '10/2003' },
+    mood: 'uneasy',
+    song: { title: 'Lullaby', by: 'The Cure', url: 'https://open.spotify.com/search/The%20Cure%20Lullaby' },
+    flair: ['skull', 'skull', 'skull'],
+    extended: 'maisy is in your extended network. she noticed you first.',
+    blog: [
+      { date: 'Jun 11 2004', title: 'does anyone else\'s comments keep disappearing, or just mine', mood: 'uneasy', body: [
+        'third time this month. i post, it\'s there, i check the next night and it\'s gone. no email. no "removed for guidelines." nothing. just gone, like it was never there.',
+        'so i started keeping a notebook. what i wrote, when i wrote it, when it disappeared. there\'s a pattern to which ones go. the ones that stay are about eyeliner and boys. the ones that vanish are always the ones about',
+        '<span class="blog-cutoff">[entry ends here. last edited by: moderation.]</span>'
+      ] },
+      { date: 'May 20 2004', title: 'poem: the parking lot at 4am (comments off)', mood: 'quiet', body: [
+        'the lot hums flat, b-flat, all night,<br>the moths make circles in the light.<br>the regulars drift out and in,<br>the same eight faces, wearing thin.',
+        'and one spot by the slushie machine<br>stays empty where a man had been.<br>nobody says the quiet part:<br>the town keeps count, but not the heart.',
+        '(comments are off. it\'s not about you. it\'s about who reads them.)'
+      ] }
+    ],
+    about: 'local goth. 7-hell regular since before some of you could drive. i notice things, it\'s a hobby. lace, kohl, skull rings, and a memory that goes back further than this town would like. be sweet to me and i\'ll be sweet back. ~*m*~',
+    meet: 'people who remember things. people who write things down. (you\'d be surprised how few of you there are.)',
+    interests: {
+      'General': 'graveyard walks (they\'re quiet and nobody lies there), eyeliner sharp enough to file a report with, keeping certain people company on night shift',
+      'Music': 'the cure, siouxsie, switchblade symphony',
+      'Movies': 'the craft (obviously), anything where the girl was right the whole time',
+      'Books': 'i keep a notebook. it\'s not for sale.',
+      'Heroes': 'cassandra. look her up. nobody believed her either.'
+    },
+    friendCount: 13,
+    top8: [
+      { ref: 'romeo', label: 'RO. (be nice)' },
+      { ref: 'zak', label: 'zak' },
+      { pic: 'img/characters/Russell.png', label: 'r.', dead: 'account inactive.' },
+      { ref: 'clemkit', label: 'the boys' },
+      { ref: 'store', label: '7-hell (home?)' },
+      { pic: null, label: '(private)', dead: 'this friend is hidden. her choice.' },
+      { pic: null, label: '(empty)', dead: '' },
+      { pic: null, label: '(empty)', dead: '' }
+    ],
+    comments: { shown: 5, total: 22, list: [
+      { who: 'romeo (RO_wrx)', when: 'Jun 9 2004 3:10 AM', txt: 'stop walking home alone. im not asking' },
+      { who: 'gaige', when: 'Jun 5 2004 11:47 PM', txt: 'ur eyeliner tonight was ICONIC. teach me or fight me. rawr &lt;3' },
+      { who: '[deleted]', when: 'Jun 1 2004', txt: 'this comment was removed by fiendspace moderation.', gone: true },
+      { who: '[deleted]', when: 'May 27 2004', txt: 'this comment was removed by fiendspace moderation.', gone: true },
+      { who: 'russell_knows', when: 'Jan 8 2004 2:51 AM', txt: 'found more. it lines up like i said. tuesday, usual spot. don\'t laugh at me this time. — r' }
+    ]}
+  }
+};
+
+// ─────────────────────────────────────────────
+function dead(msg) { alert(msg); return false; }
+
+// ── pixel sprites (pure css box-shadow, no image files) ──
+var SPRITES = {
+  flame: { px: 3, colors: { o: '#ff6a00', r: '#ff3d00', y: '#ffd23c' }, map: [
+    '...o...', '...o...', '..oo...', '.ooro..', '.orro..', 'oorryo.', 'oryyro.', '.oryo..', '..oo...' ] },
+  lolly: { px: 3, colors: { p: '#ff4db8', d: '#c2247f', w: '#e8d9c0' }, map: [
+    '.ppp.', 'ppdpp', 'ppppp', '.ppp.', '..w..', '..w..', '..w..', '..w..' ] },
+  mushroom: { px: 3, colors: { r: '#ff3d00', w: '#ffffff' }, map: [
+    '..rrrrr..', '.rrrrrrr.', 'rrwwrwwrr', 'rrwwrwwrr', 'rrrrrrrrr', '..wwwww..', '..w.w.w..', '..wwwww..' ] },
+  moon: { px: 3, colors: { b: '#9db4ff' }, map: [
+    '...bbbb.', '..bb....', '.bb.....', '.bb.....', '.bb.....', '.bb.....', '..bb....', '...bbbb.' ] },
+  invader: { px: 3, colors: { g: '#39ff14' }, map: [
+    '..g.....g..', '...g...g...', '..ggggggg..', '.gg.ggg.gg.', 'ggggggggggg', 'g.ggggggg.g', 'g.g.....g.g', '...gg.gg...' ] },
+  skull: { px: 3, colors: { w: '#cc99ee' }, map: [
+    '.wwwww.', 'wwwwwww', 'w.www.w', 'wwwwwww', '.wwwww.', '.w.w.w.', '.wwwww.' ] },
+  star: { px: 3, colors: { y: '#ffd23c' }, map: [
+    '...y...', '..yyy..', 'yyyyyyy', '.yyyyy.', '..y.y..', '.y...y.' ] },
+  heart: { px: 3, colors: { p: '#ff4db8' }, map: [
+    '.pp.pp.', 'ppppppp', 'ppppppp', '.ppppp.', '..ppp..', '...p...' ] },
+  crown: { px: 3, colors: { g: '#e8c34a' }, map: [
+    'g...g...g', 'g...g...g', 'gg.ggg.gg', 'ggggggggg', '.ggggggg.', '.ggggggg.' ] }
+};
+
+function spriteHtml(name) {
+  var sp = SPRITES[name];
+  if (!sp) return '';
+  var s = sp.px, shadows = [];
+  sp.map.forEach(function (row, y) {
+    for (var x = 0; x < row.length; x++) {
+      var ch = row[x];
+      if (ch === '.' || ch === ' ') continue;
+      shadows.push((x * s) + 'px ' + (y * s) + 'px 0 ' + (sp.colors[ch] || '#fff'));
+    }
+  });
+  var w = sp.map[0].length * s, h = sp.map.length * s;
+  return '<span class="pxwrap" style="width:' + w + 'px;height:' + h + 'px;">' +
+    '<span class="pxdot" style="width:' + s + 'px;height:' + s + 'px;box-shadow:' + shadows.join(',') + ';"></span></span>';
+}
+
+// ── blog entries ──
+function showBlog(id, idx) {
+  var p = PROFILES[id], b = p.blog[idx];
+  document.body.className = p.theme || '';
+  document.title = 'FiendSpace - ' + p.handle + '\'s blog';
+  document.getElementById('profile').innerHTML =
+    '<div style="font-size:10px; margin-bottom:8px;"><a href="#" onclick="return backToProfile(\'' + id + '\')">&laquo; Back to ' + p.handle + '\'s Profile</a></div>' +
+    '<div id="pics-head">' + p.handle + '\'s Blog</div>' +
+    '<div class="pbox blog-full"><div class="bh">' + b.title + '</div><div class="bb">' +
+      '<span class="bdate">' + b.date + (b.mood ? ' &nbsp;|&nbsp; current mood: <b>' + b.mood + '</b>' : '') + '</span>' +
+      b.body.map(function (par) { return '<p>' + par + '</p>'; }).join('') +
+      '<div class="blog-foot">Comments (0) &nbsp;|&nbsp; <a href="#" onclick="return dead(\'comments on blog entries were disabled site-wide in march. nobody has asked why.\')">Add Comment</a></div>' +
+    '</div></div>';
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function findFiend() {
+  var q = (document.getElementById('findbox').value || '').toLowerCase().trim();
+  var map = { romeo: 'romeo', ro: 'romeo', gary: 'gary', presley: 'presley', pres: 'presley',
+              clem: 'clemkit', kit: 'clemkit', zak: 'zak', maisy: 'maisy', '7hell': 'store',
+              store: 'store', miller: 'miller', 'dr miller': 'miller', 'dr. miller': 'miller',
+              anthony: 'miller', austin: 'austin', gaige: 'gaige', peter: 'peter',
+              russell: '__russell', sawyer: '__none', holden: '__none',
+              kaleb: '__kaleb', ashley: '__ashley' };
+  if (map[q] === '__russell') { alert('1 result found.\n\nthis account is inactive.'); return; }
+  if (map[q] === '__kaleb') { alert('1 result found.\n\nprofile is loading. (since january.)'); return; }
+  if (map[q] === '__ashley') { alert('1 result found.\n\nyou must be logged in to view this profile!!'); return; }
+  if (map[q] === '__none' || !map[q]) { alert('0 results found. (some people aren\'t on here. think about who.)'); return; }
+  location.hash = map[q];
+}
+
+function esc(s) { return String(s); } // data is ours; kept for clarity
+
+function friendCell(f) {
+  var img = f.pic || (f.ref && PROFILES[f.ref] ? PROFILES[f.ref].pic : null);
+  var imgHtml = img
+    ? '<img class="ph" src="' + img + '" alt="' + f.label + '" loading="lazy">'
+    : '<div class="ph-none">' + (f.label ? 'no photo' : '') + '</div>';
+  if (f.ref) {
+    return '<div class="f8" onclick="location.hash=\'' + f.ref + '\'">' + imgHtml + '<a>' + f.label + '</a></div>';
+  }
+  var msg = (f.dead || '').replace(/'/g, "\\'");
+  return '<div class="f8" onclick="' + (msg ? "dead('" + msg + "')" : '') + '">' + imgHtml + '<a>' + f.label + '</a></div>';
+}
+
+// ── pics albums ──
+function showPics(id) {
+  var p = PROFILES[id] || PROFILES.store;
+  document.body.className = p.theme || '';
+  document.title = 'FiendSpace - ' + p.handle + '\'s Pics';
+
+  var back = '<div style="font-size:10px; margin-bottom:8px;"><a href="#" onclick="return backToProfile(\'' + id + '\')">&laquo; Back to ' + p.handle + '\'s Profile</a></div>';
+
+  if (p.pics === null) {
+    // deliberately empty (zak)
+    document.getElementById('profile').innerHTML = back +
+      '<div id="pics-head">' + p.handle + '\'s Pics</div>' +
+      '<div id="pics-sub">Viewing 0 of 0 photos</div>' +
+      '<div class="pics-empty">' + p.handle + ' has not uploaded any pics.<br><br><span style="font-size:9px;">(uploads from this account: 0. profile views of this page: 341.)</span></div>';
+    window.scrollTo(0, 0);
+    return false;
+  }
+  if (!p.pics || !p.pics.length) {
+    document.getElementById('profile').innerHTML = back +
+      '<div id="pics-head">' + p.handle + '\'s Pics</div>' +
+      '<div id="pics-sub">Viewing 0 of 0 photos</div>' +
+      '<div class="pics-empty">' + (p.picsNote || 'no pics uploaded yet!! check back l8r') + '</div>';
+    window.scrollTo(0, 0);
+    return false;
+  }
+
+  var cells = p.pics.map(function (ph, i) {
+    return '<div class="pcell" onclick="showBig(\'' + id + '\',' + i + ')">' +
+      '<img src="' + ph.src + '" alt="" loading="lazy">' +
+      '<div class="pcap">' + ph.cap + '</div></div>';
+  }).join('');
+
+  document.getElementById('profile').innerHTML = back +
+    '<div id="pics-head">' + p.handle + '\'s Pics</div>' +
+    '<div id="pics-sub">Viewing 1-' + p.pics.length + ' of ' + p.pics.length + ' photos &nbsp;|&nbsp; <a href="#" onclick="return dead(\'photo upload is members only. membership is closed. it has always been closed.\')">Upload Photo</a></div>' +
+    '<div class="pics-grid">' + cells + '</div>';
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function showBig(id, idx) {
+  var p = PROFILES[id];
+  var ph = p.pics[idx];
+  var prev = (idx - 1 + p.pics.length) % p.pics.length;
+  var next = (idx + 1) % p.pics.length;
+  document.getElementById('profile').innerHTML =
+    '<div style="font-size:10px; margin-bottom:8px;"><a href="#" onclick="return showPics(\'' + id + '\')">&laquo; Back to Album</a></div>' +
+    '<div id="pics-head">' + p.handle + '\'s Pics</div>' +
+    '<div id="pics-sub">Photo ' + (idx + 1) + ' of ' + p.pics.length + '</div>' +
+    '<div id="bigpic">' +
+      '<img src="' + ph.src + '" alt="">' +
+      '<div class="bigcap">' + ph.cap + '</div>' +
+      '<div class="bignav">' +
+        '<a onclick="showBig(\'' + id + '\',' + prev + ')">&laquo; prev</a>' +
+        '<a onclick="showBig(\'' + id + '\',' + next + ')">next &raquo;</a>' +
+      '</div>' +
+    '</div>';
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function backToProfile(id) { render(id); return false; }
+
+function render(id) {
+  var p = PROFILES[id] || PROFILES.store;
+  document.body.className = p.theme || '';
+  document.title = 'FiendSpace - ' + p.handle;
+
+  var interestsRows = '';
+  for (var k in p.interests) {
+    interestsRows += '<tr><td class="k">' + k + '</td><td class="v">' + (p.interests[k] || '&nbsp;') + '</td></tr>';
+  }
+
+  var blogHtml = p.blog.length
+    ? p.blog.map(function (b, i) {
+        var open = b.body
+          ? 'showBlog(\'' + id + '\',' + i + ')'
+          : 'dead(\'entry locked. (it was public last week.)\')';
+        return '<div style="margin-bottom:5px;"><span class="bdate">' + b.date + '</span><br><a href="#" onclick="return ' + open + '">' + b.title + '</a></div>';
+      }).join('')
+    : '<span style="color:#999;">no blog entries.</span>';
+
+  var cmts = p.comments.list.map(function (c) {
+    if (c.gone) return '<div class="cmt gone">' + c.txt + ' <span class="when">' + c.when + '</span></div>';
+    return '<div class="cmt"><span class="who">' + c.who + '</span> <span class="when">' + c.when + '</span><div class="txt">' + c.txt + '</div></div>';
+  }).join('');
+
+  var songHtml;
+  if (p.song) {
+    var songTitle = p.song.url
+      ? '<a href="' + p.song.url + '" target="_blank" rel="noopener" style="color:inherit;">' + p.song.title + '</a>'
+      : (p.song.deadMsg
+          ? '<a href="#" onclick="return dead(\'' + p.song.deadMsg + '\')" style="color:inherit;">' + p.song.title + '</a>'
+          : p.song.title);
+    songHtml = '<div class="player"><span class="btns">&#9654; &#10074;&#10074; &#9632;</span> &nbsp;now playing: <b>' + songTitle + '</b> &mdash; ' + p.song.by +
+      (p.song.url ? ' &nbsp;<span style="color:#557;">&#9835; listen</span>' : '') + '</div>';
+  } else {
+    songHtml = '<div class="player" style="color:#666;"><span class="btns">&#9654; &#10074;&#10074; &#9632;</span> &nbsp;no song selected.</div>';
+  }
+
+  var flairHtml = (p.flair || []).map(spriteHtml).join('');
+
+  document.getElementById('profile').innerHTML =
+    '<div id="ptitle">' + p.title + '</div>' +
+    (flairHtml ? '<div class="flair-row">' + flairHtml + '</div>' : '') +
+    '<div class="cols">' +
+
+    '<div class="col-l">' +
+      '<div class="pbox"><div class="bb">' +
+        '<div class="avatar-row">' +
+          (p.pic ? '<img class="pic" src="' + p.pic + '" alt="' + p.handle + '">' : '<div class="noPic">no photo</div>') +
+          '<div class="avatar-meta">' +
+            p.meta.sex + '<br>' + p.meta.age + ' years old<br>' + p.meta.loc + '<br><br>' +
+            'Last Login:<br><b>' + p.meta.lastLogin + '</b>' +
+            '<div class="mood">Mood: <b>' + (p.mood || '&mdash;') + '</b></div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:9px; margin-top:5px;">View My: <a href="#" onclick="return showPics(\'' + id + '\')">Pics</a> | <a href="#" onclick="return dead(\'video upload is broken forever\')">Videos</a></div>' +
+      '</div></div>' +
+
+      '<div class="pbox"><div class="bh">Contacting ' + p.handle + '</div><div class="bb">' +
+        '<table class="contact-tbl">' +
+        '<tr><td><a href="#" onclick="return dead(\'message not sent. try saying it in person. everyone is at the store anyway.\')">&#9993; Send Message</a></td><td><a href="#" onclick="return dead(\'friend request sent!! (it was not sent)\')">&#43; Add to Fiends</a></td></tr>' +
+        '<tr><td><a href="#" onclick="return dead(\'forwarded to no one.\')">&#8634; Forward to Fiend</a></td><td><a href="#" onclick="return dead(\'added to favorites!! (nothing happened)\')">&#9733; Add to Favorites</a></td></tr>' +
+        '<tr><td><a href="#" onclick="return dead(\'IM is down. it has been down since march. nobody has complained.\')">&#9992; Instant Message</a></td><td><a href="#" onclick="return dead(\'you cannot block someone in a town this small.\')">&#10006; Block Fiend</a></td></tr>' +
+        '</table>' +
+      '</div></div>' +
+
+      '<div class="pbox"><div class="bh">' + p.handle + ': Interests</div><div class="bb" style="padding:0;">' +
+        '<table class="details-tbl">' + interestsRows + '</table>' +
+      '</div></div>' +
+
+      '<div class="pbox"><div class="bh">Details</div><div class="bb" style="padding:0;">' +
+        '<table class="details-tbl">' +
+        '<tr><td class="k">Member Since</td><td class="v">' + p.meta.memberSince + '</td></tr>' +
+        '<tr><td class="k">Hometown</td><td class="v">' + p.meta.loc + '</td></tr>' +
+        '</table>' +
+      '</div></div>' +
+    '</div>' +
+
+    '<div class="col-r">' +
+      '<div style="font-size:10px; background:#ffcc99; border:1px solid #cc9966; padding:4px 6px; margin-bottom:10px;">' + p.extended + '</div>' +
+      songHtml +
+
+      '<div class="pbox blog-box" style="margin-top:10px;"><div class="bh">' + p.handle + '\'s Latest Blog Entries</div><div class="bb">' + blogHtml + '</div></div>' +
+
+      '<div class="pbox blurb"><div class="bh">About ' + p.handle + '</div><div class="bb">' +
+        '<h4>About me:</h4><p>' + p.about + '</p>' +
+        '<h4>Who I\'d like to meet:</h4><p>' + (p.meet || '&mdash;') + '</p>' +
+      '</div></div>' +
+
+      '<div class="pbox"><div class="bh">' + p.handle + '\'s Fiend Space</div><div class="bb">' +
+        '<div style="margin-bottom:6px;"><b>' + p.handle + ' has ' + p.friendCount + ' fiends.</b></div>' +
+        '<div class="top8-grid">' + p.top8.map(friendCell).join('') + '</div>' +
+        '<div style="text-align:right; font-size:9px; margin-top:5px;"><a href="#" onclick="return dead(\'you have seen the ones that matter.\')">View All of ' + p.handle + '\'s Fiends</a></div>' +
+      '</div></div>' +
+
+      '<div class="pbox"><div class="bh">' + p.handle + '\'s Fiends Comments</div><div class="bb">' +
+        '<div style="font-size:9px; color:#888; margin-bottom:4px;">Displaying <b>' + p.comments.shown + '</b> of <b>' + p.comments.total + '</b> comments &nbsp;(<a href="#" onclick="return dead(\'older comments unavailable. some things roll off. some things are rolled off.\')">view all</a>)</div>' +
+        cmts +
+      '</div></div>' +
+    '</div>' +
+
+    '</div>';
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('hashchange', function () { render(location.hash.slice(1)); });
+render(location.hash.slice(1) || 'store');
+</script>
+</body>
+</html>
