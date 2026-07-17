@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>NIGHT SHIFT — a 7-HELL work simulator</title>
+<!-- as installed on the breakroom computer. against corporate's wishes. v2: now with recipes. -->
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: #0a0000;
+    color: #e8d9c0;
+    font-family: "Courier New", Courier, monospace;
+    user-select: none;
+    overflow: hidden;
+  }
+  #game {
+    max-width: 620px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-left: 3px solid #a33c00;
+    border-right: 3px solid #a33c00;
+    background: #140400;
+    position: relative;
+  }
+
+  /* ── status bar ── */
+  #status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px 6px;
+    background: #000;
+    border-bottom: 2px solid #a33c00;
+    font-size: 16px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  #clock { color: #7CFC00; font-weight: bold; font-size: 21px; letter-spacing: 1px; }
+  #money { color: #ffd23c; font-weight: bold; font-size: 18px; }
+  #phonebtn {
+    background: #16211a;
+    border: 2px outset #3a5a44;
+    color: #9fd9ae;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  #phonebtn:active { border-style: inset; }
+  #custcount { color: #9a8a70; font-size: 12px; flex-basis: 100%; }
+  #custcount.glitch { color: #ff3d00; }
+  #vibewrap { flex-basis: 100%; height: 10px; background: #240800; border: 1px solid #5c2000; }
+  #vibebar { height: 100%; background: linear-gradient(90deg, #ff3d00, #ffd23c, #7CFC00); width: 50%; transition: width 0.3s; }
+
+  /* ── floor / queue ── */
+  #floor {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 150px;
+    background: linear-gradient(#1a0500 60%, #241000 60%, #241000 63%, #0d0300 63%);
+  }
+  #queue {
+    position: absolute;
+    left: 0; right: 0; bottom: 12%;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .cust {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    animation: bob 1.2s ease-in-out infinite;
+    touch-action: manipulation;
+  }
+  .cust:nth-child(2n) { animation-delay: 0.4s; }
+  .cust:nth-child(3n) { animation-delay: 0.8s; }
+  @keyframes bob { 50% { transform: translateY(-3px); } }
+  .cust .want {
+    position: absolute;
+    top: -34px; left: 50%;
+    transform: translateX(-50%);
+    background: #e8d9c0;
+    color: #140400;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 7px;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .cust .want:after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: #e8d9c0;
+  }
+  /* stagger bubbles so a crowded line stays readable */
+  .cust:nth-child(even) .want { top: -68px; }
+  .cust:nth-child(even) .want:after { border-top-width: 9px; }
+  .cust .pat {
+    height: 6px;
+    background: #240800;
+    margin-top: 4px;
+    border: 1px solid #000;
+  }
+  .cust .pat i { display: block; height: 100%; background: #7CFC00; }
+  .cust.angry .pat i { background: #ff3d00; }
+  .cust.leaving { opacity: 0.25; transition: opacity 0.5s; }
+  .cust.served { animation: served 0.45s forwards; }
+  @keyframes served { to { transform: translateY(-34px); opacity: 0; } }
+
+  #sidecast {
+    position: absolute;
+    right: 8px; top: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .loiter { cursor: pointer; text-align: center; position: relative; }
+  .loiter .tag { font-size: 11px; color: #9a8a70; display: block; margin-top: 3px; }
+
+  #officedoor, #pharmbell {
+    position: absolute;
+    left: 10px;
+    display: none;
+    cursor: pointer;
+    background: #240800;
+    border: 3px outset #a33c00;
+    color: #ffd23c;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 9px 12px;
+    text-align: center;
+    animation: urgent 0.6s steps(2) infinite;
+    z-index: 3;
+  }
+  #officedoor { top: 12px; }
+  #pharmbell { top: 84px; }
+  @keyframes urgent { 50% { border-color: #ffd23c; color: #fff; } }
+
+  /* ── ticker ── */
+  #ticker {
+    min-height: 44px;
+    max-height: 62px;
+    overflow: hidden;
+    background: #000;
+    border-top: 2px solid #a33c00;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 4px 12px;
+    color: #9a8a70;
+  }
+  #ticker .t-new { color: #7CFC00; }
+  #ticker .t-bad { color: #ff3d00; }
+
+  /* ── tray + stations ── */
+  #controls {
+    background: #1a0500;
+    border-top: 2px solid #a33c00;
+    padding: 8px 10px 10px;
+  }
+  #trayrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  #traylabel { font-size: 13px; color: #9a8a70; }
+  #tray {
+    flex: 1;
+    min-height: 34px;
+    background: #000;
+    border: 2px inset #a33c00;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    background: #3d0a00;
+    border: 1px solid #ff6a00;
+    color: #ffd23c;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px 8px;
+  }
+  .chip.hot { border-color: #ff3d00; color: #ff6a00; }
+  #btn-clear {
+    background: #240800;
+    border: 2px outset #a33c00;
+    color: #e8d9c0;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 7px 10px;
+    cursor: pointer;
+  }
+  #btn-clear:active { border-style: inset; }
+
+  #stations {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+  .stbtn {
+    border: 2px outset;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 2px;
+    cursor: pointer;
+    text-align: center;
+    touch-action: manipulation;
+    position: relative;
+    color: #fff;
+  }
+  .stbtn:active { border-style: inset; }
+  .stbtn small { display: block; font-weight: normal; font-size: 10px; margin-top: 2px; opacity: 0.8; }
+  /* station colors */
+  .st-slush { background: #002a38; border-color: #00c8e0; }
+  .st-grill { background: #331400; border-color: #ff6a00; }
+  .st-cafe  { background: #241a0a; border-color: #c9a86a; }
+  .st-shelf { background: #1d0d24; border-color: #b17ad9; }
+  .stbtn.busy { opacity: 0.55; }
+  #b-vent { background: #001a24; }
+  #b-vent .pbar { height: 8px; background: #001014; border: 1px solid #003844; margin-top: 5px; }
+  #b-vent .pbar i { display: block; height: 100%; background: #00c8e0; }
+  #b-vent.hot { animation: urgent 0.5s steps(2) infinite; border-color: #ff3d00; color: #ffd23c; }
+  #b-vent.hot .pbar i { background: #ff3d00; }
+
+  /* pixel sprites */
+  .pxwrap { display: inline-block; position: relative; }
+  .pxdot { position: absolute; top: 0; left: 0; display: block; background: transparent; }
+
+  /* ── overlays ── */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5,0,0,0.94);
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .overlay h1 {
+    color: #ff6a00;
+    font-size: 32px;
+    margin: 0 0 6px;
+    letter-spacing: 3px;
+  }
+  .overlay h2 { color: #7CFC00; font-size: 16px; margin: 0 0 16px; font-weight: normal; }
+  .overlay p { font-size: 14px; line-height: 1.7; max-width: 430px; margin: 0 0 14px; }
+  .overlay .grade { font-size: 54px; color: #ffd23c; margin: 8px 0; }
+  .overlay button {
+    background: linear-gradient(#ff6a00, #a33c00);
+    border: 3px outset #ffd23c;
+    color: #fff;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 12px 30px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .overlay button:active { border-style: inset; }
+  .overlay .fine { font-size: 11px; color: #7a6a50; margin-top: 14px; line-height: 1.6; }
+
+  /* ── the nokia ── */
+  #phone {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    z-index: 25;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+  #phone-body {
+    background: #16211a;
+    border: 4px ridge #3a5a44;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 360px;
+    padding: 14px;
+  }
+  #phone-screen {
+    background: #9fd9ae;
+    color: #10311c;
+    border: 3px inset #0c1810;
+    padding: 10px;
+    font-size: 14px;
+  }
+  #phone-screen h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    border-bottom: 2px solid #10311c;
+    padding-bottom: 4px;
+  }
+  .contact {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dotted #4a7a58;
+    font-family: inherit;
+    font-size: 13px;
+    color: #10311c;
+    padding: 8px 2px;
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .contact b { font-size: 14px; }
+  .contact .price { float: right; font-weight: bold; }
+  .contact:disabled { opacity: 0.45; }
+  .contact:active { background: #8bcf9d; }
+  #phone-close {
+    display: block;
+    margin: 12px auto 0;
+    background: #24352a;
+    border: 2px outset #3a5a44;
+    color: #9fd9ae;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 22px;
+    cursor: pointer;
+  }
+  #splash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,61,0,0.55), rgba(255,106,0,0.25));
+    z-index: 15;
+    display: none;
+    pointer-events: none;
+    animation: splashfade 1s forwards;
+  }
+  @keyframes splashfade { to { opacity: 0; } }
+  #quiethint {
+    position: absolute;
+    inset: 0;
+    z-index: 14;
+    display: none;
+    background: rgba(0,0,0,0.35);
+    pointer-events: none;
+  }
+
+  /* ── minigames ── */
+  #minigame {
+    position: absolute;
+    inset: 0;
+    background: rgba(5,0,0,0.88);
+    z-index: 30;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    touch-action: none;
+  }
+  #mg-title {
+    color: #ff3d00;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: urgent 0.4s steps(2) infinite;
+    margin-bottom: 4px;
+  }
+  #mg-hint { color: #ffd23c; font-size: 14px; margin-bottom: 14px; }
+  #mg-zone {
+    position: relative;
+    width: 88%;
+    max-width: 420px;
+    height: 240px;
+    border: 3px ridge #a33c00;
+    background: #140400;
+    cursor: grab;
+  }
+  #mg-zone:active { cursor: grabbing; }
+  #mg-art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: #ffd23c;
+    pointer-events: none;
+  }
+  #mg-art.shaking { animation: mgshake 0.12s linear infinite; }
+  @keyframes mgshake {
+    25% { transform: translate(-5px, 3px) rotate(-3deg); }
+    75% { transform: translate(5px, -3px) rotate(3deg); }
+  }
+  .splat {
+    position: absolute;
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(0,200,224,0.95), rgba(0,120,160,0.75) 60%, transparent 72%);
+    pointer-events: none;
+  }
+  .splat.mango { background: radial-gradient(circle at 40% 40%, rgba(255,106,0,0.95), rgba(255,61,0,0.75) 60%, transparent 72%); }
+  #mg-prog {
+    width: 88%;
+    max-width: 420px;
+    height: 14px;
+    border: 2px solid #a33c00;
+    background: #240800;
+    margin-top: 12px;
+  }
+  #mg-prog i { display: block; height: 100%; background: #7CFC00; width: 0%; }
+
+  /* ── start menu extras ── */
+  .menu-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .menu-btn2 {
+    background: #240800 !important;
+    border: 3px outset #a33c00 !important;
+    color: #e8d9c0 !important;
+    font-size: 13px !important;
+    padding: 10px 16px !important;
+  }
+
+  /* ── staff book ── */
+  #bookgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 430px;
+    margin: 8px 0;
+  }
+  .bookcell {
+    border: 2px solid #5c2000;
+    background: #1a0500;
+    padding: 8px 4px 6px;
+    text-align: center;
+  }
+  .bookcell .nm { font-size: 11px; color: #ffd23c; display: block; margin-top: 4px; font-weight: bold; }
+  .bookcell .ln { font-size: 9px; color: #9a8a70; display: block; margin-top: 2px; line-height: 1.4; }
+  .bookcell.locked { opacity: 0.6; }
+  .bookcell.locked .q { font-size: 34px; color: #5c2000; line-height: 60px; display: block; }
+
+  /* ── leaderboard ── */
+  #lb-list, #end-lb { width: 100%; max-width: 340px; margin: 8px 0; }
+  .lb-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 6px 10px;
+    border-bottom: 1px dotted #5c2000;
+    letter-spacing: 2px;
+  }
+  .lb-row .nm { color: #7CFC00; font-weight: bold; }
+  .lb-row .sc { color: #ffd23c; }
+  .lb-row.you { background: #240800; animation: urgent 0.8s steps(2) infinite; }
+  .lb-empty { color: #5c4a35; font-size: 13px; padding: 8px; }
+
+  /* ── gary debrief ── */
+  #gary-debrief {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    max-width: 440px;
+    margin: 8px 0 4px;
+    text-align: left;
+  }
+  #gary-says {
+    flex: 1;
+    background: #1a0500;
+    border: 2px solid #a33c00;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.65;
+    position: relative;
+  }
+  #gary-says:before {
+    content: '';
+    position: absolute;
+    left: -12px; top: 22px;
+    border: 6px solid transparent;
+    border-right-color: #a33c00;
+  }
+  #initials-row { display: none; align-items: center; gap: 8px; margin: 8px 0; }
+  #initials-row label { font-size: 13px; color: #7CFC00; }
+  #initials {
+    width: 84px;
+    background: #000;
+    border: 2px inset #a33c00;
+    color: #7CFC00;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 4px;
+  }
+  #btn-save-score {
+    background: #240800;
+    border: 3px outset #ffd23c;
+    color: #ffd23c;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+
+  @media (max-height: 620px) {
+    .cust .want { font-size: 11px; top: -30px; }
+    .cust:nth-child(even) .want { top: -60px; }
+    .stbtn { padding: 9px 2px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="status">
+    <span id="clock">2:00 AM</span>
+    <span id="money">$0.00</span>
+    <button id="phonebtn">&#128241; UR NOKIA</button>
+    <span id="custcount">customers tonight: 0</span>
+    <div id="vibewrap"><div id="vibebar"></div></div>
+  </div>
+
+  <div id="floor">
+    <div id="sidecast"></div>
+    <button id="officedoor">GARY'S<br>OFFICE</button>
+    <button id="pharmbell">PHARMACY<br>BELL</button>
+    <div id="queue"></div>
+    <div id="splash"></div>
+    <div id="quiethint"></div>
+  </div>
+
+  <div id="ticker"></div>
+
+  <div id="controls">
+    <div id="trayrow">
+      <span id="traylabel">TRAY:</span>
+      <div id="tray"><span style="color:#5c4a35;font-size:12px;">(empty — tap ingredients below)</span></div>
+      <button id="btn-clear">CLEAR</button>
+    </div>
+    <div id="stations"></div>
+  </div>
+
+  <!-- start screen -->
+  <div class="overlay" id="start" style="display:flex;">
+    <h1>NIGHT SHIFT</h1>
+    <h2>a 7-HELL work simulator &nbsp;·&nbsp; v3 <span style="color:#ffd23c; border:1px solid #ffd23c; padding:1px 6px; font-size:11px;">BETA</span></h2>
+    <p>you have the register from <b>2:00 AM</b> to <b>6:00 AM</b>.<br>
+    read the order. build it on the tray. tap the customer.<br>
+    vent the machine. answer the bells. do not let the vibe die.</p>
+    <p style="color:#9a8a70; font-size:12px;">fast serves earn tips. tips buy texts. things will jam, spill, and knock.<br>handle it. that's the job.</p>
+    <div class="menu-row">
+      <button id="btn-start">CLOCK IN</button>
+      <button id="btn-book" class="menu-btn2">STAFF BOOK<br><span id="book-count" style="font-weight:normal;font-size:11px;"></span></button>
+      <button id="btn-board" class="menu-btn2">HIGH SCORES</button>
+    </div>
+    <div class="fine">found on the breakroom computer. install date unknown.<br>best shift: <span id="best-line">—</span></div>
+  </div>
+
+  <!-- staff book -->
+  <div class="overlay" id="book">
+    <h1 style="font-size:22px;">STAFF &amp; REGULARS</h1>
+    <h2>everyone the night has introduced you to</h2>
+    <div id="bookgrid"></div>
+    <button id="btn-book-close" class="menu-btn2">BACK</button>
+  </div>
+
+  <!-- leaderboard -->
+  <div class="overlay" id="board">
+    <h1 style="font-size:22px;">HIGH SCORES</h1>
+    <h2>this machine only. corporate will never see it.</h2>
+    <div id="lb-list"></div>
+    <button id="btn-board-close" class="menu-btn2">BACK</button>
+  </div>
+
+  <!-- end screen -->
+  <div class="overlay" id="end">
+    <h1 id="end-title">6:00 AM</h1>
+    <div class="grade" id="end-grade">B</div>
+    <div id="gary-debrief">
+      <span id="gary-sprite"></span>
+      <div id="gary-says"></div>
+    </div>
+    <p id="end-stats"></p>
+    <div id="initials-row">
+      <label>YOU MADE THE BOARD →</label>
+      <input id="initials" maxlength="3" autocomplete="off" spellcheck="false" placeholder="AAA">
+      <button id="btn-save-score">SAVE</button>
+    </div>
+    <div id="end-lb"></div>
+    <button id="btn-again">CLOCK IN AGAIN</button>
+    <div class="fine">the store does not close. it never closes.<br>but you get to go home.</div>
+  </div>
+
+  <!-- minigame -->
+  <div id="minigame">
+    <div id="mg-title"></div>
+    <div id="mg-hint"></div>
+    <div id="mg-zone"><div id="mg-art"></div></div>
+    <div id="mg-prog"><i></i></div>
+  </div>
+
+  <!-- the nokia -->
+  <div id="phone">
+    <div id="phone-body">
+      <div id="phone-screen">
+        <h3>&#128241; CONTACTS &nbsp;·&nbsp; <span id="phone-money">$0.00</span></h3>
+        <div id="contacts"></div>
+      </div>
+      <button id="phone-close">CLOSE (shift resumes)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+// ────────────────────────────────────────────────────────
+// sprites (bigger in v2 — the little people are the point)
+// ────────────────────────────────────────────────────────
+var SP = 5; // queue pixel size
+var PAL = {
+  s: '#e8c39a', S: '#c89a6e',
+  k: '#111111', w: '#ffffff', e: '#1a1a1a',
+  y: '#ffe27a', g: '#d95f18', b: '#3a2a1a', n: '#6b4a2f',
+  R: '#ff3d00', O: '#ff6a00', Y: '#ffd23c',
+  G: '#2e7d4f', L: '#7CFC00',
+  P: '#663388', p: '#ff4db8', C: '#00c8e0',
+  d: '#333333', D: '#20140a', v: '#4466aa', t: '#8899aa'
+};
+var SPRITES = {
+  romeo:   ['..yyyyyy..','.yybbbyy..','.ysssssyy.','.yseses.y.','..ssssss..','..kkkkkk..','.kkOkkOkk.','.kkkkkkkk.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
+  gary:    ['..gggggg..','.gggggggg.','.gssssssg.','.gwewewsg.','..ssssss..','..GGGGGG..','.GGwwwwGG.','.GGGGGGGG.','.sGGGGGGs.','..nnnnnn..','..nn..nn..','..kk..kk..'],
+  presley: ['..bbbbbb..','.bbbbbbbb.','.bbssssbb.','.bbebebbb.','.bbssssbb.','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  clem:    ['..dddddd..','.dddddddd.','.dsssssd..','.dsesesd..','..ssssss..','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
+  kit:     ['..vvvvvv..','.yvvvvvvy.','.yssssssy.','.ysesessy.','..ssssss..','..wwwwww..','.wwwwwwww.','.wwwwwwww.','.swwwwwws.','..nnnnnn..','..nn..nn..','..kk..kk..'],
+  zak:     ['..nnnnnn..','.nnnnnnnn.','.nssssssn.','.nsesessn.','..ssssss..','..GGGGGG..','.GGwGGwGG.','.GGGGGGGG.','.sGGGGGGs.','..dddddd..','..dd..dd..','..kk..kk..'],
+  maisy:   ['..kkkkkk..','.kkkkkkkk.','.kwwwwwwk.','.kwewewwk.','.kwwwwwwk.','..PPPPPP..','.PPPPPPPP.','.kPPPPPPk.','.wPPPPPPw.','..PPPPPP..','..PP..PP..','..kk..kk..'],
+  kaleb:   ['..kkyyRR..','.kkyyRRkk.','.kssssssk.','.ksesessk.','..ssssss..','..dddddd..','.ddCddCdd.','.dddddddd.','.sdddddds.','..vvvvvv..','..vv..vv..','..kk..kk..'],
+  gaige:   ['..nnCCnn..','.nnnCCnnn.','.nssssssn.','.nsesessn.','..ssssss..','..kkkkkk..','.kkCkkCkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  peter:   ['..kkkkkk..','.kkRkkkkk.','.kssssssk.','.ksesessk.','..ssssss..','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  cust1:   ['..nnnnnn..','.nnnnnnnn.','.nssssssn.','.nsesessn.','..ssssss..','..vvvvvv..','.vvvvvvvv.','.vvvvvvvv.','.svvvvvvs.','..dddddd..','..dd..dd..','..kk..kk..'],
+  cust2:   ['..bbbbbb..','.bbbbbbbb.','.bSSSSSSb.','.bSeSeSSb.','..SSSSSS..','..tttttt..','.tttttttt.','.tttttttt.','.Stttttts.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  cust3:   ['..yyyyyy..','.yyyyyyyy.','.ysssssyy.','.yseses.y.','..ssssss..','..pppppp..','.pppppppp.','.pppppppp.','.spppppps.','..wwwwww..','..ww..ww..','..kk..kk..']
+};
+function spriteHtml(name, scale) {
+  var map = SPRITES[name];
+  if (!map) return '';
+  var s = scale || SP, shadows = [];
+  map.forEach(function (row, y) {
+    for (var x = 0; x < row.length; x++) {
+      var ch = row[x];
+      if (ch === '.') continue;
+      shadows.push((x * s) + 'px ' + (y * s) + 'px 0 ' + (PAL[ch] || '#fff'));
+    }
+  });
+  var w = map[0].length * s, h = map.length * s;
+  return '<span class="pxwrap" style="width:' + w + 'px;height:' + h + 'px;">' +
+    '<span class="pxdot" style="width:' + s + 'px;height:' + s + 'px;box-shadow:' + shadows.join(',') + ';"></span></span>';
+}
+
+// ────────────────────────────────────────────────────────
+// ingredients + orders
+// ────────────────────────────────────────────────────────
+var ING = {
+  blue:   { label: 'BLUE',    station: 'slush', chip: 'BLUE SLUSH' },
+  cherry: { label: 'CHERRY',  station: 'slush', chip: 'CHERRY SLUSH' },
+  mango:  { label: 'MANGO',   station: 'slush', chip: 'HELLFIRE SLUSH' },
+  dog:    { label: 'HOT DOG', station: 'grill', chip: 'DOG' },
+  chili:  { label: '+CHILI',  station: 'grill', chip: 'CHILI' },
+  cheese: { label: '+CHEESE', station: 'grill', chip: 'CHZ' },
+  jalap:  { label: '+JLPNO',  station: 'grill', chip: 'JLPNO' },
+  coffee: { label: 'COFFEE',  station: 'cafe',  chip: 'COFFEE' },
+  milk:   { label: '+MILK',   station: 'cafe',  chip: 'MILK' },
+  candy:  { label: 'CANDY',   station: 'shelf', chip: 'CANDY' },
+  ticket: { label: 'TICKET',  station: 'shelf', chip: 'TICKET' },
+  pizza:  { label: 'SLICE',   station: 'shelf', chip: 'COLD SLICE' }
+};
+// order templates: parts are ingredient key arrays; hot=true means slice must be heated
+var ORDERS = [
+  { parts: ['blue'],                  label: 'BLUE SLUSHIE',        price: 1.49, w: 12 },
+  { parts: ['cherry'],                label: 'CHERRY SLUSHIE',      price: 1.49, w: 10 },
+  { parts: ['mango'],                 label: 'HELLFIRE MANGO',      price: 1.49, w: 8 },
+  { parts: ['dog'],                   label: 'PLAIN DOG',           price: 1.99, w: 8 },
+  { parts: ['dog','chili'],           label: 'DOG + CHILI',         price: 2.49, w: 8 },
+  { parts: ['dog','cheese'],          label: 'DOG + CHZ',           price: 2.49, w: 8 },
+  { parts: ['dog','chili','cheese'],  label: 'DOG + CHILI + CHZ',   price: 2.99, w: 6 },
+  { parts: ['dog','chili','cheese','jalap'], label: 'THE INFERNO',  price: 3.99, w: 3 },
+  { parts: ['coffee'],                label: 'COFFEE, BLACK',       price: 1.29, w: 9 },
+  { parts: ['coffee','milk'],         label: 'COFFEE + MILK',       price: 1.49, w: 8 },
+  { parts: ['candy'],                 label: 'CANDY',               price: 0.99, w: 8 },
+  { parts: ['ticket'],                label: 'SCRATCH TICKET',      price: 1.00, w: 8 },
+  { parts: ['pizza'], hot: true,      label: 'HOT SIN SLICE',       price: 2.99, w: 8 }
+];
+function pickOrder() {
+  var total = ORDERS.reduce(function (a, o) { return a + o.w; }, 0);
+  var r = Math.random() * total;
+  for (var i = 0; i < ORDERS.length; i++) {
+    r -= ORDERS[i].w;
+    if (r <= 0) return ORDERS[i];
+  }
+  return ORDERS[0];
+}
+function sameOrder(order, tray, trayHot) {
+  if (order.parts.length !== tray.length) return false;
+  var a = order.parts.slice().sort().join(','), b = tray.slice().sort().join(',');
+  if (a !== b) return false;
+  if (order.hot && !trayHot) return false;
+  return true;
+}
+
+// ────────────────────────────────────────────────────────
+// power-ups (ur nokia)
+// ────────────────────────────────────────────────────────
+var CONTACTS = [
+  { id: 'zak', name: 'ZAK', cost: 30, desc: 'he will handle the line. all of it. do not ask how.',
+    fx: function () {
+      var n = G.queue.length;
+      meet('zak');
+      G.queue.slice().forEach(function (c) { G.money += 1.50; G.earned += 1.50; G.served++; removeCustomer(c, 'served'); });
+      tick('you texted zak. the line is gone. he is already back to restocking. ' + n + ' customers served, apparently.');
+    } },
+  { id: 'presley', name: 'PRESLEY', cost: 8, desc: 'leave a granola bar in his locker. the machine stays calm for a while.',
+    fx: function () {
+      meet('presley');
+      G.machineFreezeUntil = G.t + 60;
+      G.pressure = 0;
+      tick('you left a granola bar in presley\'s locker. he\'s watching the machine now. it wouldn\'t dare.');
+    } },
+  { id: 'romeo', name: 'ROMEO', cost: 12, desc: 'open the sour patch jar. he leans on the counter. nobody complains about anything.',
+    fx: function () {
+      G.bribeUntil = G.t + 45;
+      tick('romeo is leaning on the counter, eating sour patch kids. every customer has decided they are patient people.');
+    } },
+  { id: 'kit', name: 'KIT (ask flower)', cost: 6, desc: 'flower lights one of her 1967 incense sticks. the whole store softens.',
+    fx: function () {
+      G.vibe = Math.min(100, G.vibe + 15);
+      tick('the store smells like 1967 for a minute. everyone softens. somewhere, flower smiles.');
+    } }
+];
+
+// ────────────────────────────────────────────────────────
+// staff book (persistent encounters)
+// ────────────────────────────────────────────────────────
+var MET_INFO = [
+  { id: 'romeo',   name: 'ROMEO',   line: 'got his candy. eventually.' },
+  { id: 'gary',    name: 'GARY',    line: 'knocked. he needed that.' },
+  { id: 'presley', name: 'PRESLEY', line: 'appeared. mop first.' },
+  { id: 'zak',     name: 'ZAK',     line: 'not on the schedule.' },
+  { id: 'maisy',   name: 'MAISY',   line: 'likes the blue ones.' },
+  { id: 'clem',    name: 'CLEM',    line: 'testing frequencies.' },
+  { id: 'kit',     name: 'KIT',     line: 'THE FREQUENCIES — k' },
+  { id: 'kaleb',   name: 'KALEB',   line: 'his vote counts half.' },
+  { id: 'gaige',   name: 'GAIGE',   line: 'BLUE!! SLUSHIE!!' },
+  { id: 'peter',   name: 'PETER',   line: 'nodded at you. once.' },
+  { id: 'miller',  name: 'DR. MILLER', line: '"adequate."' }
+];
+function loadMet() {
+  try { return JSON.parse(localStorage.getItem('nightshift-met') || '[]'); }
+  catch (e) { return []; }
+}
+function meet(id) {
+  var m = loadMet();
+  if (m.indexOf(id) < 0) {
+    m.push(id);
+    localStorage.setItem('nightshift-met', JSON.stringify(m));
+  }
+}
+function renderBook() {
+  var met = loadMet();
+  var g = $('bookgrid');
+  g.innerHTML = '';
+  MET_INFO.forEach(function (info) {
+    var d = document.createElement('div');
+    if (met.indexOf(info.id) >= 0) {
+      d.className = 'bookcell';
+      d.innerHTML = spriteHtml(info.id, 4) + '<span class="nm">' + info.name + '</span><span class="ln">' + info.line + '</span>';
+    } else {
+      d.className = 'bookcell locked';
+      d.innerHTML = '<span class="q">?</span><span class="nm">???</span><span class="ln">work more nights.</span>';
+    }
+    g.appendChild(d);
+  });
+  $('book-count').textContent = met.length + ' / ' + MET_INFO.length + ' met';
+}
+
+// ────────────────────────────────────────────────────────
+// leaderboard (this machine only)
+// ────────────────────────────────────────────────────────
+function loadLB() {
+  try { return JSON.parse(localStorage.getItem('nightshift-lb') || '[]'); }
+  catch (e) { return []; }
+}
+function saveLB(l) { localStorage.setItem('nightshift-lb', JSON.stringify(l)); }
+function renderLB(el, hiName, hiScore) {
+  var lb = loadLB();
+  var html = '';
+  for (var i = 0; i < 5; i++) {
+    var r = lb[i];
+    if (r) {
+      var you = (hiName && r.n === hiName && r.s === hiScore) ? ' you' : '';
+      html += '<div class="lb-row' + you + '"><span>' + (i + 1) + '.</span><span class="nm">' + r.n + '</span><span class="sc">' + r.s.toFixed(1) + ' (' + r.g + ')</span></div>';
+    } else {
+      html += '<div class="lb-row"><span>' + (i + 1) + '.</span><span class="nm" style="color:#5c4a35;">---</span><span class="sc" style="color:#5c4a35;">--.-</span></div>';
+    }
+  }
+  el.innerHTML = html;
+}
+
+// ────────────────────────────────────────────────────────
+// minigames (the game does not pause. that's the point.)
+// ────────────────────────────────────────────────────────
+var MG = { active: false, type: null, dist: 0, need: 0, splats: [], down: false, lx: 0, ly: 0 };
+function mgOpen(type) {
+  MG.active = true; MG.type = type; MG.dist = 0; MG.down = false; MG.splats = [];
+  var zone = $('mg-zone'), art = $('mg-art');
+  zone.querySelectorAll('.splat').forEach(function (s) { s.remove(); });
+  $('mg-prog').querySelector('i').style.width = '0%';
+  if (type === 'jam') {
+    MG.need = 1500;
+    $('mg-title').textContent = 'THE REGISTER JAMMED!!';
+    $('mg-hint').textContent = 'hold and SHAKE it (drag around fast)';
+    art.innerHTML = '<div style="font-size:17px;border:4px ridge #a33c00;padding:20px 30px;background:#240800;color:#7CFC00;font-family:inherit;">[ REGISTER ]<br>ERR: JAM</div>';
+  } else {
+    $('mg-title').textContent = 'THE MACHINE BLEW!!';
+    $('mg-hint').textContent = 'wipe up the slush — scrub every splat';
+    art.innerHTML = '';
+    var zw = zone.clientWidth || 380, zh = zone.clientHeight || 240;
+    for (var i = 0; i < 6; i++) {
+      var s = document.createElement('div');
+      s.className = 'splat' + (Math.random() < 0.4 ? ' mango' : '');
+      var x = 10 + Math.random() * (zw - 100), y = 10 + Math.random() * (zh - 100);
+      s.style.left = x + 'px'; s.style.top = y + 'px';
+      zone.appendChild(s);
+      MG.splats.push({ el: s, x: x + 42, y: y + 42, hits: 0, done: false });
+    }
+  }
+  $('minigame').style.display = 'flex';
+  // customers keep waiting. patience keeps draining. handle it.
+}
+function mgProgress(p) {
+  $('mg-prog').querySelector('i').style.width = Math.min(100, p * 100) + '%';
+}
+function mgClose() {
+  MG.active = false;
+  $('minigame').style.display = 'none';
+  $('mg-art').classList.remove('shaking');
+  if (MG.type === 'jam') {
+    tick('the register unjammed. it kept the receipt. it always keeps the receipt.');
+  } else {
+    G.vibe = Math.min(100, G.vibe + 2);
+    tick('spotless. the floor forgets. the machine hums like nothing happened.');
+  }
+}
+(function mgWire() {
+  var zone = $('mg-zone');
+  function pos(e) {
+    var r = zone.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+  zone.addEventListener('pointerdown', function (e) {
+    if (!MG.active) return;
+    MG.down = true;
+    var p = pos(e);
+    MG.lx = p.x; MG.ly = p.y;
+    if (MG.type === 'jam') $('mg-art').classList.add('shaking');
+    e.preventDefault();
+  });
+  zone.addEventListener('pointermove', function (e) {
+    if (!MG.active || !MG.down) return;
+    var p = pos(e);
+    if (MG.type === 'jam') {
+      MG.dist += Math.abs(p.x - MG.lx) + Math.abs(p.y - MG.ly);
+      mgProgress(MG.dist / MG.need);
+      if (MG.dist >= MG.need) mgClose();
+    } else {
+      var cleaned = 0;
+      MG.splats.forEach(function (s) {
+        if (!s.done) {
+          var dx = p.x - s.x, dy = p.y - s.y;
+          if (dx * dx + dy * dy < 2100) {
+            s.hits++;
+            s.el.style.opacity = String(1 - s.hits / 8);
+            if (s.hits >= 8) { s.done = true; s.el.remove(); }
+          }
+        }
+        if (s.done) cleaned++;
+      });
+      mgProgress(cleaned / MG.splats.length);
+      if (cleaned === MG.splats.length) mgClose();
+    }
+    MG.lx = p.x; MG.ly = p.y;
+    e.preventDefault();
+  });
+  function up() { MG.down = false; $('mg-art').classList.remove('shaking'); }
+  zone.addEventListener('pointerup', up);
+  zone.addEventListener('pointercancel', up);
+})();
+
+// ────────────────────────────────────────────────────────
+// state
+// ────────────────────────────────────────────────────────
+var G = null;
+function freshState() {
+  return {
+    t: 0, money: 0, earned: 0, vibe: 50,
+    tray: [], trayHot: false, heatingUntil: 0,
+    queue: [], custSeen: 0,
+    pressure: 20, exploded: 0,
+    served: 0, walkouts: 0, tips: 0,
+    luckUntil: 0, romeoCalmUntil: 0, bribeUntil: 0, machineFreezeUntil: 0,
+    quietUntil: 0,
+    clemkit: null, maisy: null,
+    nextSpawn: 5,
+    pending: [],
+    rushDone: false, maisyDone: false, garyDone: false, romeoDone: false,
+    zakDone: false, bells: 0, nextBell: 40 + Math.random() * 40,
+    jamsDone: 0, nextJam: 70 + Math.random() * 40,
+    garyDeadline: 0, bellDeadline: 0,
+    ghostDone: false,
+    paused: false, over: false
+  };
+}
+function later(sec, fn) { G.pending.push({ at: G.t + sec, fn: fn }); }
+
+// ────────────────────────────────────────────────────────
+// dom helpers
+// ────────────────────────────────────────────────────────
+function $(id) { return document.getElementById(id); }
+function tick(msg, cls) {
+  var t = $('ticker');
+  var d = document.createElement('div');
+  d.className = cls || 't-new';
+  d.textContent = msg;
+  t.insertBefore(d, t.firstChild);
+  while (t.children.length > 3) t.removeChild(t.lastChild);
+  setTimeout(function () { d.className = ''; }, 1200);
+}
+function fmtClock(t) {
+  var mins = 120 + t;
+  var h = Math.floor(mins / 60), m = mins % 60;
+  var hh = ((h + 11) % 12) + 1;
+  return hh + ':' + (m < 10 ? '0' : '') + m + ' AM';
+}
+function fmtMoney(n) { return '$' + n.toFixed(2); }
+
+// ────────────────────────────────────────────────────────
+// customers
+// ────────────────────────────────────────────────────────
+var GENERICS = ['cust1', 'cust2', 'cust3'];
+function spawnCustomer(opts) {
+  opts = opts || {};
+  if (G.queue.length >= 5) return null;
+  var order = opts.order || pickOrder();
+  var c = {
+    id: 'c' + (++G.custSeen),
+    sprite: opts.sprite || GENERICS[Math.floor(Math.random() * GENERICS.length)],
+    order: order,
+    patience: opts.patience || ((G.luckUntil > G.t ? 26 : 22) + (order.parts.length - 1) * 4),
+    maxPat: 0,
+    canon: opts.canon || null,
+    el: null
+  };
+  c.maxPat = c.patience;
+  G.queue.push(c);
+  var el = document.createElement('div');
+  el.className = 'cust';
+  el.id = c.id;
+  el.innerHTML = '<div class="want">' + (opts.wantLabel || order.label) + '</div>' +
+    spriteHtml(c.sprite) + '<div class="pat"><i style="width:100%"></i></div>';
+  el.addEventListener('pointerdown', function () { tryServe(c); });
+  c.el = el;
+  $('queue').appendChild(el);
+  // clamp the order bubble inside the play area (first-in-line bubbles
+  // were getting clipped off the left edge)
+  requestAnimationFrame(function () {
+    var w = el.querySelector('.want');
+    if (!w) return;
+    var wr = w.getBoundingClientRect(), gr = $('game').getBoundingClientRect();
+    var shift = 0;
+    if (wr.left < gr.left + 4) shift = (gr.left + 4) - wr.left;
+    else if (wr.right > gr.right - 4) shift = (gr.right - 4) - wr.right;
+    if (shift) w.style.transform = 'translateX(calc(-50% + ' + shift + 'px))';
+  });
+  $('custcount').textContent = 'customers tonight: ' + G.custSeen;
+  return c;
+}
+function removeCustomer(c, cls) {
+  var i = G.queue.indexOf(c);
+  if (i >= 0) G.queue.splice(i, 1);
+  if (c.el) {
+    c.el.className = 'cust ' + cls;
+    (function (el) { setTimeout(function () { el.remove(); }, 500); })(c.el);
+  }
+}
+function tryServe(c) {
+  if (G.over || G.paused) return;
+  if (!G.tray.length) { tick('(the tray is empty. build the order first.)', 't-bad'); return; }
+  if (sameOrder(c.order, G.tray, G.trayHot)) {
+    var price = c.order.price;
+    G.money += price; G.earned += price;
+    var tip = (c.patience / c.maxPat) >= 0.6 ? 0.75 : 0;
+    if (tip) { G.money += tip; G.earned += tip; G.tips += tip; }
+    G.vibe = Math.min(100, G.vibe + 2);
+    G.served++;
+    if (c.order.parts.indexOf('blue') >= 0 || c.order.parts.indexOf('cherry') >= 0 || c.order.parts.indexOf('mango') >= 0) {
+      G.pressure = Math.min(100, G.pressure + 9);
+    }
+    if (c.canon === 'romeo') {
+      G.vibe = Math.min(100, G.vibe + 6);
+      G.romeoCalmUntil = G.t + 25;
+      tick('romeo got his candy' + (tip ? ' fast' : '') + '. the whole line relaxes.');
+    } else if (c.canon === 'gaige') {
+      tick('gaige says the slushie is iconic. he means it.');
+    } else if (tip) {
+      tick('served fast. they tipped ' + fmtMoney(tip) + ' and said "keep the change, night hero."');
+    }
+    removeCustomer(c, 'served');
+    clearTray();
+  } else {
+    G.vibe = Math.max(0, G.vibe - 2);
+    c.patience = Math.max(1, c.patience - 2);
+    tick('that\'s not what they ordered. they are too polite to say so twice.', 't-bad');
+  }
+}
+
+// ────────────────────────────────────────────────────────
+// tray + stations
+// ────────────────────────────────────────────────────────
+function clearTray() {
+  G.tray = []; G.trayHot = false; G.heatingUntil = 0;
+  renderTray();
+}
+function renderTray() {
+  var t = $('tray');
+  if (!G.tray.length) {
+    t.innerHTML = '<span style="color:#5c4a35;font-size:12px;">(empty — tap ingredients below)</span>';
+    return;
+  }
+  t.innerHTML = G.tray.map(function (k) {
+    var hot = (k === 'pizza' && G.trayHot);
+    return '<span class="chip' + (hot ? ' hot' : '') + '">' + (hot ? 'HOT SLICE' : ING[k].chip) + '</span>';
+  }).join('');
+  if (G.heatingUntil > G.t) {
+    t.innerHTML += '<span style="color:#ffd23c;font-size:12px;">heating… ' + (G.heatingUntil - G.t) + 's</span>';
+  }
+}
+function addToTray(k) {
+  if (G.over || G.paused) return;
+  if (G.tray.length >= 4) { tick('the tray is full. serve it or clear it.', 't-bad'); return; }
+  if (G.tray.indexOf(k) >= 0 && k !== 'candy') { tick('that\'s already on the tray.', 't-bad'); return; }
+  G.tray.push(k);
+  renderTray();
+}
+function buildStations() {
+  var s = $('stations');
+  s.innerHTML = '';
+  var layout = [
+    { k: 'blue', cls: 'st-slush' }, { k: 'cherry', cls: 'st-slush' }, { k: 'mango', cls: 'st-slush' },
+    { vent: true },
+    { k: 'dog', cls: 'st-grill' }, { k: 'chili', cls: 'st-grill' }, { k: 'cheese', cls: 'st-grill' }, { k: 'jalap', cls: 'st-grill' },
+    { k: 'coffee', cls: 'st-cafe' }, { k: 'milk', cls: 'st-cafe' }, { k: 'candy', cls: 'st-shelf' }, { k: 'ticket', cls: 'st-shelf' },
+    { k: 'pizza', cls: 'st-shelf' }, { heat: true }
+  ];
+  layout.forEach(function (cell) {
+    var b = document.createElement('button');
+    if (cell.vent) {
+      b.className = 'stbtn st-slush';
+      b.id = 'b-vent';
+      b.innerHTML = 'VENT<div class="pbar"><i style="width:' + G.pressure + '%"></i></div>';
+      b.addEventListener('pointerdown', function () {
+        if (G.over || G.paused) return;
+        G.pressure = Math.max(0, G.pressure - 30);
+        renderPressure();
+      });
+    } else if (cell.heat) {
+      b.className = 'stbtn st-shelf';
+      b.id = 'b-heat';
+      b.innerHTML = 'HEAT LAMP<small>3s</small>';
+      b.addEventListener('pointerdown', function () {
+        if (G.over || G.paused) return;
+        if (G.tray.indexOf('pizza') < 0) { tick('the heat lamp hums at nothing. put a slice on the tray first.', 't-bad'); return; }
+        if (G.trayHot) { tick('the slice is already hot. it has seen enough.', 't-bad'); return; }
+        if (G.heatingUntil > G.t) return;
+        G.heatingUntil = G.t + 3;
+        renderTray();
+      });
+    } else {
+      b.className = 'stbtn ' + cell.cls;
+      b.innerHTML = ING[cell.k].label;
+      b.addEventListener('pointerdown', function () { addToTray(cell.k); });
+    }
+    s.appendChild(b);
+  });
+}
+function renderPressure() {
+  var m = $('b-vent');
+  if (!m) return;
+  m.className = 'stbtn st-slush' + (G.pressure > 75 ? ' hot' : '');
+  var bar = m.querySelector('.pbar i');
+  if (bar) bar.style.width = G.pressure + '%';
+}
+$('btn-clear').addEventListener('pointerdown', function () {
+  if (G && !G.over) clearTray();
+});
+
+// ────────────────────────────────────────────────────────
+// side cast
+// ────────────────────────────────────────────────────────
+function addLoiterer(key, sprite, tag, onTap) {
+  var d = document.createElement('div');
+  d.className = 'loiter';
+  d.id = 'loiter-' + key;
+  d.innerHTML = spriteHtml(sprite, 3) + '<span class="tag">' + tag + '</span>';
+  if (onTap) d.addEventListener('pointerdown', onTap);
+  $('sidecast').appendChild(d);
+  return d;
+}
+function dropLoiterer(key) {
+  var d = $('loiter-' + key);
+  if (d) d.remove();
+}
+
+// ────────────────────────────────────────────────────────
+// events timeline
+// ────────────────────────────────────────────────────────
+function events() {
+  var t = G.t;
+
+  if (t >= 33 && !G.clemkit) {
+    G.clemkit = { pausedUntil: 0, nextDrain: t + 18 };
+    addLoiterer('clem', 'clem', 'clem', waveOff);
+    addLoiterer('kit', 'kit', 'kit', waveOff);
+    meet('clem'); meet('kit');
+    tick('2:33 AM — clem and kit have arrived. they have not purchased anything. they will not.');
+  }
+
+  // the register jam (max 2 per night)
+  if (G.jamsDone < 2 && t >= G.nextJam && !MG.active) {
+    G.jamsDone++;
+    G.nextJam = (G.jamsDone < 2 && Math.random() < 0.6) ? t + 70 + Math.random() * 40 : 9999;
+    mgOpen('jam');
+    tick('the register jammed. it does this. nobody knows why. shake it.', 't-bad');
+  }
+  if (G.clemkit && t >= G.clemkit.nextDrain) {
+    G.clemkit.nextDrain = t + 20;
+    if (G.clemkit.pausedUntil < t && G.machineFreezeUntil < t) {
+      G.pressure = Math.min(100, G.pressure + 12);
+      tick('clem and kit are "testing frequencies" on the slushie machine. pressure is up.', 't-bad');
+      renderPressure();
+    }
+  }
+
+  if (t >= 50 && !G.romeoDone) {
+    G.romeoDone = true;
+    meet('romeo');
+    spawnCustomer({ sprite: 'romeo', order: ORDERS[10], patience: 10, canon: 'romeo', wantLabel: 'CANDY. NOW.' });
+    tick('romeo is here. the line has gotten quieter.');
+  }
+
+  if (t >= 65 && !G.maisyDone) {
+    G.maisyDone = true;
+    meet('maisy');
+    G.maisy = { until: t + 40 };
+    addLoiterer('maisy', 'maisy', 'maisy', function () {
+      if (G.tray.length === 1 && G.tray[0] === 'blue') {
+        clearTray();
+        G.luckUntil = G.t + 60;
+        dropLoiterer('maisy');
+        G.maisy = null;
+        tick('you gave maisy a blue slushie, on the house. she noticed. the night feels easier.');
+      } else {
+        tick('maisy is watching the door. she says you should too. (she likes the blue ones.)');
+      }
+    });
+    tick('maisy is by the slushie machine. she is watching the door.');
+  }
+  if (G.maisy && t >= G.maisy.until) {
+    dropLoiterer('maisy'); G.maisy = null;
+    tick('maisy left. she took the long way. she always takes a different way.');
+  }
+
+  if (t === 77) {
+    G.quietUntil = t + 6;
+    $('quiethint').style.display = 'block';
+    tick('3:17 AM — [no entry]', 't-bad');
+  }
+  if (G.quietUntil && t >= G.quietUntil) {
+    G.quietUntil = 0;
+    $('quiethint').style.display = 'none';
+  }
+
+  if (t >= 90 && !G.garyDone) {
+    G.garyDone = true;
+    meet('gary');
+    $('officedoor').style.display = 'block';
+    G.garyDeadline = t + 20;
+  }
+  if (G.garyDeadline && t >= G.garyDeadline) {
+    G.garyDeadline = 0;
+    $('officedoor').style.display = 'none';
+    tick('the office went quiet on its own. that is worse.', 't-bad');
+    G.vibe = Math.max(0, G.vibe - 5);
+  }
+
+  if (G.bells < 2 && t >= G.nextBell) {
+    G.bells++;
+    meet('miller');
+    G.nextBell = t + 60 + Math.random() * 50;
+    $('pharmbell').style.display = 'block';
+    G.bellDeadline = t + 9;
+  }
+  if (G.bellDeadline && t >= G.bellDeadline) {
+    G.bellDeadline = 0;
+    $('pharmbell').style.display = 'none';
+    G.vibe = Math.max(0, G.vibe - 4);
+    tick('the pharmacy bell stopped. miller has begun writing a blog post.', 't-bad');
+  }
+
+  if (t >= 120 && !G.rushDone) {
+    G.rushDone = true;
+    meet('kaleb'); meet('gaige'); meet('peter');
+    tick('4:00 AM — the ConXtion just closed. brace.');
+    spawnCustomer({ sprite: 'kaleb', order: ORDERS[11], canon: 'kaleb', patience: 20 });
+    later(2, function () { spawnCustomer({ sprite: 'gaige', order: ORDERS[0], canon: 'gaige', patience: 20, wantLabel: 'BLUE!! SLUSHIE!!' }); });
+    later(4, function () { spawnCustomer({}); });
+    later(7, function () { spawnCustomer({}); });
+    later(10, function () { spawnCustomer({}); });
+    later(12, function () {
+      addLoiterer('peter', 'peter', 'peter');
+      tick('peter is here. he does not want anything. he is just here.');
+    });
+    later(30, function () {
+      dropLoiterer('peter');
+      tick('peter left. he nodded at you. tell everyone.');
+    });
+  }
+
+  if (!G.zakDone && t >= 60 && Math.random() < 0.006 && G.queue.length > 1) {
+    G.zakDone = true;
+    meet('zak');
+    var c = G.queue[G.queue.length - 1];
+    removeCustomer(c, 'served');
+    G.served++;
+    G.money += 1.00; G.earned += 1.00;
+    tick('zak served the last customer in line. nobody saw him arrive. he is not on tonight\'s schedule.');
+  }
+
+  if (!G.ghostDone && t >= 100 && Math.random() < 0.005) {
+    G.ghostDone = true;
+    G.custSeen++;
+    var cc = $('custcount');
+    cc.textContent = 'customers tonight: ' + G.custSeen;
+    cc.className = 'glitch';
+    setTimeout(function () { cc.className = ''; }, 2500);
+    tick('the door chimed. nobody came in. the counter went up anyway.', 't-bad');
+  }
+
+  if (G.clemkit && t >= 180) {
+    G.clemkit = null;
+    dropLoiterer('clem'); dropLoiterer('kit');
+    tick('5:00 AM — clem and kit have left to watch the sunrise from the vibe van. they said you\'re "part of it" now.');
+  }
+}
+function waveOff() {
+  if (!G.clemkit) return;
+  G.clemkit.pausedUntil = G.t + 30;
+  tick('you waved at clem and kit. they waved back. the machine is safe from science for now.');
+}
+
+$('officedoor').addEventListener('pointerdown', function () {
+  $('officedoor').style.display = 'none';
+  G.garyDeadline = 0;
+  G.vibe = Math.min(100, G.vibe + 10);
+  tick('you knocked on the office door. gary needed that. (he shows you his minesweeper time.)');
+});
+$('pharmbell').addEventListener('pointerdown', function () {
+  $('pharmbell').style.display = 'none';
+  G.bellDeadline = 0;
+  G.money += 4.00; G.earned += 4.00;
+  tick('you covered the pharmacy window. miller said "adequate." that\'s his highest one.');
+});
+
+// ────────────────────────────────────────────────────────
+// the nokia
+// ────────────────────────────────────────────────────────
+function renderPhone() {
+  $('phone-money').textContent = fmtMoney(G.money);
+  var c = $('contacts');
+  c.innerHTML = '';
+  CONTACTS.forEach(function (ct) {
+    var b = document.createElement('button');
+    b.className = 'contact';
+    b.disabled = G.money < ct.cost;
+    b.innerHTML = '<b>' + ct.name + '</b> <span class="price">' + fmtMoney(ct.cost) + '</span><br>' + ct.desc;
+    b.addEventListener('pointerdown', function () {
+      if (G.money < ct.cost) return;
+      G.money -= ct.cost;
+      ct.fx();
+      closePhone();
+    });
+    c.appendChild(b);
+  });
+}
+function openPhone() {
+  if (G.over) return;
+  G.paused = true;
+  clearTimeout(loopHandle);
+  renderPhone();
+  $('phone').style.display = 'flex';
+}
+function closePhone() {
+  $('phone').style.display = 'none';
+  if (G.paused && !G.over) {
+    G.paused = false;
+    loopHandle = setTimeout(step, 1000);
+  }
+}
+$('phonebtn').addEventListener('pointerdown', openPhone);
+$('phone-close').addEventListener('pointerdown', closePhone);
+
+// ────────────────────────────────────────────────────────
+// main loop
+// ────────────────────────────────────────────────────────
+var loopHandle = null;
+function step() {
+  if (G.over || G.paused) return;
+  G.t++;
+
+  $('clock').textContent = fmtClock(G.t);
+  $('money').textContent = fmtMoney(G.money);
+  $('vibebar').style.width = G.vibe + '%';
+
+  // pending scheduled actions
+  G.pending = G.pending.filter(function (p) {
+    if (G.t >= p.at) { p.fn(); return false; }
+    return true;
+  });
+
+  // heat lamp
+  if (G.heatingUntil && G.t >= G.heatingUntil) {
+    G.heatingUntil = 0;
+    G.trayHot = true;
+    tick('the slice is hot. the heat lamp looks proud.');
+    renderTray();
+  } else if (G.heatingUntil) {
+    renderTray();
+  }
+
+  // spawning
+  if (G.t >= G.nextSpawn && G.quietUntil === 0 && G.romeoCalmUntil < G.t) {
+    var interval = G.t < 60 ? 11 + Math.random() * 5
+                 : G.t < 120 ? 9 + Math.random() * 4
+                 : G.t < 200 ? 8 + Math.random() * 4
+                 : 11 + Math.random() * 6;
+    G.nextSpawn = G.t + interval;
+    spawnCustomer({});
+  }
+
+  // patience
+  var drainMul = G.bribeUntil > G.t ? 0.5 : 1;
+  G.queue.slice().forEach(function (c) {
+    c.patience -= drainMul;
+    var pct = Math.max(0, (c.patience / c.maxPat) * 100);
+    var bar = c.el && c.el.querySelector('.pat i');
+    if (bar) bar.style.width = pct + '%';
+    if (pct < 35 && c.el) c.el.classList.add('angry');
+    if (c.patience <= 0) {
+      removeCustomer(c, 'leaving');
+      G.walkouts++;
+      if (c.canon === 'romeo') {
+        tick('romeo left without his candy. the store feels it.', 't-bad');
+        G.vibe = Math.max(0, G.vibe - 4);
+      } else {
+        G.vibe = Math.max(0, G.vibe - 10);
+        tick('a customer walked out. the door chime sounded disappointed.', 't-bad');
+      }
+    }
+  });
+
+  // machine pressure
+  if (G.machineFreezeUntil < G.t) {
+    G.pressure = Math.min(100, G.pressure + 0.45);
+  }
+  if (G.pressure >= 100) {
+    G.pressure = 15;
+    G.exploded++;
+    G.vibe = Math.max(0, G.vibe - 8);
+    var sp = $('splash');
+    sp.style.display = 'block';
+    sp.style.animation = 'none';
+    void sp.offsetWidth;
+    sp.style.animation = '';
+    setTimeout(function () { sp.style.display = 'none'; }, 1000);
+    if (G.exploded === 1) {
+      tick('THE MACHINE BLEW. it got a regular head to toe. someone is already driving him to the laundromat.', 't-bad');
+    } else {
+      tick('the machine blew AGAIN. the mop knows the way by now.', 't-bad');
+    }
+    if (!MG.active) {
+      mgOpen('wipe');
+    } else {
+      G.vibe = Math.max(0, G.vibe - 4);
+    }
+  }
+  renderPressure();
+
+  events();
+
+  if (G.vibe <= 0) return endShift(false);
+  if (G.t >= 240) return endShift(true);
+
+  loopHandle = setTimeout(step, 1000);
+}
+
+// ────────────────────────────────────────────────────────
+// start / end
+// ────────────────────────────────────────────────────────
+var GARY_LINES = {
+  S: 'I— okay. Okay. I have never given an S. I didn\'t know the sheet went that high. I\'m reinstating the Employee of the Month board. Don\'t tell corporate. (I already cried. It\'s fine. It\'s FINE.)',
+  A: 'This is REALLY good?? I checked the numbers twice — I\'m getting better at noticing things, my mentor says so. There\'s a granola bar in your locker. It\'s truck day. That\'s a management technique.',
+  B: 'Solid shift! Romeo nodded at you on his way out. Do you know how rare that is?? I have a spreadsheet. It\'s rare.',
+  C: 'Dallas looked at the numbers and said "that\'s not a shift." But you SHOWED UP, and Rule 3 says showing up counts. It has to count. (Please come back tomorrow.)',
+  F: 'Hey. Hey, no. It happens! The night wins sometimes. Go home, get some sleep. We\'ll talk tomorrow. (We won\'t. I\'m too nice. We both know this.)'
+};
+function gradeFor(score, survived) {
+  if (!survived) return { g: 'F' };
+  if (score >= 95) return { g: 'S' };
+  if (score >= 70) return { g: 'A' };
+  if (score >= 45) return { g: 'B' };
+  return { g: 'C' };
+}
+var pendingScore = null;
+function endShift(survived) {
+  G.over = true;
+  clearTimeout(loopHandle);
+  if (MG.active) { MG.active = false; $('minigame').style.display = 'none'; }
+  var score = Math.round((G.earned + G.served * 2 - G.walkouts * 2) * 10) / 10;
+  var res = gradeFor(score, survived);
+  $('end-title').textContent = survived ? '6:00 AM' : fmtClock(G.t);
+  $('end-grade').textContent = res.g;
+  $('gary-sprite').innerHTML = spriteHtml('gary', 5);
+  $('gary-says').textContent = GARY_LINES[res.g];
+  $('end-stats').innerHTML =
+    'served: ' + G.served + ' &nbsp;·&nbsp; walkouts: ' + G.walkouts + ' &nbsp;·&nbsp; tips: ' + fmtMoney(G.tips) + '<br>' +
+    'earned: ' + fmtMoney(G.earned) + ' &nbsp;·&nbsp; explosions: ' + G.exploded + ' &nbsp;·&nbsp; score: <b>' + score.toFixed(1) + '</b><br>' +
+    'customers counted: ' + G.custSeen + (G.ghostDone ? ' (recount pending)' : '');
+  // leaderboard entry?
+  var lb = loadLB();
+  var qualifies = lb.length < 5 || score > lb[lb.length - 1].s;
+  pendingScore = qualifies ? { s: score, g: res.g } : null;
+  $('initials-row').style.display = qualifies ? 'flex' : 'none';
+  $('initials').value = '';
+  renderLB($('end-lb'));
+  $('end').style.display = 'flex';
+  if (qualifies) $('initials').focus();
+}
+$('btn-save-score').addEventListener('pointerdown', function () {
+  if (!pendingScore) return;
+  var n = ($('initials').value || '???').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3) || '???';
+  var lb = loadLB();
+  lb.push({ n: n, s: pendingScore.s, g: pendingScore.g });
+  lb.sort(function (a, b) { return b.s - a.s; });
+  lb = lb.slice(0, 5);
+  saveLB(lb);
+  var saved = pendingScore;
+  pendingScore = null;
+  $('initials-row').style.display = 'none';
+  renderLB($('end-lb'), n, saved.s);
+  refreshBestLine();
+});
+function startShift() {
+  G = freshState();
+  $('queue').innerHTML = '';
+  $('sidecast').innerHTML = '';
+  $('ticker').innerHTML = '';
+  $('start').style.display = 'none';
+  $('end').style.display = 'none';
+  $('phone').style.display = 'none';
+  $('officedoor').style.display = 'none';
+  $('pharmbell').style.display = 'none';
+  buildStations();
+  clearTray();
+  tick('2:00 AM — you clock in. the fluorescents hum in b-flat. they always have.');
+  loopHandle = setTimeout(step, 1000);
+}
+$('btn-start').addEventListener('pointerdown', startShift);
+$('btn-again').addEventListener('pointerdown', startShift);
+
+// start menu: staff book + high scores
+$('btn-book').addEventListener('pointerdown', function () {
+  renderBook();
+  $('book').style.display = 'flex';
+});
+$('btn-book-close').addEventListener('pointerdown', function () {
+  $('book').style.display = 'none';
+});
+$('btn-board').addEventListener('pointerdown', function () {
+  renderLB($('lb-list'));
+  $('board').style.display = 'flex';
+});
+$('btn-board-close').addEventListener('pointerdown', function () {
+  $('board').style.display = 'none';
+});
+
+function refreshBestLine() {
+  var lb = loadLB();
+  if (lb.length) {
+    $('best-line').textContent = lb[0].n + ' — ' + lb[0].s.toFixed(1) + ' (' + lb[0].g + ' rank)';
+  } else {
+    var b = localStorage.getItem('nightshift-best');
+    var g = localStorage.getItem('nightshift-best-grade');
+    if (b) $('best-line').textContent = 'score ' + b + ' (' + (g || '?') + ' rank)';
+  }
+}
+(function () {
+  refreshBestLine();
+  var met = loadMet();
+  $('book-count').textContent = met.length + ' / ' + MET_INFO.length + ' met';
+})();
+</script>
+</body>
+</html>
