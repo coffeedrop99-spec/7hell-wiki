@@ -252,11 +252,15 @@
     display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     padding: 20px;
     overflow-y: auto;
   }
+  /* auto-margins center short content but keep tall content scrollable
+     (plain justify-content:center crops the top off — the zoom-to-60% bug) */
+  .overlay > :first-child { margin-top: auto; }
+  .overlay > :last-child { margin-bottom: auto; }
   .overlay h1 {
     color: #ff6a00;
     font-size: 32px;
@@ -1136,19 +1140,25 @@ function spawnCustomer(opts) {
   el.addEventListener('pointerdown', function () { tryServe(c); });
   c.el = el;
   $('queue').appendChild(el);
-  // clamp the order bubble inside the play area (first-in-line bubbles
-  // were getting clipped off the left edge)
-  requestAnimationFrame(function () {
-    var w = el.querySelector('.want');
+  requestAnimationFrame(clampBubbles);
+  $('custcount').textContent = 'customers tonight: ' + G.custSeen;
+  return c;
+}
+// keep every order bubble inside the play area — re-run constantly,
+// because customers slide into new slots when the line moves
+function clampBubbles() {
+  if (!G) return;
+  var gr = $('game').getBoundingClientRect();
+  G.queue.forEach(function (c) {
+    var w = c.el && c.el.querySelector('.want');
     if (!w) return;
-    var wr = w.getBoundingClientRect(), gr = $('game').getBoundingClientRect();
+    w.style.transform = 'translateX(-50%)';
+    var wr = w.getBoundingClientRect();
     var shift = 0;
     if (wr.left < gr.left + 4) shift = (gr.left + 4) - wr.left;
     else if (wr.right > gr.right - 4) shift = (gr.right - 4) - wr.right;
     if (shift) w.style.transform = 'translateX(calc(-50% + ' + shift + 'px))';
   });
-  $('custcount').textContent = 'customers tonight: ' + G.custSeen;
-  return c;
 }
 function removeCustomer(c, cls) {
   var i = G.queue.indexOf(c);
@@ -1653,6 +1663,7 @@ function step() {
     }
   }
   renderPressure();
+  clampBubbles();
 
   events();
 
