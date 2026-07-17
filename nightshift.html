@@ -361,6 +361,54 @@
     pointer-events: none;
   }
 
+  /* ── recipe card ── */
+  #recipes {
+    position: absolute;
+    inset: 0;
+    background: rgba(5,0,0,0.9);
+    z-index: 22;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+  #recipes-card {
+    background: #e8dfc8;
+    color: #2a2018;
+    border: 3px solid #9a8a70;
+    border-radius: 4px;
+    max-width: 380px;
+    width: 100%;
+    max-height: 86%;
+    overflow-y: auto;
+    padding: 12px 14px;
+    font-size: 13px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.7);
+  }
+  #recipes-card h3 {
+    margin: 0 0 2px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  #recipes-card .rc-sub { font-size: 10px; color: #7a6a50; margin-bottom: 8px; }
+  .rc-group { margin-bottom: 9px; }
+  .rc-group b { display: block; font-size: 12px; border-bottom: 1px solid #b7a98c; margin-bottom: 3px; }
+  .rc-group div { padding: 1px 0; }
+  .rc-group span { color: #7a5a30; }
+  .rc-note { font-size: 11px; font-style: italic; color: #6a4a20; margin-top: 2px; }
+  #recipes-card .rc-close { font-size: 10px; text-align: center; color: #7a6a50; margin-top: 8px; }
+  #btn-recipes {
+    background: #241a0a;
+    border: 2px outset #c9a86a;
+    color: #e8d9c0;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 7px 10px;
+    cursor: pointer;
+  }
+  #btn-recipes:active { border-style: inset; }
+  #nightlbl { color: #ff6a00; font-weight: bold; font-size: 13px; }
+
   /* ── minigames ── */
   #minigame {
     position: absolute;
@@ -532,6 +580,7 @@
 <div id="game">
   <div id="status">
     <span id="clock">2:00 AM</span>
+    <span id="nightlbl">NIGHT 1</span>
     <span id="money">$0.00</span>
     <button id="phonebtn">&#128241; UR NOKIA</button>
     <span id="custcount">customers tonight: 0</span>
@@ -553,6 +602,7 @@
     <div id="trayrow">
       <span id="traylabel">TRAY:</span>
       <div id="tray"><span style="color:#5c4a35;font-size:12px;">(empty — tap ingredients below)</span></div>
+      <button id="btn-recipes">?</button>
       <button id="btn-clear">CLEAR</button>
     </div>
     <div id="stations"></div>
@@ -571,7 +621,9 @@
       <button id="btn-book" class="menu-btn2">STAFF BOOK<br><span id="book-count" style="font-weight:normal;font-size:11px;"></span></button>
       <button id="btn-board" class="menu-btn2">HIGH SCORES</button>
     </div>
-    <div class="fine">found on the breakroom computer. install date unknown.<br>best shift: <span id="best-line">—</span></div>
+    <div class="fine">found on the breakroom computer. install date unknown.<br>
+    tonight: <span id="night-line" style="color:#ff6a00;">NIGHT 1</span> &nbsp;·&nbsp; best shift: <span id="best-line">—</span><br>
+    <a id="night-reset" style="display:none; color:#7a6a50; text-decoration:underline; cursor:pointer;">start over from night 1</a></div>
   </div>
 
   <!-- staff book -->
@@ -605,8 +657,48 @@
       <button id="btn-save-score">SAVE</button>
     </div>
     <div id="end-lb"></div>
-    <button id="btn-again">CLOCK IN AGAIN</button>
-    <div class="fine">the store does not close. it never closes.<br>but you get to go home.</div>
+    <div class="menu-row">
+      <button id="btn-again">CLOCK IN AGAIN</button>
+      <button id="btn-menu" class="menu-btn2">MAIN MENU</button>
+    </div>
+    <div class="fine" id="end-fine">the store does not close. it never closes.<br>but you get to go home.</div>
+  </div>
+
+  <!-- recipe card (does not pause the shift. obviously.) -->
+  <div id="recipes">
+    <div id="recipes-card">
+      <h3>7-HELL TRAINING CARD (rev. 3)</h3>
+      <div class="rc-sub">laminated. taped to the register. someone drew on it.</div>
+      <div class="rc-group">
+        <b>SLUSHIE STATION</b>
+        <div>BLUE SLUSHIE <span>= BLUE</span></div>
+        <div>CHERRY SLUSHIE <span>= CHERRY</span></div>
+        <div>HELLFIRE MANGO <span>= MANGO</span></div>
+        <div class="rc-note">vent the machine BEFORE the bar fills. — mgmt<br>do NOT vent it onto the floor again — g</div>
+      </div>
+      <div class="rc-group">
+        <b>GRILL</b>
+        <div>PLAIN DOG <span>= HOT DOG</span></div>
+        <div>DOG + CHILI <span>= HOT DOG + CHILI</span></div>
+        <div>DOG + CHZ <span>= HOT DOG + CHEESE</span></div>
+        <div>DOG + CHILI + CHZ <span>= HOT DOG + CHILI + CHEESE</span></div>
+        <div>THE INFERNO <span>= HOT DOG + CHILI + CHEESE + JLPNO</span></div>
+        <div class="rc-note">the inferno = everything. — c &nbsp;(EVERYTHING — k)</div>
+      </div>
+      <div class="rc-group">
+        <b>CAF&Eacute;</b>
+        <div>COFFEE, BLACK <span>= COFFEE</span></div>
+        <div>COFFEE + MILK <span>= COFFEE + MILK</span></div>
+      </div>
+      <div class="rc-group">
+        <b>SHELF</b>
+        <div>CANDY <span>= CANDY</span></div>
+        <div>SCRATCH TICKET <span>= TICKET</span></div>
+        <div>HOT SIN SLICE <span>= SLICE, then HEAT LAMP (3s)</span></div>
+        <div class="rc-note">cold slices will be refused. derek especially.</div>
+      </div>
+      <div class="rc-close">(tap anywhere to close — the shift continues while you read. obviously.)</div>
+    </div>
   </div>
 
   <!-- minigame -->
@@ -642,19 +734,32 @@ var PAL = {
   R: '#ff3d00', O: '#ff6a00', Y: '#ffd23c',
   G: '#2e7d4f', L: '#7CFC00',
   P: '#663388', p: '#ff4db8', C: '#00c8e0',
-  d: '#333333', D: '#20140a', v: '#4466aa', t: '#8899aa'
+  d: '#333333', D: '#20140a', v: '#4466aa', t: '#8899aa',
+  A: '#f2e6da', h: '#b5a06a'
 };
 var SPRITES = {
-  romeo:   ['..yyyyyy..','.yybbbyy..','.ysssssyy.','.yseses.y.','..ssssss..','..kkkkkk..','.kkOkkOkk.','.kkkkkkkk.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
-  gary:    ['..gggggg..','.gggggggg.','.gssssssg.','.gwewewsg.','..ssssss..','..GGGGGG..','.GGwwwwGG.','.GGGGGGGG.','.sGGGGGGs.','..nnnnnn..','..nn..nn..','..kk..kk..'],
-  presley: ['..bbbbbb..','.bbbbbbbb.','.bbssssbb.','.bbebebbb.','.bbssssbb.','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
-  clem:    ['..dddddd..','.dddddddd.','.dsssssd..','.dsesesd..','..ssssss..','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
-  kit:     ['..vvvvvv..','.yvvvvvvy.','.yssssssy.','.ysesessy.','..ssssss..','..wwwwww..','.wwwwwwww.','.wwwwwwww.','.swwwwwws.','..nnnnnn..','..nn..nn..','..kk..kk..'],
-  zak:     ['..nnnnnn..','.nnnnnnnn.','.nssssssn.','.nsesessn.','..ssssss..','..GGGGGG..','.GGwGGwGG.','.GGGGGGGG.','.sGGGGGGs.','..dddddd..','..dd..dd..','..kk..kk..'],
-  maisy:   ['..kkkkkk..','.kkkkkkkk.','.kwwwwwwk.','.kwewewwk.','.kwwwwwwk.','..PPPPPP..','.PPPPPPPP.','.kPPPPPPk.','.wPPPPPPw.','..PPPPPP..','..PP..PP..','..kk..kk..'],
-  kaleb:   ['..kkyyRR..','.kkyyRRkk.','.kssssssk.','.ksesessk.','..ssssss..','..dddddd..','.ddCddCdd.','.dddddddd.','.sdddddds.','..vvvvvv..','..vv..vv..','..kk..kk..'],
-  gaige:   ['..nnCCnn..','.nnnCCnnn.','.nssssssn.','.nsesessn.','..ssssss..','..kkkkkk..','.kkCkkCkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  romeo:   ['..yyyyyy..','.yybbbyy..','.ysssssyy.','.yseses.y.','..ssssss..','..kkkkkk..','.skOkkOks.','.skkkkkks.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
+  gary:    ['..gggggg..','.gggggggg.','.gssssssg.','.gdededsg.','..ssssss..','..GGGGGG..','.GGwwwwGG.','.GGGGGGGG.','.sGGGGGGs.','..nnnnnn..','..nn..nn..','..kk..kk..'],
+  presley: ['..hhhhhh..','.hhhhhhhh.','.hhsssshh.','.hhehehhh.','.hhsssshh.','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  clem:    ['..dddddd..','.dddddddd.','.ddssssdd.','.ddsesesd.','..ssssss..','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..dddddd..','..dd..dd..','..kk..kk..'],
+  kit:     ['..wkwwkw..','.ywkwwkwy.','.yssssssy.','.ysesessy.','..ssssss..','..wwwwww..','.wwwwwwww.','.wwwwwwww.','.swwwwwws.','..nnnnnn..','..nn..nn..','..kk..kk..'],
+  zak:     ['..bbbbbb..','.bbbbbbbb.','.bssssssb.','.bsesessb.','..ssssss..','..GGGGGG..','.GGwGGwGG.','.GGGGGGGG.','.sGGGGGGs.','..dddddd..','..dd..dd..','..kk..kk..'],
+  maisy:   ['..kkkkkk..','.kkkkkkkk.','.kwwwwwwk.','.kwewewwk.','.kwwwwwwk.','.kPPPPPPk.','.kPPPPPPk.','.kPPPPPPk.','.wPPPPPPw.','..PPPPPP..','..PP..PP..','..kk..kk..'],
+  kaleb:   ['..kkyyRR..','.kkyyRRkk.','.kssssssk.','.ksesessk.','..ssssss..','..dddddd..','.CddCCddC.','.YddddddY.','.pddddddp.','..vvvvvv..','..vv..vv..','..kk..kk..'],
+  gaige:   ['..nCCnCC..','.nCCnnCCn.','.nssssssn.','.nsesessn.','..ssssss..','..kkkkkk..','.kkCkkCkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
   peter:   ['..kkkkkk..','.kkRkkkkk.','.kssssssk.','.ksesessk.','..ssssss..','..kkkkkk..','.kkkkkkkk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  miller:  ['..kkkkkk..','.kkkkkkkk.','.kAAAAAAk.','.kAeAeAAk.','..AAAAAA..','..wwwwww..','.wwddddww.','.wwwwwwww.','.AwwwwwwA.','..dddddd..','..dd..dd..','..kk..kk..'],
+  ashley:  ['..yyyyyy..','.ywyywyyy.','.ysssssyy.','.yseses.y.','.yssssssy.','.yppppppy.','.yppppppy.','.yppppppy.','.spppppps.','..pppppp..','..pp..pp..','..ww..ww..'],
+  dallas:  ['..hhhhhh..','.hhhhhhhh.','.hssssssh.','.hdededsh.','..ssssss..','..tttttt..','.tttttttt.','.tttttttt.','.stttttts.','..dddddd..','..dd..dd..','..kk..kk..'],
+  dylan:   ['..RRRRRR..','.RRRRRRRR.','.kkssssww.','.kseses.w.','..ssssss..','..dddddd..','.ddkkwwdd.','.dddddddd.','.sdddddds.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  jayden:  ['..yyyyyy..','.yykkkyy..','.ysssssyy.','.yseses.y.','..ssssss..','..GGGGGG..','.GwGGGGwG.','.GGGGGGGG.','.sGGGGGGs.','..wwwwww..','..ww..ww..','..kk..kk..'],
+  jett:    ['..kkkkkk..','.kkkkkkkk.','.kSSSSSSk.','.kSeSeSSk.','.kSSSSSSk.','.kkkkkkkk.','.kkkkkkkk.','.kkkkkkkk.','.SkkkkkkS.','..dddddd..','..dd..dd..','..DD..DD..'],
+  sancho:  ['.ww....ww.','..wwwwww..','.wAAAAAAw.','.wApApAAw.','..AAAAAA..','..tttttt..','.tttttttt.','.tttttttt.','.AttttttA.','..dddddd..','..dd..dd..','..kk..kk..'],
+  derek:   ['..bbbbbb..','.bbbbbbbb.','.bssssssb.','.bseses.b.','..ssssss..','..RRRRRR..','.kkkkkkkk.','.RRRRRRRR.','.skkkkkks.','..kkkkkk..','..kk..kk..','..bb..bb..'],
+  orlando: ['..bbbbbb..','.bbbbbbbb.','.bssssssb.','.bseses.b.','.bssssssb.','..dddddd..','.ddwwwwdd.','.dddddddd.','.sdddddds.','..kkkkkk..','..kk..kk..','..kk..kk..'],
+  cory:    ['.k.k..L.L.','.kkkkLLLL.','.kssssssL.','.kseses.L.','..ssssss..','..kkkkkk..','.kwkkkkwk.','.kkkkkkkk.','.skkkkkks.','..kkkkkk..','..kk..kk..','..DD..DD..'],
+  jermaine:['..nnnnnn..','.nnnnnnnn.','.gssssssg.','.gseses.g.','..ssssss..','..wwwwww..','.wvwwwwvw.','.vvvvvvvv.','.svvvvvvs.','..vvvvvv..','..vv..vv..','..DD..DD..'],
+  jade:    ['..bbbbbb..','.bbbbbbbb.','.bssssssb.','.beeseesb.','..ssssss..','..kkkkkk..','.kkwwwwkk.','.kkkkkkkk.','.skkkkkks.','..vvvvvv..','..vv..vv..','..kk..kk..'],
   cust1:   ['..nnnnnn..','.nnnnnnnn.','.nssssssn.','.nsesessn.','..ssssss..','..vvvvvv..','.vvvvvvvv.','.vvvvvvvv.','.svvvvvvs.','..dddddd..','..dd..dd..','..kk..kk..'],
   cust2:   ['..bbbbbb..','.bbbbbbbb.','.bSSSSSSb.','.bSeSeSSb.','..SSSSSS..','..tttttt..','.tttttttt.','.tttttttt.','.Stttttts.','..kkkkkk..','..kk..kk..','..kk..kk..'],
   cust3:   ['..yyyyyy..','.yyyyyyyy.','.ysssssyy.','.yseses.y.','..ssssss..','..pppppp..','.pppppppp.','.pppppppp.','.spppppps.','..wwwwww..','..ww..ww..','..kk..kk..']
@@ -708,11 +813,16 @@ var ORDERS = [
   { parts: ['ticket'],                label: 'SCRATCH TICKET',      price: 1.00, w: 8 },
   { parts: ['pizza'], hot: true,      label: 'HOT SIN SLICE',       price: 2.99, w: 8 }
 ];
+function orderWeight(o) {
+  // later nights order more complicated things. they know you can handle it.
+  var bonus = (G && o.parts.length >= 2) ? Math.min(10, (G.night - 1) * 2) : 0;
+  return o.w + bonus;
+}
 function pickOrder() {
-  var total = ORDERS.reduce(function (a, o) { return a + o.w; }, 0);
+  var total = ORDERS.reduce(function (a, o) { return a + orderWeight(o); }, 0);
   var r = Math.random() * total;
   for (var i = 0; i < ORDERS.length; i++) {
-    r -= ORDERS[i].w;
+    r -= orderWeight(ORDERS[i]);
     if (r <= 0) return ORDERS[i];
   }
   return ORDERS[0];
@@ -769,7 +879,18 @@ var MET_INFO = [
   { id: 'kaleb',   name: 'KALEB',   line: 'his vote counts half.' },
   { id: 'gaige',   name: 'GAIGE',   line: 'BLUE!! SLUSHIE!!' },
   { id: 'peter',   name: 'PETER',   line: 'nodded at you. once.' },
-  { id: 'miller',  name: 'DR. MILLER', line: '"adequate."' }
+  { id: 'miller',  name: 'DR. MILLER', line: '"adequate."' },
+  { id: 'ashley',  name: 'ASHLEY',  line: 'medical advice: "check wikipedia?"' },
+  { id: 'dallas',  name: 'DALLAS',  line: '"acceptable." write down the date.' },
+  { id: 'dylan',   name: 'DYLAN',   line: 'pix beeped. he almost smiled.' },
+  { id: 'jayden',  name: 'JAYDEN',  line: 'left dramatically. nobody minded.' },
+  { id: 'jett',    name: 'JETT',    line: 'reinvesting the winnings.' },
+  { id: 'sancho',  name: 'SANCHO',  line: 'returned the tray. mostly.' },
+  { id: 'derek',   name: 'DEREK',   line: '"fine." high praise.' },
+  { id: 'orlando', name: 'ORLANDO', line: 'coffee. black. before the forklifts.' },
+  { id: 'cory',    name: 'CORY',    line: 'ordered the inferno. finished it.' },
+  { id: 'jermaine',name: 'JERMAINE',line: 'nodded at the crows outside.' },
+  { id: 'jade',    name: 'JADE',    line: 'did what needed doing.' }
 ];
 function loadMet() {
   try { return JSON.parse(localStorage.getItem('nightshift-met') || '[]'); }
@@ -797,6 +918,11 @@ function renderBook() {
     }
     g.appendChild(d);
   });
+  // one slot is not locked. it is just empty. it stays that way.
+  var mem = document.createElement('div');
+  mem.className = 'bookcell locked';
+  mem.innerHTML = '<span class="q" style="color:#3a2a1a;">&mdash;</span><span class="nm">&nbsp;</span><span class="ln">the spot by the slushie machine stays empty.</span>';
+  g.appendChild(mem);
   $('book-count').textContent = met.length + ' / ' + MET_INFO.length + ' met';
 }
 
@@ -815,7 +941,7 @@ function renderLB(el, hiName, hiScore) {
     var r = lb[i];
     if (r) {
       var you = (hiName && r.n === hiName && r.s === hiScore) ? ' you' : '';
-      html += '<div class="lb-row' + you + '"><span>' + (i + 1) + '.</span><span class="nm">' + r.n + '</span><span class="sc">' + r.s.toFixed(1) + ' (' + r.g + ')</span></div>';
+      html += '<div class="lb-row' + you + '"><span>' + (i + 1) + '.</span><span class="nm">' + r.n + '</span><span class="sc">' + r.s.toFixed(1) + ' (' + r.g + ')' + (r.night ? ' n' + r.night : '') + '</span></div>';
     } else {
       html += '<div class="lb-row"><span>' + (i + 1) + '.</span><span class="nm" style="color:#5c4a35;">---</span><span class="sc" style="color:#5c4a35;">--.-</span></div>';
     }
@@ -917,8 +1043,13 @@ function mgClose() {
 // state
 // ────────────────────────────────────────────────────────
 var G = null;
+function loadNight() {
+  var n = parseInt(localStorage.getItem('nightshift-night') || '1', 10);
+  return isNaN(n) || n < 1 ? 1 : n;
+}
 function freshState() {
   return {
+    night: loadNight(),
     t: 0, money: 0, earned: 0, vibe: 50,
     tray: [], trayHot: false, heatingUntil: 0,
     queue: [], custSeen: 0,
@@ -932,6 +1063,8 @@ function freshState() {
     rushDone: false, maisyDone: false, garyDone: false, romeoDone: false,
     zakDone: false, bells: 0, nextBell: 40 + Math.random() * 40,
     jamsDone: 0, nextJam: 70 + Math.random() * 40,
+    jett: null, ashleyDone: false, derekDone: false, jaydenDone: false,
+    sanchoDone: false, dungeonDone: false, dallasDone: false,
     garyDeadline: 0, bellDeadline: 0,
     ghostDone: false,
     paused: false, over: false
@@ -964,6 +1097,22 @@ function fmtMoney(n) { return '$' + n.toFixed(2); }
 // customers
 // ────────────────────────────────────────────────────────
 var GENERICS = ['cust1', 'cust2', 'cust3'];
+var CANON_SERVE = {
+  gaige:    { vibe: 2, line: 'gaige says the slushie is iconic. he means it.' },
+  ashley:   { vibe: 4, line: 'ashley says you\'re SO sweet and hands you a perfume sample. it\'s called "Toxic." of course it is.' },
+  derek:    { vibe: 2, line: 'derek inspected the slice like a returned tape. "fine." from him, that\'s five stars.' },
+  jayden:   { vibe: 1, line: 'jayden says this proves you\'re into him. it does not prove that.' },
+  dylan:    { vibe: 2, line: 'dylan said "thanks man." pix the tamagotchi beeped. big night for everyone.' },
+  orlando:  { vibe: 3, line: 'orlando drank half the coffee standing at the counter. said nothing. that\'s respect.' },
+  cory:     { vibe: 3, line: 'cory ate the inferno in four bites and said "sick." the jalapeños fear him now.' },
+  jermaine: { vibe: 3, line: 'jermaine paid in exact change. of course he did.' },
+  jade:     { vibe: 2, line: 'jade said "thanks." it sounded like a threat. it wasn\'t.' },
+  dallas:   { vibe: 6, line: 'dallas took the coffee, glanced at the register tape, and said "acceptable." write down the date.' },
+  kaleb:    { vibe: 2, line: 'kaleb bought a ticket "for the vibes." he will lose. the vibes remain.' }
+};
+function spawnCanon(opts) {
+  if (!spawnCustomer(opts)) later(6, function () { spawnCustomer(opts); });
+}
 function spawnCustomer(opts) {
   opts = opts || {};
   if (G.queue.length >= 5) return null;
@@ -972,7 +1121,7 @@ function spawnCustomer(opts) {
     id: 'c' + (++G.custSeen),
     sprite: opts.sprite || GENERICS[Math.floor(Math.random() * GENERICS.length)],
     order: order,
-    patience: opts.patience || ((G.luckUntil > G.t ? 26 : 22) + (order.parts.length - 1) * 4),
+    patience: opts.patience || ((G.luckUntil > G.t ? 26 : 22) + (order.parts.length - 1) * 4 - Math.min(6, G.night - 1)),
     maxPat: 0,
     canon: opts.canon || null,
     el: null
@@ -1026,8 +1175,10 @@ function tryServe(c) {
       G.vibe = Math.min(100, G.vibe + 6);
       G.romeoCalmUntil = G.t + 25;
       tick('romeo got his candy' + (tip ? ' fast' : '') + '. the whole line relaxes.');
-    } else if (c.canon === 'gaige') {
-      tick('gaige says the slushie is iconic. he means it.');
+    } else if (CANON_SERVE[c.canon]) {
+      var cs = CANON_SERVE[c.canon];
+      if (cs.vibe) G.vibe = Math.min(100, G.vibe + cs.vibe);
+      tick(cs.line);
     } else if (tip) {
       tick('served fast. they tipped ' + fmtMoney(tip) + ' and said "keep the change, night hero."');
     }
@@ -1119,6 +1270,13 @@ function renderPressure() {
 $('btn-clear').addEventListener('pointerdown', function () {
   if (G && !G.over) clearTray();
 });
+// recipe card — does not pause. glancing costs time. that's the deal.
+$('btn-recipes').addEventListener('pointerdown', function () {
+  $('recipes').style.display = 'flex';
+});
+$('recipes').addEventListener('pointerdown', function () {
+  $('recipes').style.display = 'none';
+});
 
 // ────────────────────────────────────────────────────────
 // side cast
@@ -1143,6 +1301,36 @@ function dropLoiterer(key) {
 function events() {
   var t = G.t;
 
+  // jett, 2:10 — permanent fixture, buys scratch tickets on a schedule
+  if (t >= 10 && !G.jett) {
+    G.jett = { next: t + 45, buys: 0 };
+    meet('jett');
+    addLoiterer('jett', 'jett', 'jett', function () {
+      tick('jett is doing a crossword scratch ticket against the window. he is reinvesting.');
+    });
+    tick('2:10 AM — jett\'s truck is in the lot. jett is therefore in the store. laws of nature.');
+  }
+  if (G.jett && t >= G.jett.next) {
+    G.jett.next = t + 45;
+    G.jett.buys++;
+    G.money += 1.00; G.earned += 1.00;
+    if (G.jett.buys === 1) tick('jett bought a scratch ticket. he won $2. he bought two more tickets.');
+  }
+
+  // ashley, 2:20 — coffee + milk, leaves a perfume sample
+  if (t >= 20 && !G.ashleyDone) {
+    G.ashleyDone = true;
+    meet('ashley');
+    spawnCanon({ sprite: 'ashley', order: ORDERS[9], canon: 'ashley', patience: 24, wantLabel: 'COFFEE + MILK plz!!' });
+  }
+
+  // derek, 2:40 — wants a HOT slice. teaches the heat lamp early.
+  if (t >= 40 && !G.derekDone) {
+    G.derekDone = true;
+    meet('derek');
+    spawnCanon({ sprite: 'derek', order: ORDERS[12], canon: 'derek', patience: 28, wantLabel: 'HOT SLICE. actually hot.' });
+  }
+
   if (t >= 33 && !G.clemkit) {
     G.clemkit = { pausedUntil: 0, nextDrain: t + 18 };
     addLoiterer('clem', 'clem', 'clem', waveOff);
@@ -1151,8 +1339,8 @@ function events() {
     tick('2:33 AM — clem and kit have arrived. they have not purchased anything. they will not.');
   }
 
-  // the register jam (max 2 per night)
-  if (G.jamsDone < 2 && t >= G.nextJam && !MG.active) {
+  // the register jam (max 2 per night; 3 from night 3 — it's getting worse)
+  if (G.jamsDone < (G.night >= 3 ? 3 : 2) && t >= G.nextJam && !MG.active) {
     G.jamsDone++;
     G.nextJam = (G.jamsDone < 2 && Math.random() < 0.6) ? t + 70 + Math.random() * 40 : 9999;
     mgOpen('jam');
@@ -1170,8 +1358,31 @@ function events() {
   if (t >= 50 && !G.romeoDone) {
     G.romeoDone = true;
     meet('romeo');
-    spawnCustomer({ sprite: 'romeo', order: ORDERS[10], patience: 10, canon: 'romeo', wantLabel: 'CANDY. NOW.' });
+    spawnCanon({ sprite: 'romeo', order: ORDERS[10], patience: 10, canon: 'romeo', wantLabel: 'CANDY. NOW.' });
     tick('romeo is here. the line has gotten quieter.');
+  }
+
+  // jayden, ~3:40 — low patience, zero consequences
+  if (t >= 100 && !G.jaydenDone) {
+    G.jaydenDone = true;
+    meet('jayden');
+    spawnCanon({ sprite: 'jayden', order: ORDERS[10], canon: 'jayden', patience: 12, wantLabel: 'candy (for a girl) (there is no girl)' });
+  }
+
+  // sancho, random mid-shift — takes the tray. returns it. mostly.
+  if (!G.sanchoDone && t >= 95 && t <= 175 && Math.random() < 0.008) {
+    G.sanchoDone = true;
+    meet('sancho');
+    if (G.tray.length) {
+      clearTray();
+      tick('SANCHO took your tray. he is arm-wrestling someone with it. the tray.', 't-bad');
+      later(20, function () {
+        G.money += 2.00; G.earned += 2.00;
+        tick('sancho returned the tray. there is $2 on it. do not ask.');
+      });
+    } else {
+      tick('sancho looked at your empty tray, said "weak," and left through a door you didn\'t know about.');
+    }
   }
 
   if (t >= 65 && !G.maisyDone) {
@@ -1235,12 +1446,12 @@ function events() {
 
   if (t >= 120 && !G.rushDone) {
     G.rushDone = true;
-    meet('kaleb'); meet('gaige'); meet('peter');
+    meet('kaleb'); meet('gaige'); meet('peter'); meet('dylan');
     tick('4:00 AM — the ConXtion just closed. brace.');
-    spawnCustomer({ sprite: 'kaleb', order: ORDERS[11], canon: 'kaleb', patience: 20 });
-    later(2, function () { spawnCustomer({ sprite: 'gaige', order: ORDERS[0], canon: 'gaige', patience: 20, wantLabel: 'BLUE!! SLUSHIE!!' }); });
+    spawnCanon({ sprite: 'kaleb', order: ORDERS[11], canon: 'kaleb', patience: 20 });
+    later(2, function () { spawnCanon({ sprite: 'gaige', order: ORDERS[0], canon: 'gaige', patience: 20, wantLabel: 'BLUE!! SLUSHIE!!' }); });
     later(4, function () { spawnCustomer({}); });
-    later(7, function () { spawnCustomer({}); });
+    later(7, function () { spawnCanon({ sprite: 'dylan', order: ORDERS[0], canon: 'dylan', patience: 22 }); });
     later(10, function () { spawnCustomer({}); });
     later(12, function () {
       addLoiterer('peter', 'peter', 'peter');
@@ -1276,6 +1487,25 @@ function events() {
     G.clemkit = null;
     dropLoiterer('clem'); dropLoiterer('kit');
     tick('5:00 AM — clem and kit have left to watch the sunrise from the vibe van. they said you\'re "part of it" now.');
+  }
+
+  // 5:10 — deal dungeon shift change
+  if (t >= 190 && !G.dungeonDone) {
+    G.dungeonDone = true;
+    meet('orlando'); meet('cory'); meet('jermaine'); meet('jade');
+    tick('5:10 AM — deal dungeon shift change. steel toes on tile.');
+    spawnCanon({ sprite: 'orlando', order: ORDERS[8], canon: 'orlando', patience: 24 });
+    later(2, function () { spawnCanon({ sprite: 'cory', order: ORDERS[7], canon: 'cory', patience: 30, wantLabel: 'THE INFERNO. all of it.' }); });
+    later(5, function () { spawnCanon({ sprite: 'jermaine', order: ORDERS[3], canon: 'jermaine', patience: 24 }); });
+    later(8, function () { spawnCanon({ sprite: 'jade', order: ORDERS[1], canon: 'jade', patience: 24 }); });
+  }
+
+  // 5:40 — dallas arrives for handover
+  if (t >= 220 && !G.dallasDone) {
+    G.dallasDone = true;
+    meet('dallas');
+    spawnCanon({ sprite: 'dallas', order: ORDERS[8], canon: 'dallas', patience: 30, wantLabel: 'coffee. black. and the tape.' });
+    tick('5:40 AM — dallas is early for handover. he is reading the register tape. he is already unimpressed.');
   }
 }
 function waveOff() {
@@ -1363,12 +1593,13 @@ function step() {
     renderTray();
   }
 
-  // spawning
+  // spawning (later nights are busier)
   if (G.t >= G.nextSpawn && G.quietUntil === 0 && G.romeoCalmUntil < G.t) {
     var interval = G.t < 60 ? 11 + Math.random() * 5
                  : G.t < 120 ? 9 + Math.random() * 4
                  : G.t < 200 ? 8 + Math.random() * 4
                  : 11 + Math.random() * 6;
+    interval *= Math.max(0.6, 1 - 0.06 * (G.night - 1));
     G.nextSpawn = G.t + interval;
     spawnCustomer({});
   }
@@ -1387,6 +1618,8 @@ function step() {
       if (c.canon === 'romeo') {
         tick('romeo left without his candy. the store feels it.', 't-bad');
         G.vibe = Math.max(0, G.vibe - 4);
+      } else if (c.canon === 'jayden') {
+        tick('jayden left dramatically, narrating it. nobody minded. (no vibe lost.)');
       } else {
         G.vibe = Math.max(0, G.vibe - 10);
         tick('a customer walked out. the door chime sounded disappointed.', 't-bad');
@@ -1394,9 +1627,9 @@ function step() {
     }
   });
 
-  // machine pressure
+  // machine pressure (ages badly, like everything here)
   if (G.machineFreezeUntil < G.t) {
-    G.pressure = Math.min(100, G.pressure + 0.45);
+    G.pressure = Math.min(100, G.pressure + 0.45 + Math.min(0.3, 0.05 * (G.night - 1)));
   }
   if (G.pressure >= 100) {
     G.pressure = 15;
@@ -1453,6 +1686,12 @@ function endShift(survived) {
   if (MG.active) { MG.active = false; $('minigame').style.display = 'none'; }
   var score = Math.round((G.earned + G.served * 2 - G.walkouts * 2) * 10) / 10;
   var res = gradeFor(score, survived);
+  if (survived) {
+    localStorage.setItem('nightshift-night', String(G.night + 1));
+    $('end-fine').innerHTML = 'night ' + G.night + ' complete. tomorrow is night ' + (G.night + 1) + '. it will be busier.<br>the store does not close. it never closes. but you get to go home.';
+  } else {
+    $('end-fine').innerHTML = 'night ' + G.night + ' got away from you. it stays night ' + G.night + ' until you beat it.<br>the store does not close. it never closes.';
+  }
   $('end-title').textContent = survived ? '6:00 AM' : fmtClock(G.t);
   $('end-grade').textContent = res.g;
   $('gary-sprite').innerHTML = spriteHtml('gary', 5);
@@ -1475,7 +1714,7 @@ $('btn-save-score').addEventListener('pointerdown', function () {
   if (!pendingScore) return;
   var n = ($('initials').value || '???').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3) || '???';
   var lb = loadLB();
-  lb.push({ n: n, s: pendingScore.s, g: pendingScore.g });
+  lb.push({ n: n, s: pendingScore.s, g: pendingScore.g, night: G.night });
   lb.sort(function (a, b) { return b.s - a.s; });
   lb = lb.slice(0, 5);
   saveLB(lb);
@@ -1497,7 +1736,8 @@ function startShift() {
   $('pharmbell').style.display = 'none';
   buildStations();
   clearTray();
-  tick('2:00 AM — you clock in. the fluorescents hum in b-flat. they always have.');
+  $('nightlbl').textContent = 'NIGHT ' + G.night;
+  tick('2:00 AM — you clock in. night ' + G.night + '. the fluorescents hum in b-flat. they always have.');
   loopHandle = setTimeout(step, 1000);
 }
 $('btn-start').addEventListener('pointerdown', startShift);
@@ -1528,7 +1768,23 @@ function refreshBestLine() {
     var g = localStorage.getItem('nightshift-best-grade');
     if (b) $('best-line').textContent = 'score ' + b + ' (' + (g || '?') + ' rank)';
   }
+  var night = loadNight();
+  $('night-line').textContent = 'NIGHT ' + night;
+  $('night-reset').style.display = night > 1 ? 'inline' : 'none';
 }
+$('night-reset').addEventListener('pointerdown', function () {
+  if (confirm('start over from night 1? your high scores and staff book stay.')) {
+    localStorage.setItem('nightshift-night', '1');
+    refreshBestLine();
+  }
+});
+$('btn-menu').addEventListener('pointerdown', function () {
+  $('end').style.display = 'none';
+  refreshBestLine();
+  var met = loadMet();
+  $('book-count').textContent = met.length + ' / ' + MET_INFO.length + ' met';
+  $('start').style.display = 'flex';
+});
 (function () {
   refreshBestLine();
   var met = loadMet();
