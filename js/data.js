@@ -635,16 +635,21 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'sancho', name: 'Sancho', age: 22,
+    id: 'sancho', name: 'Sancho Sweeney', age: 22,
     role: 'Albino Raccoon Demi-Human',
     faction: 'southside',
     img: 'img/characters/Sancho.png',
     desc: 'White buzz cut, pink eyes, white raccoon ears and a fluffy ringed tail. Loudest person in Marsten. Treats every disagreement as a competition. Responds to aggression with "Love you too, man."',
     traits: ['Impulsive', 'Boundary-free', 'Loud', 'Genuinely unbothered'],
+    relationships: [
+      { id: 'mercy', name: 'Mercy Nix', note: 'Brings his busted skate parts to her bench more than he probably needs to. She has a soft spot for him she\'d never admit to out loud.' },
+      { id: 'cassy', name: 'Cassy Anderson', note: 'Regular turf war over the 7-Hell dumpsters. She hunts rats professionally; he digs for anything shiny or edible. Neither will cede the territory.' },
+    ],
     details: {
       'Appearance': 'Albino raccoon demi-human. Oversized skate clothes. Athletic without looking disciplined.',
       'Behavior': 'Touches everything left unattended. Pockets "interesting" objects (usually returns them). Challenges people to arm wrestling without context.',
       'Where he is': 'Nobody is ever sure. He appears wherever chaos is happening.',
+      'Residence': 'Technically homeless — crashes on couches, stays with whoever will have him, sometimes disappears into abandoned buildings or back into Southside for days. Refuses the word "homeless." Calls it being "in between cribs."',
       'Underneath': 'Born and raised in Southside — albino in a district that already sorts demi-humans by size and aggression, and he never stopped landing at the bottom of it. Bullied badly through school for "not looking right." His own family never really disagreed. He crosses into Northside so often partly because there was never room for him at home, partly because nobody here knows any of that — he gets to just be the fun one. The constant motion isn\'t obliviousness. It\'s what keeps him from sitting still long enough to feel it.',
     }
   },
@@ -872,6 +877,9 @@ const CHARACTERS = [
     img: 'img/characters/Casey.png',
     desc: 'Raised by her grandparents above the family flower shop after a teen-pregnancy birth and an absent father. Her mother has since moved to the US. Her grandparents are getting old. She stays. Spends her days tending plants, feeding strays, and hunting rats by the 7-Hell dumpsters with quiet professional focus.',
     traits: ['Socially awkward', 'Nature obsessed', 'Unashamed weirdo', 'Loyal to family'],
+    relationships: [
+      { id: 'sancho', name: 'Sancho Sweeney', note: 'Regular turf war over the 7-Hell dumpsters. She hunts rats professionally; he digs for anything shiny or edible. Finds him an absolute menace.' },
+    ],
     details: {
       'Appearance': 'Short dark brown hair, disheveled — butterfly clips, occasionally a dried leaf. Slim with slightly strong arms from outdoor work. Small scars on arms and shoulders. Wood bead bracelets, dirt under fingernails. Black tank top, olive cargo pants, Columbia boots. Second-hand and patched.',
       'Role in town': 'Flower shop florist, stray animal guardian, and semi-professional rat hunter. The town weirdo. Embraced the label young and never looked back.',
@@ -970,7 +978,7 @@ const CHARACTERS = [
     traits: ['Weirdly wise', 'Observant', 'Keeps to herself', 'Griptape hands'],
     relationships: [
       { id: 'dylan',    name: 'Dylan',      note: 'Shop regular. She\'s re-gripped his deck more times than he\'s paid for.' },
-      { id: 'sancho',   name: 'Sancho',     note: 'Keeps breaking things at speed and bringing her the pieces.' },
+      { id: 'sancho',   name: 'Sancho Sweeney', note: 'Keeps breaking things at speed and bringing her the pieces. She has a soft spot for him she\'d never admit to out loud — fixes things for free more often than she bills him.' },
       { id: 'clem-kit', name: 'Clem & Kit', note: 'Loyal customers. Not for skate parts.' },
     ],
     details: {
