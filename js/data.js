@@ -645,6 +645,7 @@ const CHARACTERS = [
       'Appearance': 'Albino raccoon demi-human. Oversized skate clothes. Athletic without looking disciplined.',
       'Behavior': 'Touches everything left unattended. Pockets "interesting" objects (usually returns them). Challenges people to arm wrestling without context.',
       'Where he is': 'Nobody is ever sure. He appears wherever chaos is happening.',
+      'Underneath': 'Born and raised in Southside — albino in a district that already sorts demi-humans by size and aggression, and he never stopped landing at the bottom of it. Bullied badly through school for "not looking right." His own family never really disagreed. He crosses into Northside so often partly because there was never room for him at home, partly because nobody here knows any of that — he gets to just be the fun one. The constant motion isn\'t obliviousness. It\'s what keeps him from sitting still long enough to feel it.',
     }
   },
   {
