@@ -880,7 +880,7 @@ const CHARACTERS = [
   },
   {
     id: 'sidney', name: 'Sidney', age: 40,
-    role: 'Gary\'s Step-Father',
+    role: 'Gary\'s Step-Father / Volleyball Coach, Marsten High',
     faction: 'npc',
     img: 'img/characters/Sidney.png',
     desc: 'Gary\'s step-dad. Lean, well-defined arms, short blonde hair, grey eyes. A well-meaning "Man\'s Man" who wears cargo shorts and New Balance sneakers. Has been in Gary\'s life for a decade and still treats him like he\'s 16.',
@@ -889,6 +889,7 @@ const CHARACTERS = [
       { id: 'gary', name: 'Big Gary', note: 'His stepson. Sidney wants Gary to "grow a spine." Gary just wants to play Halo.' },
     ],
     details: {
+      'Day job': 'Head volleyball coach at Marsten High. Whistle around his neck more often than not, knows every parent in Northside by first name, genuinely excellent at building character in other people\'s teenagers.',
       'Dynamic': 'Frequently lectures Gary on "firm handshakes" and "eye contact." Occasionally drags him out to "toss the pigskin around." Gary complies without pushing back.',
       'Marsha': 'Gary\'s mother. Asks Sidney to "take it easy on the boy." Sidney tries. Mostly.',
       'History': 'One of Graham McKenzie\'s closest friends — the jock of a trio with Graham and Collin. Bowling league Tuesdays at Marsten Lanes, ConXtion weekends, late 80s. He has never told Gary how well he knew his father.',
