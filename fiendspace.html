@@ -357,6 +357,36 @@
   body.t-austin .blurb h4 { color: #d4438f; }
   body.t-austin .cmt { border-top-color: #ffd0e8; }
 
+  /* eryx: emo tragedy, all eyeliner and drama */
+  body.t-eryx { background: #0a0a0a; }
+  body.t-eryx #shell { background: #120808; color: #ccc; }
+  body.t-eryx #profile a { color: #b3001b; }
+  body.t-eryx .pbox { border-color: #3a0a10; }
+  body.t-eryx .pbox .bh { background: #b3001b; color: #000; font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+  body.t-eryx .details-tbl td.k { background: #200608; color: #d4344a; }
+  body.t-eryx .details-tbl tr:nth-child(even) td.v { background: #150405; }
+  body.t-eryx #ptitle { color: #b3001b; text-shadow: 0 0 8px #3a0a10; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 21px; }
+  body.t-eryx .blurb h4 { color: #b3001b; }
+  body.t-eryx .cmt { border-top-color: #200608; }
+
+  /* kaleb: PLUR chaos, effortless pull */
+  body.t-kaleb {
+    background: linear-gradient(120deg, #ff2fb2, #ffe93b, #2fe0ff, #ff2fb2);
+    background-size: 400% 400%;
+    animation: kalebbg 8s ease infinite;
+  }
+  @keyframes kalebbg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  body.t-kaleb #shell { background: rgba(10,0,20,0.9); color: #fdf; }
+  body.t-kaleb #profile a { color: #2fe0ff; }
+  body.t-kaleb .pbox { border: 2px dashed #ffe93b; }
+  body.t-kaleb .pbox .bh { background: linear-gradient(90deg, #ff2fb2, #2fe0ff); color: #000; font-weight: bold; }
+  body.t-kaleb .details-tbl td.k { background: #2a0030; color: #ffe93b; }
+  body.t-kaleb .details-tbl tr:nth-child(even) td.v { background: #1e0022; }
+  body.t-kaleb #ptitle { color: #ffe93b; text-shadow: 0 0 6px #ff2fb2; font-size: 20px; }
+  body.t-kaleb .blurb h4 { color: #2fe0ff; }
+  body.t-kaleb .cmt { border-top-color: #2a0030; }
+  body.t-kaleb .blink { animation: blink 0.7s steps(2, start) infinite; }
+
   @media (max-width: 620px) {
     .col-l { flex: 1 1 100%; max-width: none; }
   }
@@ -868,6 +898,12 @@ var PROFILES = {
         'BLUE RASPBERRY: not a real fruit. does not care. turns ur whole mouth the color of victory.',
         'vote in the comments!! votes for "suicide mix" will be counted as blue raspberry because that\'s what it mostly is. rawr xD'
       ] },
+      { date: 'Jun 12 2004', title: 'ok i need to address the blog post everyone is very obviously talking about', mood: 'DEFENSIVE (but make it cute)', body: [
+        'so eryx posted... something... last night and NO i did not remove him from my top 8 to be cruel, the ice machine slot ROTATES, that has literally always been the rule, ask anyone.',
+        'was it POSSIBLY suspicious timing. maybe. do i feel a LITTLE bad. sure. am i going to say that in a comment where he can screenshot it. absolutely not.',
+        'for the record we ended things because he\'d call me eleven times if i went to bed early and i cannot be doing that at 20 years old. i have a LIFE. a sparkly, chaotic, slightly glitter-related life.',
+        'anyway no drama (there is so much drama) (i love him though) (don\'t tell him i said that)'
+      ] },
       { date: 'Jun 9 2004', title: 'kaleb did something INSANE at the set last night (comments for deets)', mood: 'STILL SCREAMING', body: [
         'i cant even type it. ok. i\'ll type it. he did the thing from the movie. THE THING. FROM THE MOVIE. on the SPEAKER STACK. during the DROP.',
         'romeo was in line for slushies after and even HE said "huh." for romeo that is a standing ovation.',
@@ -891,7 +927,7 @@ var PROFILES = {
     picsNote: 'photo albums disabled by fiendspace moderation after the glitter incident (43 complaints). (worth it — g)',
     friendCount: 178,
     top8: [
-      { pic: 'img/characters/Kaleb.png', label: 'kaleb!!', dead: 'kaleb\'s profile has been mid-flash-animation since january. it is still loading. he says that\'s "part of it."' },
+      { ref: 'kaleb', label: 'kaleb!!' },
       { ref: 'peter', label: 'peter (mysterious)' },
       { pic: 'img/characters/Ashley.png', label: 'ashley&lt;3 BESTIE', dead: 'you must be logged in to view this profile!! (gaige is logged in. gaige is ALWAYS logged in.)' },
       { ref: 'romeo', label: 'RO. (scariest man alive &lt;3)' },
@@ -900,7 +936,8 @@ var PROFILES = {
       { ref: 'clemkit', label: 'the static bros' },
       { pic: null, label: '(rotating slot)', dead: 'this slot rotates weekly. current holder: the ice machine at 7-hell. it earned it.' }
     ],
-    comments: { shown: 5, total: 156, list: [
+    comments: { shown: 6, total: 157, list: [
+      { who: 'x_eryx_x', when: 'Jun 12 2004 1:50 AM', txt: 'an ice machine. an ICE MACHINE, gaige. i hope it keeps you very cold and very happy' },
       { who: 'ashley&lt;3', when: 'Jun 14 2004 12:01 AM', txt: 'PC4PC BESTIE!!! also bring the blue dye thursday. ur math was right, one box is NOT enough' },
       { who: 'gary_manager7', when: 'Jun 11 2004 8:15 PM', txt: 'Hi Gaige! Quick question. What does PC4PC mean? Everyone says it. Please advise. Thank you!!' },
       { who: 'romeo (RO_wrx)', when: 'Jun 10 2004 3:22 AM', txt: 'stop calling gary gare-bear at the register. he short circuits and the line stops moving' },
@@ -932,9 +969,9 @@ var PROFILES = {
     friendCount: 6,
     top8: [
       { ref: 'gaige', label: 'gaige' },
-      { pic: 'img/characters/Kaleb.png', label: 'kaleb', dead: 'still loading. since january.' },
+      { ref: 'kaleb', label: 'kaleb' },
       { ref: 'presley', label: 'pres' },
-      { pic: null, label: '', dead: '' },
+      { ref: 'eryx', label: 'eryx' },
       { pic: null, label: '', dead: '' },
       { pic: null, label: '', dead: '' },
       { pic: null, label: '', dead: '' },
@@ -947,6 +984,112 @@ var PROFILES = {
       { who: 'ashley&lt;3', when: 'Jun 9 2004 3:30 PM', txt: 'ur hair defies science. miller agrees (he didn\'t say that) (but he looked)' },
       { who: 'brokenwings_marsten', when: 'Jun 8 2004 2:12 AM', txt: 'wrote a poem about the red streak. it\'s 9 pages. where do i send it' },
       { who: 'pres', when: 'Jun 5 2004 4:01 AM', txt: '..' }
+    ]}
+  },
+
+  kaleb: {
+    theme: 't-kaleb',
+    handle: 'kaleb',
+    title: '✧ kaleb ✧ (PLUR 4 ever)',
+    pic: 'img/characters/Kaleb.png',
+    meta: { sex: 'Male', age: '22', loc: 'the conxtion (where else)', lastLogin: 'Online Now!', memberSince: '07/2003' },
+    mood: 'VIBRATING',
+    song: { title: 'Sandstorm', by: 'Darude', url: 'https://open.spotify.com/search/Darude%20Sandstorm' },
+    flair: ['star', 'flame', 'star'],
+    extended: 'kaleb is in your extended network!! (everyone is. that\'s kind of the whole thing.)',
+    blog: [
+      { date: 'Jun 10 2004', title: 'ok so about last night at the set (u know the one)', mood: 'STILL BUZZING', body: [
+        'gaige already blogged about it so i\'ll keep this short: yes i did the thing. yes it was on the speaker stack. yes i felt my soul leave my body for a sec, 10/10, would do again.',
+        'romeo said "huh" to me. HUH. i am framing that. one word. more validation than i\'ve gotten all year.',
+        'eryx texted me FOUR TIMES asking why i didn\'t invite him. babe. it was a spur of the moment thing. you were probably busy being tragic somewhere, i love that for you'
+      ] },
+      { date: 'Jun 3 2004', title: 'things i am manifesting this summer', mood: 'MANIFESTING', body: [
+        'a fourth hair color that doesn\'t make my aunt— wait wrong bulletin. a fourth hair color that doesn\'t make MY OWN mother cry. peace on earth. eryx going five minutes without a crisis (jk babe i love u) (mostly).',
+        'gaige to admit the cherry vs blue raspberry poll was rigged. it was rigged gaige. i was there.'
+      ] }
+    ],
+    about: 'kaleb, 22, i dance/exist at the conxtion. bisexual, unbothered, mildly hallucinating most of the time. i collect snakebite piercings and drama that isn\'t mine. PLUR is not just a phase mom it\'s a lifestyle',
+    meet: 'literally everyone at a rave ever. also the 7-hell night shift, RIP to them',
+    interests: {
+      'General': 'glowsticks, choker rotation, other people\'s business (affectionately), whatever eryx is spiraling about this week',
+      'Music': 'anything with a drop, secretly also whatever peter listens to',
+      'Movies': 'i don\'t sit still long enough',
+      'Heroes': 'whoever invented multi-tone hair dye'
+    },
+    pics: [],
+    picsNote: 'kaleb\'s pics got taken down twice. both times for "creative differences with photography." currently appealing.',
+    friendCount: 312,
+    top8: [
+      { ref: 'gaige', label: 'gaige (my other half)' },
+      { ref: 'peter', label: 'peter (the mystery)' },
+      { ref: 'eryx', label: 'eryx (a whole situation)' },
+      { pic: null, label: 'romeo', dead: 'romeo has NOT added kaleb back. it has been 11 months. kaleb checks weekly.' },
+      { pic: null, label: 'presley', dead: 'request pending since... a while. kaleb doesn\'t talk about it.' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 5, total: 88, list: [
+      { who: 'gaige', when: 'Jun 10 2004 1:15 AM', txt: 'i cannot believe u blogged about the speaker stack thing before i even finished mine. RUDE. also true. also rude.' },
+      { who: 'x_eryx_x', when: 'Jun 10 2004 2:47 AM', txt: 'four texts is NOT a crisis kaleb it is called caring. anyway whatever. have fun ig' },
+      { who: 'peter', when: 'Jun 9 2004 11:58 PM', txt: '..' },
+      { who: 'ashley&lt;3', when: 'Jun 8 2004 4:00 PM', txt: 'kaleb PLEASE stop giving my septum piercing advice at work gary already thinks we\'re running a cult' },
+      { who: 'romeo (RO_wrx)', when: 'Jun 5 2004 9:40 PM', txt: 'no' }
+    ]}
+  },
+
+  eryx: {
+    theme: 't-eryx',
+    handle: 'x_eryx_x',
+    title: '† eryx † (nobody gets it)',
+    pic: 'img/characters/Eryx.png',
+    meta: { sex: 'Male', age: '19', loc: 'northside (basement. ask my aunt)', lastLogin: '6/14/2004', memberSince: '11/2003' },
+    mood: 'empty but my eyeliner is perfect',
+    song: { title: 'Cute Without The \'E\' (Cut From The Team)', by: 'Taking Back Sunday', url: 'https://open.spotify.com/search/Taking%20Back%20Sunday%20Cute%20Without%20The%20E' },
+    flair: ['heart', 'skull', 'heart'],
+    extended: 'eryx is in your extended network. he noticed you read this far.',
+    blog: [
+      { date: 'Jun 11 2004', title: 'some people just move on so easy i guess', mood: 'NUMB (dramatically)', body: [
+        'not naming names. u know who u are. some of us actually FELT things and some of us apparently just... swap us out for a rotating ice machine. cool. cool cool cool.',
+        'i\'m not mad. i\'m never mad. i\'m just going to lay on this carpet and think about it for the next several hours while a candle burns down. that\'s different from mad.',
+        'anyway if anyone wants to come sit with me i\'m at the curb behind 7-hell. bring cigarettes. don\'t bring opinions.'
+      ] },
+      { date: 'Jun 6 2004', title: 'kaleb thinks i\'m "a lot." kaleb is also a lot. we are just different lots', mood: 'DEFENSIVE', body: [
+        'ok so kaleb said — and i quote — that i am "iconic but exhausting, babe" and i have been thinking about it for six days.',
+        'he gets to float through life with zero consequences and everyone loving him and i have to WORK for it and it\'s not fair and also i love him and also he\'s wrong. all of those are true at once. i contain multitudes.'
+      ] },
+      { date: 'May 29 2004', title: 'untitled (i wrote this at 3am don\'t judge me)', mood: 'POETIC', body: [
+        'they say the ones who burn brightest get put out first. i say the ones who burn brightest just get left holding the matches while everyone else walks away smelling like smoke that isn\'t theirs.',
+        'ok that\'s all. comments off. my aunt reads these sometimes'
+      ] }
+    ],
+    about: 'eryx. 19. i write, i feel things at full volume, i probably look fine and am not fine. if u actually read profiles instead of just adding people ur already my favorite. mcr said it best. all of them said it best actually',
+    meet: 'whoever needed a reason to stay out past curfew',
+    interests: {
+      'General': 'ouija boards (2x, no comment), poetry nobody asked for, the exact right amount of eyeliner',
+      'Music': 'mcr, taking back sunday, thursday, anything that understands',
+      'Movies': 'the ones that make u cry and pretend it\'s allergies',
+      'Heroes': 'nobody. heroes let u down. that\'s the whole point of this bulletin'
+    },
+    pics: [],
+    picsNote: 'eryx took 47 photos of the same mirror angle before picking this one. this is the one.',
+    friendCount: 89,
+    top8: [
+      { ref: 'kaleb', label: 'kaleb (exhausting) (i said what i said)' },
+      { ref: 'peter', label: 'peter' },
+      { pic: null, label: 'my aunt (landlord)', dead: 'she pays for the internet so she gets a slot. she has never once logged in.' },
+      { pic: null, label: '???', dead: 'this slot used to say something else. it doesn\'t anymore. moving on. (not moving on.)' },
+      { ref: 'store', label: '7-hell (the curb behind it, specifically)' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 5, total: 61, list: [
+      { who: 'kaleb', when: 'Jun 11 2004 11:50 PM', txt: 'babe. BABE. it was one rotating slot. it rotates. that is the whole feature. u know this' },
+      { who: 'gaige', when: 'Jun 11 2004 11:32 PM', txt: 'i\'m not reading into a blog post that clearly wasn\'t about... ok it was about me wasn\'t it. eryx. ERYX. it\'s an ice machine. it EARNED it' },
+      { who: 'peter', when: 'Jun 12 2004 1:04 AM', txt: '..' },
+      { who: 'kaleb', when: 'Jun 6 2004 8:15 PM', txt: 'i stand by "iconic but exhausting." both things. at once. i contain multitudes too actually' },
+      { who: 'x_ashleyxo', when: 'May 30 2004 4:45 PM', txt: 'ur poetry made me cry in the pharmacy break room again. please stop or please keep going i can\'t decide' }
     ]}
   },
 
@@ -1068,10 +1211,10 @@ function findFiend() {
               clem: 'clemkit', kit: 'clemkit', zak: 'zak', maisy: 'maisy', '7hell': 'store',
               store: 'store', miller: 'miller', 'dr miller': 'miller', 'dr. miller': 'miller',
               anthony: 'miller', austin: 'austin', gaige: 'gaige', peter: 'peter',
+              kaleb: 'kaleb', eryx: 'eryx',
               russell: '__russell', sawyer: '__none', holden: '__none',
-              kaleb: '__kaleb', ashley: '__ashley' };
+              ashley: '__ashley' };
   if (map[q] === '__russell') { alert('1 result found.\n\nthis account is inactive.'); return; }
-  if (map[q] === '__kaleb') { alert('1 result found.\n\nprofile is loading. (since january.)'); return; }
   if (map[q] === '__ashley') { alert('1 result found.\n\nyou must be logged in to view this profile!!'); return; }
   if (map[q] === '__none' || !map[q]) { alert('0 results found. (some people aren\'t on here. think about who.)'); return; }
   location.hash = map[q];

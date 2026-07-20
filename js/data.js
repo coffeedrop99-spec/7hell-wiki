@@ -296,6 +296,25 @@ const CHARACTERS = [
       'At the club': 'Rarely speaks to customers. His intense, sustained staring does all the marketing.',
     }
   },
+  {
+    id: 'eryx', name: 'Eryx', age: 19,
+    role: 'Northside Regular — 7-Hell & The ConXtion',
+    faction: 'conxtion',
+    img: 'img/characters/Eryx.png',
+    desc: 'Big teased black hair, heavy eyeliner, septum and lip piercings — the tortured pretty-boy poet, self-invented. Dramatic, self-aware, and completely unable to stop spiraling between self-loathing and a desperate need to be needed.',
+    traits: ['Dramatic', 'Clingy', 'Self-aware (doesn\'t change)', 'Secretly soft'],
+    relationships: [
+      { id: 'gaige', name: 'Gaige', note: 'Brief, intense ex. Gaige is friendly but keeps their distance now — knows exactly what kind of red flag he is.' },
+      { id: 'kaleb', name: 'Kaleb', note: 'Finds him "iconic but exhausting, babe." Eryx is lowkey jealous of how easy Kaleb has it. They bicker constantly.' },
+      { id: 'peter', name: 'Peter', note: 'The one person he doesn\'t have to perform for. Sits with him on the curb behind 7-Hell without either of them needing to talk.' },
+    ],
+    details: {
+      'Appearance': 'Big voluminous teased curly black hair with a messy fringe, heavy eyeliner, septum + lip piercings. Black skinny jeans, spiked choker, studded cuffs, band tees.',
+      'Reinvention': 'Grew up feeling invisible and "too soft" — built the tortured-poet persona to stop being either.',
+      'Home': 'A cheap, messy basement apartment under his lenient aunt\'s house. Band posters, permanently smells like weed.',
+      'The pattern': 'Self-aware enough to know the clinginess and guilt-tripping are toxic. Does it anyway when the loneliness hits.',
+    }
+  },
   // ─── DEAL DUNGEON ────────────────────────────────────
   {
     id: 'orlando', name: 'Orlando Price', age: 28,
