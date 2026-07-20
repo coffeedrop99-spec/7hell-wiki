@@ -59,6 +59,7 @@ const CHARACTERS = [
       { id: 'clem-kit', name: 'Clem & Kit', note: '"Loitering liabilities." Genuinely freaks him out.' },
       { id: 'zak',     name: 'Zak',     note: 'The employee he relies on most — without realizing just how much.' },
       { id: 'sawyer',  name: 'Sawyer White', note: 'The only person from corporate who has ever believed in him.' },
+      { id: 'graham',  name: 'Graham',  note: 'His late father. Gary rarely talks about him — keeps his old Super Nintendo instead of memories.' },
     ],
     details: {
       'Appearance': '5\'8", scrawny, pale. Soft features and a constant worried crease between his eyebrows. Chronic blusher.',
@@ -189,6 +190,9 @@ const CHARACTERS = [
     img: 'img/characters/Collin.png',
     desc: 'Dallas\'s father. Dresses like he peaked in 1989 and never quite accepted it. Desperately tries to seem laid-back and cool to coworkers half his age, with variable results.',
     traits: ['Nostalgic', 'Avoidant', 'Tries too hard', 'Quietly stagnant'],
+    relationships: [
+      { id: 'graham', name: 'Graham', note: 'The gentle one of his old trio — Gary\'s dad. Compared baby stories about Gary and Dallas over Tuesday bowling nights. Never once mentioned any of it to Gary.' },
+    ],
     details: {
       'Appearance': 'Long black hair he refuses to cut (tied back loosely), light stubble, band tees, worn boots.',
       'Self-narrative': 'Claims he turned down the manager position because it would be "lame." Backtracks around Gary.',
@@ -896,12 +900,31 @@ const CHARACTERS = [
     traits: ['Well-meaning', 'Overbearing', 'Firm handshakes', '"Man up"'],
     relationships: [
       { id: 'gary', name: 'Big Gary', note: 'His stepson. Sidney wants Gary to "grow a spine." Gary just wants to play Halo.' },
+      { id: 'graham', name: 'Graham', note: 'His late best friend — the gentle center of an old trio. Sidney has never told Gary how close they were.' },
     ],
     details: {
       'Day job': 'Head volleyball coach at Marsten High. Whistle around his neck more often than not, knows every parent in Northside by first name, genuinely excellent at building character in other people\'s teenagers.',
       'Dynamic': 'Frequently lectures Gary on "firm handshakes" and "eye contact." Occasionally drags him out to "toss the pigskin around." Gary complies without pushing back.',
       'Marsha': 'Gary\'s mother. Asks Sidney to "take it easy on the boy." Sidney tries. Mostly.',
       'History': 'One of Graham McKenzie\'s closest friends — the jock of a trio with Graham and Collin. Bowling league Tuesdays at Marsten Lanes, ConXtion weekends, late 80s. He has never told Gary how well he knew his father.',
+    }
+  },
+  {
+    id: 'graham', name: 'Graham McKenzie', age: null,
+    role: 'Gary\'s Father',
+    faction: 'npc',
+    img: 'img/characters/Graham.png',
+    desc: 'The quiet center of an old friend trio with Sidney and Collin — the one who nursed a single beer all night and drove everyone else home, and judged no one for needing it. Married to Marsha. Died in a car accident in 1992, when Gary was twelve.',
+    traits: ['Steady', 'Gentle', 'The designated driver', 'Missed'],
+    relationships: [
+      { id: 'marsha', name: 'Marsha', note: 'His wife. Widowed in 1992 — she rebuilt slowly, with casseroles and Helen.' },
+      { id: 'gary',   name: 'Big Gary', note: 'His son. Was twelve when Graham died. Gary keeps his old Super Nintendo and not much else.' },
+      { id: 'sidney', name: 'Sidney', note: 'The jock of the old trio. Married Marsha two years after the funeral and never left.' },
+      { id: 'collin', name: 'Collin', note: 'The rocker of the old trio. Compared baby stories about Gary and Dallas over Tuesday bowling nights — never once mentioned any of it to Gary.' },
+    ],
+    details: {
+      'The trio': 'Tuesday bowling league at Marsten Lanes, weekends at the ConXtion — sober nights with Sidney and Collin through the late 80s and into the early 90s.',
+      '1992': 'Car accident. The league never restarted — the empty Tuesday slot is the only thing left of it.',
     }
   },
   {
@@ -915,9 +938,9 @@ const CHARACTERS = [
       { id: 'gary',   name: 'Big Gary', note: 'Her son. Protective in the way that mortifies him.' },
       { id: 'sidney', name: 'Sidney',   note: 'Second husband. She reins in the "man up" lectures — "take it easy on the boy."' },
       { id: 'helen',  name: 'Helen',    note: 'Best friend since 1992. Weekly coffee. Zero missed weeks.' },
+      { id: 'graham', name: 'Graham',   note: 'Her first husband. Widowed in 1992 — she rebuilt slowly, with casseroles and Helen.' },
     ],
     details: {
-      'Graham': 'Her first husband died in a car accident in 1992. She rebuilt, slowly, with casseroles and Helen.',
       'The playdates': 'She and Helen forced their boys to hang out as kids. Gary and Romeo have awkwardly known each other since they were twelve. Ask either of them about it and watch what happens to their faces.',
     }
   },
