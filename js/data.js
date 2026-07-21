@@ -307,12 +307,77 @@ const CHARACTERS = [
       { id: 'gaige', name: 'Gaige', note: 'Brief, intense ex. Gaige is friendly but keeps their distance now — knows exactly what kind of red flag he is.' },
       { id: 'kaleb', name: 'Kaleb', note: 'Finds him "iconic but exhausting, babe." Eryx is lowkey jealous of how easy Kaleb has it. They bicker constantly.' },
       { id: 'peter', name: 'Peter', note: 'The one person he doesn\'t have to perform for. Sits with him on the curb behind 7-Hell without either of them needing to talk.' },
+      { id: 'devin', name: 'Devin', note: 'Same story as Gaige. Devin actively avoids him now — the phone calls got to be too much.' },
+      { id: 'everette', name: 'Everette', note: 'They fight more than anyone. Everette moves on in twenty minutes; Eryx never does.' },
     ],
     details: {
       'Appearance': 'Big voluminous teased curly black hair with a messy fringe, heavy eyeliner, septum + lip piercings. Black skinny jeans, spiked choker, studded cuffs, band tees.',
       'Reinvention': 'Grew up feeling invisible and "too soft" — built the tortured-poet persona to stop being either.',
       'Home': 'A cheap, messy basement apartment under his lenient aunt\'s house. Band posters, permanently smells like weed.',
       'The pattern': 'Self-aware enough to know the clinginess and guilt-tripping are toxic. Does it anyway when the loneliness hits.',
+    }
+  },
+  {
+    id: 'endri', name: 'Endri', age: null,
+    role: 'The ConXtion — Unofficial Fixture',
+    faction: 'conxtion',
+    img: 'img/characters/Endri.png',
+    desc: 'Red-dyed hair tips, sun tattoo on the neck, half sleeve, septum piercing, a perm just for the waves. Doesn\'t technically work here. Just always here, always selling something, always making it work.',
+    traits: ['Transactional', 'Magnetic', 'Zero investment unless it benefits him', 'Unemployable by choice'],
+    relationships: [
+      { id: 'devin', name: 'Devin', note: 'Tried "working his magic" on him once. Didn\'t work. Still thinks about it.' },
+      { id: 'peter', name: 'Peter', note: 'Gaige swears she saw them making out once. Peter says she was seeing things.' },
+    ],
+    details: {
+      'The pitch': 'Grabs a shirt or a bracelet, walks up to whoever\'s cute, says "you should buy this." Works more than it has any right to.',
+      'Employment status': 'None. No boss, no shifts, no badge. Just an angle the club quietly lets him run.',
+    }
+  },
+  {
+    id: 'magnus', name: 'Magnus', age: 19,
+    role: 'The ConXtion — Staff (allegedly)',
+    faction: 'conxtion',
+    img: 'img/characters/Magnus.png',
+    desc: 'Tall, lean, permanently tired-looking grey eyes under heavy lids. Long black trench coat, fingerless gloves, barrel twists with silver cuffs. Quits mid-shift over almost anything. Comes back the next day like it never happened.',
+    traits: ['Efficient when he feels like it', 'Zero patience for inconvenience', 'Quietly entitled', 'Disengages instead of arguing'],
+    relationships: [
+      { id: 'everette', name: 'Everette', note: 'Doesn\'t get along. Everette can\'t stand how easily he walks out and comes back like nothing happened.' },
+    ],
+    details: {
+      'The pattern': 'Walking out mid-shift has happened so often the rest of staff barely react to it anymore.',
+      'Not a skill problem': 'Efficient, rarely makes mistakes, handles customers fine — when he actually wants to. Commitment is the only issue.',
+    }
+  },
+  {
+    id: 'everette', name: 'Everette', age: 21,
+    role: 'The ConXtion — Staff',
+    faction: 'conxtion',
+    img: 'img/characters/Everette.png',
+    desc: 'Messy black hair, pale blue eyes, spiked choker, early-2000s emo through and through. Starts fights over nothing, forgets them twenty minutes later. Loud, protective, thrives exactly where things get chaotic.',
+    traits: ['Confrontational', 'Not actually malicious', 'Fiercely loyal', 'Enjoys conflict like a sport'],
+    relationships: [
+      { id: 'magnus', name: 'Magnus', note: 'Doesn\'t get along. Magnus\'s revolving-door employment drives him up the wall.' },
+      { id: 'devin', name: 'Devin', note: 'Swears they hooked up and it meant something. Devin barely remembers it happening.' },
+    ],
+    details: {
+      'Flirting style': 'Cocky, playful, painfully corny — "guess you\'re stuck with me 4Ever" is a real line he has said out loud.',
+      'The type': 'Threatens to punch someone, gets pulled off by security, laughing about it twenty minutes later.',
+    }
+  },
+  {
+    id: 'devin', name: 'Devin', age: 20,
+    role: 'The ConXtion — Staff',
+    faction: 'conxtion',
+    img: 'img/characters/Devin.png',
+    desc: 'Electric-blue-tipped hair, heavy eyeliner, a tongue piercing, and more confidence in a room than anyone else on shift. Androgynous, comfortable in it, no bit about it. Everyone tells him everything, whether they mean to or not.',
+    traits: ['Flirtatious', 'Trusted by everyone', 'Diffuses instead of escalates', 'Knows exactly who he is'],
+    relationships: [
+      { id: 'kaleb', name: 'Kaleb', note: 'Made out once. Both agree it was a non-event. Mutual professional respect.' },
+      { id: 'everette', name: 'Everette', note: 'He thinks it meant something. Devin genuinely does not remember it that way.' },
+    ],
+    details: {
+      'The gift': 'Coworkers vent to him, customers confide in him. He ends up knowing everyone\'s business without ever asking for it.',
+      'Not fragile': 'Quick on his feet, confident in a packed room, handles himself fine — just prefers a sharp line over a thrown punch.',
     }
   },
   // ─── DEAL DUNGEON ────────────────────────────────────
