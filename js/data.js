@@ -326,7 +326,7 @@ const CHARACTERS = [
     traits: ['Transactional', 'Magnetic', 'Zero investment unless it benefits him', 'Unemployable by choice'],
     relationships: [
       { id: 'devin', name: 'Devin', note: 'Tried "working his magic" on him once. Didn\'t work. Still thinks about it.' },
-      { id: 'peter', name: 'Peter', note: 'Gaige swears she saw them making out once. Peter says she was seeing things.' },
+      { id: 'peter', name: 'Peter', note: 'Gaige swears he saw them making out once. Peter says he was seeing things.' },
     ],
     details: {
       'The pitch': 'Grabs a shirt or a bracelet, walks up to whoever\'s cute, says "you should buy this." Works more than it has any right to.',

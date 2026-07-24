@@ -387,6 +387,54 @@
   body.t-kaleb .cmt { border-top-color: #2a0030; }
   body.t-kaleb .blink { animation: blink 0.7s steps(2, start) infinite; }
 
+  /* endri: the pitch never stops */
+  body.t-endri { background: #1a1408; }
+  body.t-endri #shell { background: #221a0a; color: #d9c48a; }
+  body.t-endri #profile a { color: #e0a72f; }
+  body.t-endri .pbox { border-color: #7a5a12; }
+  body.t-endri .pbox .bh { background: #e0a72f; color: #1a1408; font-weight: bold; }
+  body.t-endri .details-tbl td.k { background: #2a2008; color: #e0a72f; }
+  body.t-endri .details-tbl tr:nth-child(even) td.v { background: #1f1806; }
+  body.t-endri #ptitle { color: #e0a72f; font-size: 20px; }
+  body.t-endri .blurb h4 { color: #e0a72f; }
+  body.t-endri .cmt { border-top-color: #2a2008; }
+
+  /* magnus: can't be bothered to theme this */
+  body.t-magnus { background: #0c0c0c; }
+  body.t-magnus #shell { background: #111; color: #888; }
+  body.t-magnus #profile a { color: #999; }
+  body.t-magnus .pbox { border-color: #222; }
+  body.t-magnus .pbox .bh { background: #1a1a1a; color: #999; }
+  body.t-magnus .details-tbl td.k { background: #161616; color: #777; }
+  body.t-magnus .details-tbl tr:nth-child(even) td.v { background: #131313; }
+  body.t-magnus #ptitle { color: #aaa; font-weight: normal; }
+  body.t-magnus .blurb h4 { color: #999; }
+  body.t-magnus .cmt { border-top-color: #1c1c1c; }
+
+  /* everette: too loud, on purpose */
+  body.t-everette { background: #1a0500; }
+  body.t-everette #shell { background: #200800; color: #ffcaa8; }
+  body.t-everette #profile a { color: #ff5500; }
+  body.t-everette .pbox { border: 2px solid #ff5500; }
+  body.t-everette .pbox .bh { background: #ff5500; color: #1a0500; font-weight: bold; }
+  body.t-everette .details-tbl td.k { background: #2a0d00; color: #ff8a4d; }
+  body.t-everette .details-tbl tr:nth-child(even) td.v { background: #200900; }
+  body.t-everette #ptitle { color: #ff5500; text-shadow: 0 0 6px #7a2900; font-size: 22px; }
+  body.t-everette .blurb h4 { color: #ff5500; }
+  body.t-everette .cmt { border-top-color: #2a0d00; }
+
+  /* devin: unbothered and glowing */
+  body.t-devin { background: #10041a; }
+  body.t-devin #shell { background: #170826; color: #f0d9ff; }
+  body.t-devin #profile a { color: #ff4db8; }
+  body.t-devin .pbox { border-color: #6a2f8a; }
+  body.t-devin .pbox .bh { background: linear-gradient(90deg, #ff4db8, #00e5ff); color: #10041a; font-weight: bold; }
+  body.t-devin .details-tbl td.k { background: #240d3a; color: #00e5ff; }
+  body.t-devin .details-tbl tr:nth-child(even) td.v { background: #1a0828; }
+  body.t-devin #ptitle { color: #ff4db8; text-shadow: 0 0 6px #00e5ff; font-size: 20px; }
+  body.t-devin .blurb h4 { color: #00e5ff; }
+  body.t-devin .cmt { border-top-color: #240d3a; }
+
   @media (max-width: 620px) {
     .col-l { flex: 1 1 100%; max-width: none; }
   }
@@ -936,7 +984,8 @@ var PROFILES = {
       { ref: 'clemkit', label: 'the static bros' },
       { pic: null, label: '(rotating slot)', dead: 'this slot rotates weekly. current holder: the ice machine at 7-hell. it earned it.' }
     ],
-    comments: { shown: 6, total: 157, list: [
+    comments: { shown: 7, total: 158, list: [
+      { who: 'magnus', when: 'Jun 4 2004 3:41 AM', txt: 'saw ur comment. don\'t really know what to say. sorry. not sorry enough to explain though' },
       { who: 'x_eryx_x', when: 'Jun 12 2004 1:50 AM', txt: 'an ice machine. an ICE MACHINE, gaige. i hope it keeps you very cold and very happy' },
       { who: 'ashley&lt;3', when: 'Jun 14 2004 12:01 AM', txt: 'PC4PC BESTIE!!! also bring the blue dye thursday. ur math was right, one box is NOT enough' },
       { who: 'gary_manager7', when: 'Jun 11 2004 8:15 PM', txt: 'Hi Gaige! Quick question. What does PC4PC mean? Everyone says it. Please advise. Thank you!!' },
@@ -972,7 +1021,7 @@ var PROFILES = {
       { ref: 'kaleb', label: 'kaleb' },
       { ref: 'presley', label: 'pres' },
       { ref: 'eryx', label: 'eryx' },
-      { pic: null, label: '', dead: '' },
+      { pic: null, label: 'endri', dead: 'gaige added this slot for him once. peter removed it. draw your own conclusions.' },
       { pic: null, label: '', dead: '' },
       { pic: null, label: '', dead: '' },
       { pic: null, label: '', dead: '' }
@@ -1025,7 +1074,7 @@ var PROFILES = {
       { ref: 'eryx', label: 'eryx (a whole situation)' },
       { pic: null, label: 'romeo', dead: 'romeo has NOT added kaleb back. it has been 11 months. kaleb checks weekly.' },
       { pic: null, label: 'presley', dead: 'request pending since... a while. kaleb doesn\'t talk about it.' },
-      { pic: null, label: '', dead: '' },
+      { ref: 'devin', label: 'devin (we\'re good. no notes)' },
       { pic: null, label: '', dead: '' },
       { pic: null, label: '', dead: '' }
     ],
@@ -1080,8 +1129,8 @@ var PROFILES = {
       { pic: null, label: 'my aunt (landlord)', dead: 'she pays for the internet so she gets a slot. she has never once logged in.' },
       { pic: null, label: '???', dead: 'this slot used to say something else. it doesn\'t anymore. moving on. (not moving on.)' },
       { ref: 'store', label: '7-hell (the curb behind it, specifically)' },
-      { pic: null, label: '', dead: '' },
-      { pic: null, label: '', dead: '' },
+      { ref: 'everette', label: 'everette (we\'re fighting again. we\'re always fighting. it\'s basically our love language)' },
+      { pic: null, label: 'devin', dead: 'removed. same story as the other one. he knows.' },
       { pic: null, label: '', dead: '' }
     ],
     comments: { shown: 5, total: 61, list: [
@@ -1090,6 +1139,195 @@ var PROFILES = {
       { who: 'peter', when: 'Jun 12 2004 1:04 AM', txt: '..' },
       { who: 'kaleb', when: 'Jun 6 2004 8:15 PM', txt: 'i stand by "iconic but exhausting." both things. at once. i contain multitudes too actually' },
       { who: 'x_ashleyxo', when: 'May 30 2004 4:45 PM', txt: 'ur poetry made me cry in the pharmacy break room again. please stop or please keep going i can\'t decide' }
+    ]}
+  },
+
+  endri: {
+    theme: 't-endri',
+    handle: 'endri',
+    title: '$$ endri $$ (you should buy this)',
+    pic: 'img/characters/Endri.png',
+    meta: { sex: 'Male', age: '??', loc: 'wherever the sale is', lastLogin: 'Online Now!', memberSince: '02/2004' },
+    mood: 'closing',
+    song: { title: 'Edge of the Earth', by: 'Thirty Seconds to Mars', url: 'https://open.spotify.com/search/Thirty%20Seconds%20to%20Mars%20Edge%20of%20the%20Earth' },
+    flair: ['crown', 'flame'],
+    extended: 'endri is in your extended network. he added you back once you bought something. that\'s not a coincidence.',
+    blog: [
+      { date: 'Jun 13 2004', title: 'business update', mood: 'PROFITABLE', body: [
+        'moved a whole box of bracelets tonight without trying. somebody asked me why I don\'t work here officially. told them officially is for people who need permission. they bought two bracelets after that. see how that works?',
+        'devin still hasn\'t bought anything from me. ever. not even once. I respect it more than I want to admit.'
+      ] },
+      { date: 'Jun 8 2004', title: 'no comment', mood: 'UNBOTHERED', body: [
+        'gaige keeps asking about "the peter thing." there is no peter thing. I don\'t know what he saw. I wasn\'t even at that party. (I was at that party.)',
+        'anyway shirts are $15 or two for $25, come find me'
+      ] }
+    ],
+    about: 'endri. don\'t work here, don\'t need to. if you\'re cute and I\'m talking to you, there\'s probably something in my hand you should buy. no hard feelings either way.',
+    meet: 'whoever\'s buying tonight',
+    interests: {
+      'General': 'margins, the perm holding up in this humidity, not explaining myself',
+      'Music': '30 seconds to mars, whatever\'s playing when I\'m working the floor',
+      'Movies': 'don\'t have the attention span unless there\'s a deal in it somewhere',
+      'Heroes': 'nobody. heroes don\'t get paid'
+    },
+    pics: [],
+    picsNote: 'endri doesn\'t post pics. photos don\'t sell anything.',
+    friendCount: 240,
+    top8: [
+      { ref: 'devin', label: 'devin (the one that got away. business-wise)' },
+      { ref: 'peter', label: 'peter (no comment)' },
+      { ref: 'kaleb', label: 'kaleb' },
+      { ref: 'gaige', label: 'gaige (asks too many questions)' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 71, list: [
+      { who: 'gaige', when: 'Jun 13 2004 11:40 PM', txt: 'the peter thing. THE PETER THING, endri. you know exactly what I saw' },
+      { who: 'devin', when: 'Jun 13 2004 10:05 PM', txt: 'still not buying anything. still impressed you keep trying' },
+      { who: 'peter', when: 'Jun 9 2004 12:15 AM', txt: '..' },
+      { who: 'kaleb', when: 'Jun 8 2004 11:58 PM', txt: 'sold my aunt a bracelet. she does not know why she bought it. neither do I. incredible work honestly' }
+    ]}
+  },
+
+  magnus: {
+    theme: 't-magnus',
+    handle: 'magnus',
+    title: 'magnus',
+    pic: 'img/characters/Magnus.png',
+    meta: { sex: 'Male', age: '19', loc: 'not here right now, probably', lastLogin: '6/9/2004', memberSince: '01/2004' },
+    mood: '&mdash;',
+    song: { title: 'Push It', by: 'Static-X', url: 'https://open.spotify.com/search/Static-X%20Push%20It' },
+    extended: 'magnus is in your extended network.',
+    blog: [
+      { date: 'Jun 9 2004', title: 'untitled', mood: 'done for the night', body: [
+        'quit again. back tomorrow probably. don\'t really want to talk about why.'
+      ] }
+    ],
+    about: 'magnus. 19. i work at the conxtion, allegedly. ask someone else if you want a personality written out, I don\'t have the patience for it today.',
+    meet: '',
+    interests: {
+      'General': '',
+      'Music': 'korn, static-x, orgy, celldweller, deadsy, linkin park',
+      'Movies': '',
+      'Heroes': ''
+    },
+    pics: [],
+    picsNote: 'no pics. didn\'t feel like it.',
+    friendCount: 19,
+    top8: [
+      { pic: null, label: 'everette', dead: 'he hasn\'t added him back. everette says it\'s "on principle." magnus hasn\'t noticed.' },
+      { ref: 'gaige', label: 'gaige' },
+      { ref: 'eryx', label: 'eryx' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 3, total: 22, list: [
+      { who: 'everette', when: 'Jun 9 2004 11:15 PM', txt: 'quit AGAIN? we were slammed. cool. cool. glad you had the energy to update ur profile though' },
+      { who: 'gaige', when: 'Jun 4 2004 3:40 AM', txt: 'so are we ever going to talk about it or' },
+      { who: 'x_eryx_x', when: 'Jun 2 2004 1:20 AM', txt: 'that was a good night. we should do it again sometime' }
+    ]}
+  },
+
+  everette: {
+    theme: 't-everette',
+    handle: 'x_everette_4ever_x',
+    title: '4EVER (guess you\'re stuck with me)',
+    pic: 'img/characters/Everette.png',
+    meta: { sex: 'Male', age: '21', loc: 'wherever it\'s loudest', lastLogin: 'Online Now!', memberSince: '08/2003' },
+    mood: 'READY TO THROW HANDS (affectionately)',
+    song: { title: 'Until the Day I Die', by: 'Story of the Year', url: 'https://open.spotify.com/search/Story%20of%20the%20Year%20Until%20the%20Day%20I%20Die' },
+    flair: ['flame', 'flame', 'star'],
+    extended: 'everette is in your extended network!! he added you back in .2 seconds, that\'s just how he is',
+    blog: [
+      { date: 'Jun 11 2004 ', title: 'got thrown out again (worth it)', mood: 'LAUGHING', body: [
+        'ok so technically I started it. technically. some guy said something about ashley and I\'m not going to sit there, that\'s not who I am.',
+        'security walked me out, I was laughing the whole time, we\'re actually cool now, he gave me a high five on the way to my car. love this town honestly.'
+      ] },
+      { date: 'Jun 6 2004', title: 'devin knows what we had was real', mood: 'CONFIDENT', body: [
+        'he can say it was nothing all he wants. I know what I know. anyway no hard feelings, just saying it for the record',
+        'also eryx and I fought again tonight. love that guy. hate that guy. both at once, no notes'
+      ] }
+    ],
+    about: 'everette. 21. I work at the conxtion and I have never once de-escalated a situation in my life. if you\'re fun I will flirt with you immediately and unbothered. guess you\'re stuck with me 4ever, that\'s not a typo, that\'s a bit',
+    meet: 'anyone who was in the building the night something happened',
+    interests: {
+      'General': 'starting it, finishing it, being forgiven for it twenty minutes later',
+      'Music': 'taking back sunday, silverstein, the used, story of the year, from first to last',
+      'Movies': 'whatever\'s loud',
+      'Heroes': 'security guards who let me back in the same night'
+    },
+    pics: [],
+    picsNote: 'everette has pics but half of them are just him mid-yell. the other half is him laughing about it after.',
+    friendCount: 205,
+    top8: [
+      { ref: 'devin', label: 'devin (it meant something and I\'ll say it again)' },
+      { ref: 'eryx', label: 'eryx (we fight the most out of anyone here and I mean that as a compliment)' },
+      { pic: null, label: 'magnus', dead: 'not added. won\'t be added. he knows why.' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 133, list: [
+      { who: 'devin', when: 'Jun 6 2004 11:50 PM', txt: 'it was nothing, everette. I say this with love. it was nothing' },
+      { who: 'x_eryx_x', when: 'Jun 11 2004 11:20 PM', txt: 'we are NOT doing this again tomorrow. (we are absolutely doing this again tomorrow)' },
+      { who: 'gaige', when: 'Jun 11 2004 10:40 PM', txt: 'heard you got walked out again. iconic behavior. see you thursday' },
+      { who: 'ashley&lt;3', when: 'Jun 11 2004 9:15 PM', txt: 'you didn\'t have to do that but thank you' }
+    ]}
+  },
+
+  devin: {
+    theme: 't-devin',
+    handle: 'devin',
+    title: 'devin (unbothered)',
+    pic: 'img/characters/Devin.png',
+    meta: { sex: 'Male', age: '20', loc: 'the conxtion floor', lastLogin: 'Online Now!', memberSince: '09/2003' },
+    mood: 'unbothered',
+    song: { title: 'Lips Like Morphine', by: 'Kill Hannah', url: 'https://open.spotify.com/search/Kill%20Hannah%20Lips%20Like%20Morphine' },
+    flair: ['heart', 'star', 'heart'],
+    extended: 'devin is in your extended network. everyone is. he remembers your name though, which is rarer.',
+    blog: [
+      { date: 'Jun 13 2004', title: 'endri tried it', mood: 'AMUSED', body: [
+        'so endri walked up to me tonight with a bracelet and the whole speech and I just... laughed. not mean, just, babe. I clock every move you\'re about to make before you make it. try again never.',
+        'he took it well actually. respect where it\'s due.'
+      ] },
+      { date: 'Jun 7 2004', title: 'for the last time', mood: 'PATIENT', body: [
+        'everette keeps telling people we had A Whole Thing. we hung out. it was fine. I\'m not being cold, I genuinely don\'t remember it being the event he\'s describing.',
+        'not mad at him for it. just correcting the record once and then I\'m done talking about it.'
+      ] }
+    ],
+    about: 'devin. 20. the conxtion is the one place I get to just be exactly who I am without anyone needing it explained to them. I flirt with everyone, I keep everyone\'s secrets, I diffuse instead of escalate. come talk to me, I promise I\'m listening',
+    meet: 'basically everyone, eventually',
+    interests: {
+      'General': 'listening (professionally, unofficially), a good tongue piercing, staying unbothered on purpose',
+      'Music': 'mindless self indulgence, the birthday massacre, she wants revenge, the used, kill hannah',
+      'Movies': 'whatever\'s on when someone needs to vent through the opening credits',
+      'Heroes': 'whoever taught me you don\'t owe anyone an explanation for how you show up'
+    },
+    pics: [],
+    picsNote: 'devin\'s pics are just him looking exactly like himself, on purpose, every time.',
+    friendCount: 288,
+    top8: [
+      { ref: 'kaleb', label: 'kaleb (we\'re good. it was nothing. mutual respect)' },
+      { ref: 'gaige', label: 'gaige' },
+      { pic: null, label: 'eryx', dead: 'not added anymore. the calls got to be a lot. no hard feelings, just distance.' },
+      { ref: 'everette', label: 'everette (he remembers it bigger than I do and that\'s okay)' },
+      { ref: 'endri', label: 'endri (tried it. respect the hustle)' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 190, list: [
+      { who: 'endri', when: 'Jun 13 2004 11:50 PM', txt: 'ok but for the record, you were ALMOST convinced' },
+      { who: 'everette', when: 'Jun 7 2004 10:30 PM', txt: 'fine. FINE. it was nothing. I\'m not crying about it. this comment is not me crying about it' },
+      { who: 'kaleb', when: 'Jun 6 2004 1:00 AM', txt: 'still the most normal hookup either of us has ever had, honestly a milestone' },
+      { who: 'gaige', when: 'Jun 5 2004 4:20 PM', txt: 'you are the only person at that club who\'s ever actually kept a secret of mine and I love you for it' }
     ]}
   },
 
@@ -1212,6 +1450,7 @@ function findFiend() {
               store: 'store', miller: 'miller', 'dr miller': 'miller', 'dr. miller': 'miller',
               anthony: 'miller', austin: 'austin', gaige: 'gaige', peter: 'peter',
               kaleb: 'kaleb', eryx: 'eryx',
+              endri: 'endri', magnus: 'magnus', everette: 'everette', devin: 'devin',
               russell: '__russell', sawyer: '__none', holden: '__none',
               ashley: '__ashley' };
   if (map[q] === '__russell') { alert('1 result found.\n\nthis account is inactive.'); return; }
