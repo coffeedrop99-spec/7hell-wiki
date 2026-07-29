@@ -318,7 +318,7 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'endri', name: 'Endri', age: null,
+    id: 'endri', name: 'Endri', age: 22,
     role: 'The ConXtion — Unofficial Fixture',
     faction: 'conxtion',
     img: 'img/characters/Endri.png',
