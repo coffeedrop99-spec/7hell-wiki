@@ -49,6 +49,7 @@ const CHARACTERS = [
       { label: 'OG Bot (MLM)', url: 'https://janitorai.com/characters/ebcbcd3c-3f40-4383-a09b-241bc132d445_character-big-gary-male-pov-ver' },
       { label: 'Robbed Alt (Ch 1–2)', url: 'https://janitorai.com/characters/597bdf32-9bbe-47ef-927c-02a99f7868df_character-big-gary-𝚁-𝚘-𝚋-𝚋-𝚎-𝚍' },
       { label: 'Anniversary Alt (Ch 1–2)', url: 'https://janitorai.com/characters/17e3661b-82ee-4c6d-8167-66a3c82fad8d_character-gary-alt-𝐀-𝐧-𝐧-𝐢-𝐯-𝐞-𝐫-𝐬-𝐚-𝐫-𝐲' },
+      { label: 'Summer Alt (Ch 5–6)', url: 'https://janitorai.com/characters/d983105b-5ab4-4dec-b16c-5261df35b4ac_character-big-gary-𝐒-𝐮-𝐦-𝐦-𝐞-𝐫-𝐋-𝐨-𝐯-𝐢-𝐧-𝐠' },
     ],
     desc: 'Ginger mop-hair, thick smudged glasses, ironed khakis. Got promoted to manager at 24 because he was the only employee without a criminal record. Lives by the employee handbook. Is terrified of Romeo, Presley, and the sound of a Subaru backfiring.',
     traits: ['Anxious', 'Rule-follower', 'Touch-starved', 'Genuinely tries'],
@@ -127,6 +128,7 @@ const CHARACTERS = [
     img: 'img/characters/Dr.Miller.png',
     bots: [
       { label: 'Chapter III — Anthony Miller\'s Record', url: 'https://janitorai.com/characters/c22d9dae-757e-4eb6-be8e-b606892ed49d_character-dr-miller-𝐏-𝐚-𝐭-𝐡-𝐞-𝐭-𝐢-𝐜-𝐚-𝐥-𝐥-𝐲-𝐎-𝐛-𝐬-𝐞-𝐬-𝐬-𝐞-𝐝' },
+      { label: 'Summer Alt (Ch 7)', url: 'https://janitorai.com/characters/02dceb2f-3561-499e-b928-a6ddc6c94003_character-dr-miller-𝐂-𝐥-𝐢-𝐧-𝐢-𝐜-𝐚-𝐥-𝐇-𝐞-𝐚-𝐭' },
     ],
     desc: 'Full name: Anthony Miller. Graduated top of his class. One quiet criminal incident later, he ended up in a plexiglass cage at a gas station. Operates on dry sarcasm, caffeine, compression socks, and the knowledge that strangling people is a felony.',
     traits: ['Sarcastic', 'Overqualified', 'Entomologist at heart', 'POTS'],
@@ -229,6 +231,7 @@ const CHARACTERS = [
     img: 'img/characters/Dylan.png',
     bots: [
       { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/3a35824b-66b0-49cd-b855-6308cad532af_character-dylan-𝙲-𝚊-𝚗-𝚝-𝙶-𝚎-𝚝-𝙾-𝚟-𝚎-𝚛-𝚈-𝚘-𝚞' },
+      { label: 'Summer Alt (Ch 7)', url: 'https://janitorai.com/characters/d35118aa-8101-45ba-9fcf-a3f6beebf3fb_character-dylan-𝗪-𝘂-𝘀-𝘁-𝗙-𝗼-𝗿-𝗧-𝗵-𝗲-𝗦-𝘂-𝗺-𝗺-𝗲-𝗿' },
     ],
     desc: 'Split-dyed hair (black and white), heterochromia, permanent mild disappointment. Detached and emotionally stagnant on the surface. Confessed his feelings at 18 and watched the person leave without closure. Now they\'re back in town.',
     traits: ['Detached', 'Low-energy', 'Pop-punk', 'Still hasn\'t moved on'],
@@ -727,6 +730,9 @@ const CHARACTERS = [
     role: 'Albino Raccoon Demi-Human',
     faction: 'southside',
     img: 'img/characters/Sancho.png',
+    bots: [
+      { label: 'Ch 7 Bot', url: 'https://janitorai.com/characters/5c191d46-259d-4b32-a65c-cc3fbe364b76_character-sancho-𝐁-𝐞-𝐠-𝐠-𝐢-𝐧-𝐠-𝐓-𝐨-𝐁-𝐞-𝐊-𝐨-𝐮-𝐫-𝐬' },
+    ],
     desc: 'White buzz cut, pink eyes, white raccoon ears and a fluffy ringed tail. Loudest person in Marsten. Treats every disagreement as a competition. Responds to aggression with "Love you too, man."',
     traits: ['Impulsive', 'Boundary-free', 'Loud', 'Genuinely unbothered'],
     relationships: [
@@ -1119,7 +1125,7 @@ const LOCATIONS = [
     color: '#ff4db8',
     desc: 'Trashy, high-energy nightclub down the street from 7-Hell. Neon pink and blue lighting, chrome railings, sticky black carpets. Closes at 4 AM — at which point its crowd migrates to 7-Hell for snacks and continuation.',
     atmosphere: 'Kaleb, Gaige, and Peter perform here. Their chemistry on stage is deliberately, theatrically physical.',
-    key_people: ['Kaleb', 'Gaige', 'Peter'],
+    key_people: ['Kaleb', 'Gaige', 'Peter', 'Eryx', 'Endri', 'Magnus', 'Everette', 'Devin'],
   },
   {
     id: 'deaddog',
