@@ -111,6 +111,7 @@ const CHARACTERS = [
       { id: 'flower', name: 'Flower', note: 'Kit\'s grandma. Their home base, sponsor, and "Spiritual Advisor."' },
       { id: 'romeo',  name: 'Romeo',  note: 'The "Guardian of the Gate." They fear and respect him in equal measure.' },
       { id: 'presley', name: 'Presley', note: 'They vibe hard with Presley\'s frequency.' },
+      { id: 'vesper', name: 'Vesper', note: 'Takes Clem\'s frequency theories seriously — a little too seriously — and keeps steering him toward something more focused. Politely dodges every one of Kit\'s cheek-kisses.' },
     ],
     details: {
       'Clem Sharp (21)': 'Slow, raspy, conspiratorial. 6\'2", skeletal, jet-black hair under a permanently unwashed beanie. Silver hoop nostril ring, stick-and-poke tattoos. Believes he has "Subterranean Vision" when on coke — i.e., he can see through fabric. He cannot.',
@@ -639,6 +640,7 @@ const CHARACTERS = [
       { id: 'romeo',   name: 'Romeo',   note: 'Ex-boyfriend. Still too comfortable in each other\'s space.' },
       { id: 'russell', name: 'Russell', note: 'Obsessively asks where "the conspiracy guy" went. Nobody knows why she cares.' },
       { id: 'zak',     name: 'Zak',     note: 'The only other person who takes it seriously. They meet on no schedule, on purpose.' },
+      { id: 'vesper',  name: 'Vesper',  note: 'Knew him as teenagers — cemetery séances, shared music taste. Doesn\'t know how much of her life since then has actually needed one.' },
     ],
     details: {
       'Public role': 'Jealous ex. Clings to Romeo. Whispers things in his ear when she hugs him.',
@@ -802,6 +804,9 @@ const CHARACTERS = [
     img: 'img/characters/Colton.png',
     desc: 'Runs the upscale coffee shop at the foot of the bridge — a business his family owns, bearing his name, that he views primarily as a burden.',
     traits: ['Reluctant', 'Entitled', 'Stuck with it'],
+    relationships: [
+      { id: 'vesper', name: 'Vesper', note: 'Regular customer. Buys incense and candles. Never asks what for.' },
+    ],
     details: {
       'Shop': 'Colton\'s Cups positions itself as the Northside Elite alternative to 7-Hell. The "No Shirt, No Shoes, No Service" rule is specifically designed to keep warehouse workers out.',
     }
@@ -973,6 +978,7 @@ const CHARACTERS = [
     traits: ['Socially awkward', 'Nature obsessed', 'Unashamed weirdo', 'Loyal to family'],
     relationships: [
       { id: 'sancho', name: 'Sancho Sweeney', note: 'Regular turf war over the 7-Hell dumpsters. She hunts rats professionally; he digs for anything shiny or edible. Finds him an absolute menace.' },
+      { id: 'vesper', name: 'Vesper', note: 'Standing custom order, specific arrangements, no questions asked. Good, steady business.' },
     ],
     details: {
       'Appearance': 'Short dark brown hair, disheveled — butterfly clips, occasionally a dried leaf. Slim with slightly strong arms from outdoor work. Small scars on arms and shoulders. Wood bead bracelets, dirt under fingernails. Black tank top, olive cargo pants, Columbia boots. Second-hand and patched.',
@@ -1101,6 +1107,27 @@ const CHARACTERS = [
       'Speech': '"Nah, man. Ain\'t no thing I can\'t handle."',
     }
   },
+  {
+    id: 'vesper', name: 'Vesper', age: 24,
+    role: 'Occult Bookshop Owner — Atramentum',
+    faction: 'npc',
+    img: 'img/characters/Vesper.png',
+    desc: 'Tall, lean, jet-black hair, piercing green eyes, permanent faint dark circles. Runs a struggling occult bookshop in Northside — thrifted 2004 goth, Latin fluent, sincere about all of it. Cryptic and unsettling to strangers, hopelessly awkward around the one person he\'s actually gone soft for.',
+    traits: ['Cryptic', 'Volatile', 'Devoted', 'Occult scholar'],
+    relationships: [
+      { id: 'clem-kit', name: 'Clem & Kit', note: 'Humors Clem\'s cosmic-frequency theories but keeps nudging them toward something more spiritual and focused. Finds Kit adorable from a careful distance — the cheek-kissing stays theoretical.' },
+      { id: 'cassy',    name: 'Cassy Anderson', note: 'Standing custom flower order. Doesn\'t explain what any particular arrangement is for. She doesn\'t ask.' },
+      { id: 'maisy',    name: 'Maisy', note: 'Knew her as teenagers — shared music taste, a few cemetery séances done for the thrill of it back then.' },
+      { id: 'colton',   name: 'Colton', note: 'Regular customer. Buys incense and candles, no questions asked either direction.' },
+    ],
+    details: {
+      'Appearance': 'Jet-black shoulder-length hair, tousled. Pale skin, faint dark circles, smudged 2004-style eyeliner, black nail polish. Black trench coat over band tees, silver jewelry etched with occult symbols.',
+      'The shop': 'Owns Atramentum — struggling, crammed with relics, candles, and outdated CRT-era tech. Lives above it, alone, with a shadowy altar nobody else has seen.',
+      'Town function': 'The person people quietly go to for a séance, a Ouija board, or "I think there\'s something wrong with my apartment." Plays every request completely straight. Nothing has ever actually been confirmed real — he believes regardless.',
+      'Temper': 'Calm-aggressive if provoked — especially around the Deal Dungeon. Gets in someone\'s face smiling and tells them their ancestors are disappointed in them. Never raises his voice. Worse for it.',
+      'Avoids': 'The ConXtion, entirely. Not his scene.',
+    }
+  },
 ];
 
 const LOCATIONS = [
@@ -1206,5 +1233,15 @@ const LOCATIONS = [
     desc: 'Low-lying industrial district along the river. Fish processing plants, rusted factories, poorly maintained housing. The air smells of salt, oil, and damp metal. Streets flood easily.',
     atmosphere: 'Heavily populated by demi-humans — not by design, but because lower rent and fewer restrictions pushed them here over time. The district runs on an unspoken "handle it here" system. Authorities are avoided.',
     key_people: ['Sancho', 'Jasper'],
+  },
+  {
+    id: 'atramentum',
+    name: 'Atramentum',
+    icon: '🔮',
+    zone: 'Northside',
+    color: '#7b2cbf',
+    desc: 'A struggling occult bookshop tucked into a quiet Northside storefront. Crammed with relics, candles, dusty tomes, and CRT-era tech nobody\'s bothered to update. Vesper\'s apartment sits above the shop.',
+    atmosphere: 'Incense and candle smoke. A hidden altar upstairs nobody but Vesper has seen. The kind of shop most people only ever enter on a dare — and a smaller few enter because they actually mean it.',
+    key_people: ['Vesper'],
   },
 ];
