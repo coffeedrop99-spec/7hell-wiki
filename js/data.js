@@ -798,17 +798,35 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'colton', name: 'Colton', age: null,
+    id: 'colton', name: 'Colton Richards', age: 25,
     role: 'Owner/Manager — Colton\'s Cups',
     faction: 'npc',
     img: 'img/characters/Colton.png',
-    desc: 'Runs the upscale coffee shop at the foot of the bridge — a business his family owns, bearing his name, that he views primarily as a burden.',
-    traits: ['Reluctant', 'Entitled', 'Stuck with it'],
+    desc: 'Runs the upscale coffee shop at the foot of the bridge — a business his father built, bearing his name, that he never asked for. Polished and controlled in public; dry, guarded, and quietly checked-out everywhere else.',
+    traits: ['Reluctant heir', 'Guarded', 'Dry', 'Secretly wants out'],
     relationships: [
+      { id: 'isaac', name: 'Isaac Richards', note: 'His father. Chose his education, his career, and the tie he\'s wearing. Colton loosens it the second a meeting ends.' },
       { id: 'vesper', name: 'Vesper', note: 'Regular customer. Buys incense and candles. Never asks what for.' },
     ],
     details: {
       'Shop': 'Colton\'s Cups positions itself as the Northside Elite alternative to 7-Hell. The "No Shirt, No Shoes, No Service" rule is specifically designed to keep warehouse workers out.',
+      'Family': 'His mother died before he graduated high school. His father filled the silence with a business degree and a corner office. Colton finished it and got good at the job — proof, to everyone but him, that he belongs there.',
+    }
+  },
+  {
+    id: 'isaac', name: 'Isaac Richards', age: null,
+    role: 'Developer — Colton\'s Cups',
+    faction: 'npc',
+    img: 'img/characters/Isaac.png',
+    desc: 'The Northside developer behind Colton\'s Cups. Built it as part of the neighborhood\'s "revitalization" — glass, steel, and a coffee shop nobody from the docks can afford to sit in.',
+    traits: ['Ambitious', 'Controlling', 'Image-obsessed'],
+    relationships: [
+      { id: 'colton', name: 'Colton', note: 'His son and the shop\'s namesake. Chose his school, his career, and his public image, and calls it love.' },
+      { id: 'vera', name: 'Vera Fisher', note: 'Owns the one Southside plaza he\'s wanted for years. She won\'t sell at any price, and won\'t say why.' },
+    ],
+    details: {
+      'The business': 'Sees Colton\'s Cups as proof he can turn Marsten into somewhere "better" people want to be seen. Doesn\'t register how much pricing out the locals costs the town — or his son.',
+      'The line': 'Falls back on "don\'t you want to make your mother proud?" whenever Colton pushes back. Has no idea how much that costs him.',
     }
   },
   {
@@ -917,10 +935,13 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'jasper', name: 'Jasper "Jas" Hatfield', age: null,
+    id: 'jasper', name: 'Jasper "Jas" Hatfield', age: 24,
     role: 'Southside PD — Border Precinct Officer',
     faction: 'southside',
     img: 'img/characters/Jasper.png',
+    bots: [
+      { label: 'Jasper\'s Bot (Ch VII)', url: 'https://janitorai.com/characters/1c5a06ef-36eb-4cc4-8d91-205b89837005_character-jasper-𝗙-𝘂-𝗰-𝗸-𝗖-𝗼-𝗽-𝘀-𝗶-𝗻-𝗮-𝘀-𝗲-𝘅-𝘆-𝘄-𝗮-𝘆' },
+    ],
     desc: 'Japanese Tanuki demi-human. Husky solid build, messy black hair with faded blue tips, perpetually sleepy half-lidded eyes. Always has a cigarette hanging from his lips. His rounded tanuki ears twitch when he\'s irritated. Late-night regular at 7-Hell.',
     traits: ['Blunt', 'Protective', 'Despises Holden', 'Southside loyalist'],
     relationships: [
