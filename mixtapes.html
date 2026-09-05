@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Hell Mixtape Binder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg: #101410;
+    --bg-2: #0b0e0b;
+    --tube: #eef2df;
+    --tube-line: #d9dfc6;
+    --ink: #1c1f16;
+    --ink-soft: #565b48;
+    --case-bg: #171b15;
+    --case-border: #333a2b;
+    --case-border-hi: #454d3a;
+    --disc-base: #d3d9c9;
+    --disc-hi: #f5f7ec;
+    --paper-shadow: rgba(0,0,0,.45);
+    --eyebrow: #8a9179;
+
+    --orange: #e8611c;
+    --blue: #2fb2c4;
+    --pink: #ff5da2;
+    --green: #7a9a52;
+    --slate: #93a0b8;
+    --purple: #a680d6;
+    --gold: #d3a53d;
+    --hotpink: #ff2f8f;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    background: radial-gradient(120% 140% at 15% 0%, #171c15 0%, var(--bg) 45%, var(--bg-2) 100%);
+    color: var(--tube);
+    font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+
+  header.intro{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom: 46px;
+    padding-bottom: 34px;
+    border-bottom: 1px dashed var(--case-border-hi);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .74rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--eyebrow);
+  }
+  h1{
+    font-family:'Permanent Marker', cursive;
+    font-weight:400;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    margin: 0;
+    color: var(--tube);
+    text-wrap: balance;
+    transform: rotate(-1deg);
+    transform-origin: left;
+  }
+  .lede{
+    max-width: 62ch;
+    color: #c7ccb8;
+    font-size: 1.02rem;
+  }
+  .lede b{ color: var(--tube); font-weight:600; }
+  .taped-note{
+    margin-top: 6px;
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .82rem;
+    background: var(--tube);
+    color: var(--ink);
+    padding: 8px 14px;
+    border-radius: 2px;
+    box-shadow: 0 6px 14px var(--paper-shadow);
+    transform: rotate(1deg);
+    width: fit-content;
+  }
+  .taped-note::before{
+    content:"";
+    width:22px; height:10px;
+    background: rgba(255,255,255,.55);
+    display:block;
+    position:relative;
+    left:-14px;
+  }
+
+  .binder{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 26px;
+  }
+
+  .case{
+    background: linear-gradient(160deg, var(--case-bg), #12150f 70%);
+    border: 1px solid var(--case-border);
+    border-radius: 6px;
+    padding: 20px;
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+    box-shadow: 0 18px 34px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.03);
+    position:relative;
+  }
+  .case::after{
+    content:"";
+    position:absolute;
+    inset: 8px;
+    border: 1px solid var(--case-border-hi);
+    border-radius: 3px;
+    pointer-events:none;
+    opacity:.5;
+  }
+
+  .case-top{
+    display:flex;
+    gap: 18px;
+    align-items:flex-start;
+  }
+
+  .disc-wrap{
+    flex: 0 0 auto;
+    width: 128px;
+    height: 128px;
+  }
+  .disc{
+    width:100%; height:100%;
+    border-radius:50%;
+    position:relative;
+    background:
+      conic-gradient(from 210deg,
+        var(--disc-hi) 0deg, var(--tint,var(--orange)) 40deg, var(--disc-base) 90deg,
+        var(--disc-hi) 140deg, var(--disc-base) 190deg, var(--tint,var(--orange)) 260deg,
+        var(--disc-hi) 320deg, var(--disc-base) 360deg);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,.25),
+      0 10px 18px rgba(0,0,0,.4),
+      inset 0 0 14px rgba(0,0,0,.15);
+  }
+  .disc::before{
+    content:"";
+    position:absolute; inset:0;
+    border-radius:50%;
+    background-image:
+      repeating-radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,.05) 0 1px, transparent 1px 6px);
+    mix-blend-mode: multiply;
+  }
+  .disc::after{
+    content:"";
+    position:absolute;
+    left:50%; top:50%;
+    width: 15px; height:15px;
+    background: var(--case-bg);
+    border-radius:50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0 0 3px rgba(0,0,0,.2);
+  }
+  .disc-label{
+    position:absolute;
+    left: 50%; top: 50%;
+    width: 92%;
+    transform: translate(-50%,-50%) rotate(var(--tilt, -6deg));
+    font-family:'Permanent Marker', cursive;
+    font-size: .82rem;
+    line-height:1.15;
+    color: #201d12;
+    text-align:center;
+    text-shadow: 0 1px 0 rgba(255,255,255,.25);
+  }
+
+  .case-id{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-top: 4px;
+  }
+  .name{
+    font-size: 1.18rem;
+    font-weight:700;
+    color: var(--tube);
+    letter-spacing: .01em;
+  }
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color: var(--tint,var(--orange));
+    opacity: .95;
+  }
+  .mix-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .82rem;
+    color: #b9c0a6;
+    margin-top: 4px;
+  }
+
+  .insert{
+    background: var(--tube);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 14px 16px 16px;
+    box-shadow: 0 10px 20px var(--paper-shadow);
+  }
+  ol.tracklist{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display:flex;
+    flex-direction:column;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .84rem;
+  }
+  ol.tracklist li{
+    display:grid;
+    grid-template-columns: 1.6em 1fr;
+    gap: 10px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--tube-line);
+  }
+  ol.tracklist li:last-child{ border-bottom:none; }
+  ol.tracklist li span.n{
+    color: var(--tint,var(--orange));
+    font-weight:600;
+    font-variant-numeric: tabular-nums;
+  }
+  ol.tracklist li span.t b{ font-weight:600; }
+  ol.tracklist li span.t i{
+    font-style:normal;
+    color: var(--ink-soft);
+  }
+
+  .liner{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .78rem;
+    color: #cdd3bc;
+    background: rgba(255,255,255,.02);
+    border-left: 2px solid var(--tint,var(--orange));
+    padding: 8px 12px;
+    line-height:1.55;
+  }
+  .liner b{ color: var(--tube); }
+
+  .split-heads{
+    display:flex;
+    gap: 8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+
+  footer{
+    margin-top: 54px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--case-border-hi);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .78rem;
+    color: var(--eyebrow);
+  }
+  footer a{ color: var(--eyebrow); }
+  .fs-badge{
+    display:inline-block;
+    padding: 6px 12px;
+    border: 1px solid var(--case-border-hi);
+    border-radius: 3px;
+    color: var(--gold) !important;
+    text-decoration:none;
+    letter-spacing:.04em;
+  }
+  .fs-badge:hover{ border-color: var(--gold); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .case{ transition: transform .2s ease, box-shadow .2s ease; }
+    .case:hover{ transform: translateY(-3px); box-shadow: 0 22px 40px rgba(0,0,0,.45); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <span class="eyebrow">Found in Dylan's Binder &middot; Northside Marsten, Summer 2004</span>
+    <h1>The 7-Hell Crew Mixtape Binder</h1>
+    <p class="lede">Dylan burns a physical CD for damn near everyone who asks — every night-shift regular, every Deal Dungeon transplant, whoever leaves a blank disc on the counter with a name Sharpied on it. He'll deny liking it. <b>The binder says otherwise:</b> nine cases, no two labeled the same way twice.</p>
+    <span class="taped-note">If you're reading this you took it out of the binder. Put it back exactly where it was. &mdash; D</span>
+  </header>
+
+  <div class="binder">
+
+    <!-- DYLAN -->
+    <article class="case" style="--tint: var(--green)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:-9deg">t.7 = 4 u<br>dont ask</div></div></div>
+        <div class="case-id">
+          <div class="name">Dylan Peterson</div>
+          <div class="role">Day Shift &middot; 7-Hell Convenience</div>
+          <div class="mix-title">"TRACK 7 IS FOR YOU. DON'T ASK."</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Blink-182</b> — <i>I Miss You</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Sum 41</b> — <i>Fat Lip</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>New Found Glory</b> — <i>My Friends Over You</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Deftones</b> — <i>Minerva</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Thrice</b> — <i>All That's Left</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Alkaline Trio</b> — <i>Stupid Kid</i></span></li>
+          <li><span class="n">07</span><span class="t"><b>Taking Back Sunday</b> — <i>Cute Without the "E"</i></span></li>
+          <li><span class="n">08</span><span class="t"><b>Brand New</b> — <i>The Quiet Things That No One Ever Knows</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Whatever. It's just a mix, didn't take long. <b>...Don't play track 7 around anybody, man.</b></div>
+    </article>
+
+    <!-- ROMEO -->
+    <article class="case" style="--tint: var(--orange)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:-7deg">RO'S SUBIE<br>MIX vol. 3</div></div></div>
+        <div class="case-id">
+          <div class="name">Romeo Byers</div>
+          <div class="role">Night Shift &middot; 7-Hell Convenience</div>
+          <div class="mix-title">"RO'S SUBIE MIX, VOL. 3"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>50 Cent</b> — <i>In Da Club</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Eminem</b> — <i>Sing for the Moment</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>D12</b> — <i>My Band</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Ludacris</b> — <i>Move Bitch</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Linkin Park</b> — <i>Papercut</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Nelly</b> — <i>Hot in Herre</i></span></li>
+          <li><span class="n">07</span><span class="t"><b>Petey Pablo</b> — <i>Freek-a-Leek</i></span></li>
+          <li><span class="n">08</span><span class="t"><b>Nickelback</b> — <i>How You Remind Me</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Vol. 1 and 2 don't exist. Don't ask. <b>Track 8 isn't about anybody.</b> — R.B.</div>
+    </article>
+
+    <!-- ASHLEY -->
+    <article class="case" style="--tint: var(--hotpink)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:4deg">TOXIC<br>(duh)</div></div></div>
+        <div class="case-id">
+          <div class="name">Ashley Hickman</div>
+          <div class="role">7-Hell Pharmacy</div>
+          <div class="mix-title">"TOXIC (do not skip, i mean it)"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Britney Spears</b> — <i>Toxic</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Britney Spears</b> — <i>Everytime</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>Britney Spears</b> — <i>...Baby One More Time</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Kelly Clarkson</b> — <i>Since U Been Gone</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Ashlee Simpson</b> — <i>Pieces of Me</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Hilary Duff</b> — <i>Wake Up</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Track 1 got me this job. Don't @ me. <b>&mdash; Ashley 💗</b></div>
+    </article>
+
+    <!-- CLEM & KIT -->
+    <article class="case" style="--tint: var(--pink)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:-4deg">THE<br>FREQUENCY</div></div></div>
+        <div class="case-id">
+          <div class="name">Clem Sharp &amp; Kit Dominguez</div>
+          <div class="role">Loiterers &middot; the Vibe Van</div>
+          <div class="mix-title">"THE FREQUENCY" — dual side</div>
+        </div>
+      </div>
+      <div class="insert">
+        <div class="split-heads">Side Clem</div>
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Sublime</b> — <i>Doin' Time</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Cypress Hill</b> — <i>Hits from the Bong</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>OutKast</b> — <i>Prototype</i></span></li>
+        </ol>
+        <div class="split-heads" style="margin-top:10px">Side Kit</div>
+        <ol class="tracklist">
+          <li><span class="n">04</span><span class="t"><b>Lil Jon &amp; the East Side Boyz</b> — <i>Get Low</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Mike Jones ft. Paul Wall &amp; Slim Thug</b> — <i>Still Tippin'</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Gwen Stefani</b> — <i>What You Waiting For?</i></span></li>
+          <li><span class="n">07</span><span class="t"><b>Ying Yang Twins</b> — <i>Salt Shaker</i></span></li>
+        </ol>
+      </div>
+      <div class="liner"><b>Clem:</b> "Don't let the hum colonize your brain. It's just the frequency, man." <b>Kit:</b> "STRAIGHT UP THOUGH — no cap, Paul Wall gets it, Gwen gets it, everybody in this van gets it!!"</div>
+    </article>
+
+    <!-- GARY -->
+    <article class="case" style="--tint: var(--blue)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:2deg">BEACH MIX<br>'04</div></div></div>
+        <div class="case-id">
+          <div class="name">"Big" Gary McKenzie</div>
+          <div class="role">Night Shift Manager</div>
+          <div class="mix-title">"BEACH MIX '04 (do not show Sidney)"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Bowling for Soup</b> — <i>1985</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Bowling for Soup</b> — <i>Girl All the Bad Guys Want</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>Usher</b> — <i>Yeah!</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Simple Plan</b> — <i>Perfect</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Blink-182</b> — <i>All the Small Things</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Weezer</b> — <i>Island in the Sun</i></span></li>
+          <li><span class="n">07</span><span class="t"><b>Maroon 5</b> — <i>This Love</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Track 3 was playing the day I finally took my shirt off at the beach. I've never told anyone that. <b>Please don't tell Romeo.</b></div>
+    </article>
+
+    <!-- SANCHO -->
+    <article class="case" style="--tint: var(--orange)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:5deg">SLURPEE<br>RUN</div></div></div>
+        <div class="case-id">
+          <div class="name">Sancho</div>
+          <div class="role">Southside Regular &middot; Chaos Element</div>
+          <div class="mix-title">"SLURPEE RUN ANTHEMS"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Sublime</b> — <i>Santeria</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Andrew W.K.</b> — <i>Party Hard</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>Simple Plan</b> — <i>I'm Just a Kid</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>MxPx</b> — <i>Chick Magnet</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Bloodhound Gang</b> — <i>The Bad Touch</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Reel Big Fish</b> — <i>Sell Out</i></span></li>
+          <li><span class="n">07</span><span class="t"><b>Blink-182</b> — <i>The Rock Show</i></span></li>
+        </ol>
+      </div>
+      <div class="liner"><b>Track 1's basically my whole personality, no cap.</b> Everything after that's just background noise I picked up along the way. I didn't steal this CD, I'm borrowing it forever. Love you too, man.</div>
+    </article>
+
+    <!-- MILLER -->
+    <article class="case" style="--tint: var(--slate)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:0deg">CONTROLLED<br>VARIABLES</div></div></div>
+        <div class="case-id">
+          <div class="name">Dr. Anthony Miller</div>
+          <div class="role">Pharmacist &middot; 7-Hell Pharmacy</div>
+          <div class="mix-title">"CONTROLLED VARIABLES"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Interpol</b> — <i>Obstacle 1</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>The Postal Service</b> — <i>Such Great Heights</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>Death Cab for Cutie</b> — <i>Title and Registration</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Muse</b> — <i>Time Is Running Out</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Radiohead</b> — <i>Everything in Its Right Place</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>Yeah Yeah Yeahs</b> — <i>Maps</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Unfortunately, all six of these are about the same thing. <b>I'm not doing the paperwork on that observation twice.</b></div>
+    </article>
+
+    <!-- PRESLEY -->
+    <article class="case" style="--tint: var(--purple)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:-11deg">night shift<br>dissoc.</div></div></div>
+        <div class="case-id">
+          <div class="name">Presley Erickson</div>
+          <div class="role">Night Shift Janitor</div>
+          <div class="mix-title">"NIGHT SHIFT DISSOCIATION MIX"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Avril Lavigne</b> — <i>Sk8er Boi</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Avril Lavigne</b> — <i>Anything but Ordinary</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>Michelle Branch</b> — <i>Everywhere</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Evanescence</b> — <i>Bring Me to Life</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Vanessa Carlton</b> — <i>A Thousand Miles</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>t.A.T.u.</b> — <i>All the Things She Said</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">...this one just kind of happened, like the store. <b>I didn't pick track 1. Track 1 picked me.</b></div>
+    </article>
+
+    <!-- HOLDEN -->
+    <article class="case" style="--tint: var(--gold)">
+      <div class="case-top">
+        <div class="disc-wrap"><div class="disc"><div class="disc-label" style="--tilt:3deg">GOLDEN BOY<br>don't skip</div></div></div>
+        <div class="case-id">
+          <div class="name">Holden Shaffer</div>
+          <div class="role">Police Intern &middot; Northside Marsten PD</div>
+          <div class="mix-title">"GOLDEN BOY (do not skip)"</div>
+        </div>
+      </div>
+      <div class="insert">
+        <ol class="tracklist">
+          <li><span class="n">01</span><span class="t"><b>Justin Timberlake</b> — <i>Cry Me a River</i></span></li>
+          <li><span class="n">02</span><span class="t"><b>Hoobastank</b> — <i>The Reason</i></span></li>
+          <li><span class="n">03</span><span class="t"><b>The Killers</b> — <i>Mr. Brightside</i></span></li>
+          <li><span class="n">04</span><span class="t"><b>Maroon 5</b> — <i>Harder to Breathe</i></span></li>
+          <li><span class="n">05</span><span class="t"><b>Usher</b> — <i>Confessions Part II</i></span></li>
+          <li><span class="n">06</span><span class="t"><b>John Mayer</b> — <i>No Such Thing</i></span></li>
+        </ol>
+      </div>
+      <div class="liner">Every song here sounds like an apology if you don't actually listen to the words. <b>That's kind of the whole point.</b></div>
+    </article>
+
+  </div>
+
+  <footer>
+    <span>Binder found wedged between the register and the lottery ticket dispenser, 7-Hell Convenience, Northside Marsten.</span>
+    <a class="fs-badge" href="fiendspace.html">add us on FIENDSPACE!!</a>
+  </footer>
+
+</div>
+</body>
+</html>

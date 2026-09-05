@@ -23,6 +23,7 @@ const CHARACTERS = [
       { label: 'OG Bot (AnyPOV)', url: 'https://janitorai.com/characters/8e989560-33d3-49d1-b867-968aaf87d823_character-romeo-any-pov-ver' },
       { label: 'Spring Alt (Ch 1–2)', url: 'https://janitorai.com/characters/b31c804c-f956-48b5-990e-0a88b5185b4f_character-romeo-ᴀᴛᴇ-ᴀʟʟ-ᴛʜᴇ-ᴄʜᴏᴄᴏʟᴀᴛᴇꜱ' },
       { label: 'Summer Alt (Ch 3–4)', url: 'https://janitorai.com/characters/598d067f-20ae-42ea-813b-7138cfd81e0e_character-romeo-𝗙-𝘂-𝗰-𝗸-𝗦-𝘂-𝗺-𝗺-𝗲-𝗿' },
+      { label: 'August Alt (Ch 7–8)', url: 'PLACEHOLDER — send me the JAI link' },
     ],
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
@@ -228,6 +229,7 @@ const CHARACTERS = [
   {
     id: 'dylan', name: 'Dylan Peterson', age: 20,
     role: 'Day Shift Employee / Local Skater',
+    roleLink: { text: 'Local Skater', url: 'mixtapes.html' },
     faction: 'dayshift',
     img: 'img/characters/Dylan.png',
     bots: [

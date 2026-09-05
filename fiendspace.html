@@ -357,6 +357,17 @@
   body.t-austin .blurb h4 { color: #d4438f; }
   body.t-austin .cmt { border-top-color: #ffd0e8; }
 
+  body.t-ashley { background: #ffb6d9; }
+  body.t-ashley #shell { background: #fff0f7; color: #7a1450; }
+  body.t-ashley #profile a { color: #e0117d; }
+  body.t-ashley .pbox { border: 2px dashed #ff8fc9; }
+  body.t-ashley .pbox .bh { background: linear-gradient(90deg, #ff5cad, #ffd23f); color: #fff; font-family: "Comic Sans MS", "Chalkboard SE", cursive; }
+  body.t-ashley .details-tbl td.k { background: #ffdcef; color: #b3106a; }
+  body.t-ashley .details-tbl tr:nth-child(even) td.v { background: #fff0f7; }
+  body.t-ashley #ptitle { color: #e0117d; font-family: "Comic Sans MS", "Chalkboard SE", cursive; font-size: 21px; text-shadow: 0 0 4px #ffd23f; }
+  body.t-ashley .blurb h4 { color: #e0117d; }
+  body.t-ashley .cmt { border-top-color: #ffdcef; }
+
   /* eryx: emo tragedy, all eyeliner and drama */
   body.t-eryx { background: #0a0a0a; }
   body.t-eryx #shell { background: #120808; color: #ccc; }
@@ -531,7 +542,7 @@ var PROFILES = {
       { ref: 'clemkit', label: 'CLEM_N_KIT' },
       { ref: 'maisy', label: 'xmaisyx' },
       { ref: 'miller', label: 'dr.miller (pharmacy)' },
-      { dead: 'you must be logged in to view this profile!!', label: 'ashley&lt;3', pic: 'img/characters/Ashley.png' }
+      { ref: 'ashley', label: 'ashley&lt;3 (loud. we work together. send help)' }
     ],
     comments: { shown: 5, total: 87, list: [
       { who: 'sancho!!', when: 'Jun 9 2004 2:14 AM', txt: 'FIRST' },
@@ -549,7 +560,7 @@ var PROFILES = {
     pic: 'img/characters/Romeo.png',
     meta: { sex: 'Male', age: '24', loc: 'Northside Marsten', lastLogin: '6/12/2004', memberSince: '01/2004' },
     mood: 'pissed off (default)',
-    song: { title: 'Break Stuff', by: 'Limp Bizkit', url: 'https://open.spotify.com/search/Limp%20Bizkit%20Break%20Stuff' },
+    song: { title: 'In Da Club', by: '50 Cent', url: 'https://open.spotify.com/search/50%20Cent%20In%20Da%20Club' },
     flair: ['lolly', 'lolly', 'lolly'],
     extended: 'RO. is in your extended network. he knows.',
     blog: [
@@ -744,7 +755,7 @@ var PROFILES = {
     meet: 'clem: whoever is doing this. you know what. you know WHAT. kit: TONY HAWK',
     interests: {
       'General': 'frequencies. the lot. the port (dont). flower\'s stories from the 60s (she KNEW people)',
-      'Music': 'kit: CRUNK. clem: tape hiss (there are voices in it if the tape is old enough)',
+      'Music': 'kit: CRUNK. paul wall. gwen stefani when she\'s bein a harajuku girl about it (WHAT YOU WAITIN FOR???). clem: tape hiss (there are voices in it if the tape is old enough)',
       'Movies': 'they will not show the movies we need to see',
       'Heroes': 'flower. tony hawk. the guy at the army surplus who doesn\'t ask questions'
     },
@@ -852,7 +863,7 @@ var PROFILES = {
     ],
     friendCount: 4,
     top8: [
-      { pic: 'img/characters/Ashley.png', label: 'ashley&lt;3 (unauthorized)', dead: 'she made this page. she set the password. she knows what she did.' },
+      { ref: 'ashley', label: 'ashley&lt;3 (she did this to me)' },
       { ref: 'zak', label: 'Zak [unclassified]' },
       { ref: 'store', label: 'place of employment' },
       { pic: null, label: 'Lou', dead: 'the founder. he added me. I never accepted. we are, apparently, "friends."' },
@@ -866,6 +877,58 @@ var PROFILES = {
       { who: 'zak', when: 'Jun 8 2004', txt: 'Good talk yesterday.' },
       { who: 'CLEM_N_KIT', when: 'Jun 3 2004 4:12 AM', txt: 'hypothetically. and this is hypothetical. how much cough syrup is a normal amount to' },
       { who: 'AMiller_PharmD', when: 'Jun 3 2004 9:00 AM', txt: 'Whoever is asking hypotheticals in my comments: no. And the pharmacy log says it was not hypothetical.' }
+    ]}
+  },
+
+  ashley: {
+    theme: 't-ashley',
+    handle: 'ashley&lt;3',
+    title: 'Ashley Hickman ✦ (banished to the pharmacy. iconically.)',
+    pic: 'img/characters/Ashley.png',
+    meta: { sex: 'Female', age: '21', loc: '7-Hell Pharmacy (against my will)', lastLogin: 'Online Now!', memberSince: '03/2004' },
+    mood: 'iconic (mandatory)',
+    song: { title: 'Toxic', by: 'Britney Spears', url: 'https://open.spotify.com/search/Britney%20Spears%20Toxic' },
+    flair: ['heart', 'crown', 'star'],
+    extended: 'Ashley is in your extended network. She has not checked.',
+    blog: [
+      { date: 'Jun 12 2004', title: 'i fixed dr.miller\'s profile (ur welcome doc)', mood: 'helpful', body: [
+        'ok so he was NEVER going to make one himself, he\'s the kind of guy who calls a MySpace a "liability," so I did it on his lunch break. 11 minutes. I timed it.',
+        'password is Bugs123 now btw doc, it was already something with bugs (i checked ur post-its), i just made it cuter.',
+        'anyway he sighed at me for four (4) full seconds when I showed him. that\'s basically a thank you from him. iconic honestly.'
+      ] },
+      { date: 'May 3 2004', title: 'why i work at a pharmacy (a story, ft. julia ruining my life)', mood: 'sparkly', body: [
+        'so julia (my dad\'s wife, NOT my mom, huge difference, write that down) decided i needed "structure" and "a job" and dragged us to marsten, which. ok.',
+        'but then I saw the Toxic video and it was basically a SIGN?? sexy nurse energy, but pharmacy, close enough. i applied that week. dr.miller has never recovered.',
+        'zero medical knowledge btw. i diagnose based on vibes. i am never wrong. ask anyone.'
+      ] }
+    ],
+    about: 'Ashley Hickman, 21, professionally banished to the 7-Hell pharmacy counter until Julia forgives me for existing (she won\'t). I know everything about everyone. I will tell you none of it unless you\'re my bestie. Britney is not a phase, it\'s a personality.',
+    meet: 'a rich girl. or {{user}}. honestly whoever gets me out of Marsten first.',
+    interests: {
+      'General': 'iced lattes, Juicy Couture (the real kind, not the mall kind), diagnosing people by vibe, making Dr. Miller sigh',
+      'Music': 'Britney. all of it. no exceptions, don\'t @ me',
+      'Movies': 'anything with Paris Hilton in it, even the ones she\'s barely in',
+      'Heroes': 'Britney Spears, Paris Hilton, whoever invents a flip phone that never dies'
+    },
+    pics: [
+      { src: 'img/characters/Ashley.png', cap: 'me. behind the counter. against my will. still cute tho' }
+    ],
+    friendCount: 94,
+    top8: [
+      { ref: 'gaige', label: 'gaige (my other half, don\'t ask which one)' },
+      { ref: 'kaleb', label: 'kaleb (the only one who gets fashion)' },
+      { ref: 'miller', label: 'dr.miller (i fixed his page, he\'s welcome)' },
+      { ref: 'romeo', label: 'RO. (so aggressive. so annoying. whatever)' },
+      { ref: 'gary', label: 'gary (substitute-teacher energy)' },
+      { ref: 'store', label: '7-hell (my punishment, technically)' },
+      { pic: null, label: '', dead: '' },
+      { pic: null, label: '', dead: '' }
+    ],
+    comments: { shown: 4, total: 23, list: [
+      { who: 'gaige', when: 'Jun 13 2004 8:50 PM', txt: 'BESTIE ur new pic is so cute i\'m literally crying. also still owe u a box of manic panic' },
+      { who: 'kaleb', when: 'Jun 10 2004 5:15 PM', txt: 'the "diagnosing by vibe" thing needs to stop working as well as it does. it\'s not fair to the rest of us' },
+      { who: 'AMiller_PharmD', when: 'Jun 9 2004 4:31 PM', txt: 'The password is still Bugs123. I have not changed it. I do not know how.' },
+      { who: 'romeo (RO_wrx)', when: 'Jun 2 2004 11:02 PM', txt: 'you gave a customer a "diagnosis" today instead of ringing him up. gary had to comp it. stop' }
     ]}
   },
 
@@ -977,7 +1040,7 @@ var PROFILES = {
     top8: [
       { ref: 'kaleb', label: 'kaleb!!' },
       { ref: 'peter', label: 'peter (mysterious)' },
-      { pic: 'img/characters/Ashley.png', label: 'ashley&lt;3 BESTIE', dead: 'you must be logged in to view this profile!! (gaige is logged in. gaige is ALWAYS logged in.)' },
+      { ref: 'ashley', label: 'ashley&lt;3 BESTIE' },
       { ref: 'romeo', label: 'RO. (scariest man alive &lt;3)' },
       { ref: 'maisy', label: 'xmaisyx (eyeliner QUEEN)' },
       { ref: 'store', label: '7-HELL (4am food)' },
@@ -1452,9 +1515,8 @@ function findFiend() {
               kaleb: 'kaleb', eryx: 'eryx',
               endri: 'endri', magnus: 'magnus', everette: 'everette', devin: 'devin',
               russell: '__russell', sawyer: '__none', holden: '__none',
-              ashley: '__ashley' };
+              ashley: 'ashley', ash: 'ashley' };
   if (map[q] === '__russell') { alert('1 result found.\n\nthis account is inactive.'); return; }
-  if (map[q] === '__ashley') { alert('1 result found.\n\nyou must be logged in to view this profile!!'); return; }
   if (map[q] === '__none' || !map[q]) { alert('0 results found. (some people aren\'t on here. think about who.)'); return; }
   location.hash = map[q];
 }
