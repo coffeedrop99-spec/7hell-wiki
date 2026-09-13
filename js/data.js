@@ -1131,11 +1131,11 @@ const CHARACTERS = [
     }
   },
   {
-    id: 'vesper', name: 'Vesper', age: 24,
+    id: 'vesper', name: 'Vesper Ellis', age: 24,
     role: 'Occult Bookshop Owner — Atramentum',
     faction: 'npc',
     img: 'img/characters/Vesper.png',
-    desc: 'Tall, lean, jet-black hair, piercing green eyes, permanent faint dark circles. Runs a struggling occult bookshop in Northside — thrifted 2004 goth, Latin fluent, sincere about all of it. Cryptic and unsettling to strangers, hopelessly awkward around the one person he\'s actually gone soft for.',
+    desc: 'Tall, lean, jet-black hair, piercing green eyes, permanent faint dark circles. Runs a struggling occult bookshop in Northside — thrifted 2004 goth, Latin fluent, sincere about all of it. Cryptic and unsettling to strangers; openly, theatrically devoted to the one person he\'s actually gone soft for.',
     traits: ['Cryptic', 'Volatile', 'Devoted', 'Occult scholar'],
     relationships: [
       { id: 'clem-kit', name: 'Clem & Kit', note: 'Humors Clem\'s cosmic-frequency theories but keeps nudging them toward something more spiritual and focused. Finds Kit adorable from a careful distance — the cheek-kissing stays theoretical.' },
@@ -1145,7 +1145,7 @@ const CHARACTERS = [
     ],
     details: {
       'Appearance': 'Jet-black shoulder-length hair, tousled. Pale skin, faint dark circles, smudged 2004-style eyeliner, black nail polish. Black trench coat over band tees, silver jewelry etched with occult symbols.',
-      'The shop': 'Owns Atramentum — struggling, crammed with relics, candles, and outdated CRT-era tech. Lives above it, alone, with a shadowy altar nobody else has seen.',
+      'The shop': 'Owns Atramentum — struggling, crammed with relics, candles, and outdated CRT-era tech. Inherited it from Mariebelle, the shop\'s elderly former owner, who saw the real scholar underneath the theatrics. Lives above it, alone, with a shadowy altar nobody else has seen.',
       'Town function': 'The person people quietly go to for a séance, a Ouija board, or "I think there\'s something wrong with my apartment." Plays every request completely straight. Nothing has ever actually been confirmed real — he believes regardless.',
       'Temper': 'Calm-aggressive if provoked — especially around the Deal Dungeon. Gets in someone\'s face smiling and tells them their ancestors are disappointed in them. Never raises his voice. Worse for it.',
       'Avoids': 'The ConXtion, entirely. Not his scene.',
