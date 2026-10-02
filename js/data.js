@@ -23,7 +23,7 @@ const CHARACTERS = [
       { label: 'OG Bot (AnyPOV)', url: 'https://janitorai.com/characters/8e989560-33d3-49d1-b867-968aaf87d823_character-romeo-any-pov-ver' },
       { label: 'Spring Alt (Ch 1–2)', url: 'https://janitorai.com/characters/b31c804c-f956-48b5-990e-0a88b5185b4f_character-romeo-ᴀᴛᴇ-ᴀʟʟ-ᴛʜᴇ-ᴄʜᴏᴄᴏʟᴀᴛᴇꜱ' },
       { label: 'Summer Alt (Ch 3–4)', url: 'https://janitorai.com/characters/598d067f-20ae-42ea-813b-7138cfd81e0e_character-romeo-𝗙-𝘂-𝗰-𝗸-𝗦-𝘂-𝗺-𝗺-𝗲-𝗿' },
-      { label: 'August Alt (Ch 7–8)', url: 'PLACEHOLDER — send me the JAI link' },
+      { label: 'August Alt (Ch 7–8)', url: 'https://janitorai.com/characters/7882db21-cb54-4560-963d-47773a80fd55_character-romeo-𝗗-𝘂-𝗺-𝗯-𝗮-𝘀-𝘀-𝗕-𝗼-𝘆-𝗳-𝗿-𝗶-𝗲-𝗻-𝗱-𝗧-𝗵-𝗶-𝗻-𝗴-𝘀' },
     ],
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
@@ -80,6 +80,7 @@ const CHARACTERS = [
       { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/8a34062a-1780-485d-8a44-444ec73c9d61_character-presley-𝗧-𝗵-𝗶-𝗻-𝗸-𝘀-𝗬-𝗼-𝘂-𝗿-𝗲-𝗖-𝘂-𝘁-𝗲' },
       { label: 'No Good Very Bad Day Alt (Ch 1–2)', url: 'https://janitorai.com/characters/9aaef711-e3ed-4d03-81cc-2ab195db8ba3_character-presley-𝗡-𝗼-𝗚-𝗼-𝗼-𝗱-𝗩-𝗲-𝗿-𝘆-𝗕-𝗮-𝗱-𝗗-𝗮-𝘆' },
       { label: 'First Meet Alt (Ch 3–4)', url: 'https://janitorai.com/characters/657c6273-2207-4450-95ed-7d94365fad81_character-presley-alt-𝐅-𝐢-𝐫-𝐬-𝐭-𝐌-𝐞-𝐞-𝐭' },
+      { label: 'Summer Alt (Ch 8)', url: 'https://janitorai.com/characters/53e40582-6761-475b-9429-cd9040e177b8_character-presley-𝐒-𝐮-𝐧-𝐛-𝐮-𝐫-𝐧-𝐭-𝐚-𝐧-𝐝-𝐒-𝐭-𝐨-𝐧-𝐞-𝐝' },
     ],
     desc: 'Half-Japanese. 6\'7" of pure unsettling calm. Long stringy hair hiding pale green bloodshot eyes. Perpetually high on weed and gummies. Operates at a frequency slightly removed from reality.',
     traits: ['Detached', 'Unbothered', 'Stares', 'Capri Sun connoisseur'],
@@ -178,6 +179,9 @@ const CHARACTERS = [
     role: 'Day Shift Manager',
     faction: 'dayshift',
     img: 'img/characters/Dallas.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/0643ab43-017b-4f17-a84a-03b5ac0daad8_character-dallas-𝐌-𝐨-𝐦-𝐦-𝐲-𝐈-𝐬-𝐬-𝐮-𝐞-𝐬' },
+    ],
     desc: 'Observant, analytical, and devastatingly accurate. Delivers cutting assessments in a calm monotone while doing sudoku. Considers 7-Hell temporary. Has been here two years.',
     traits: ['Analytical', 'Dry', 'Accurate', 'Ironically stuck'],
     details: {
@@ -281,6 +285,9 @@ const CHARACTERS = [
     role: 'The ConXtion — Performer',
     faction: 'conxtion',
     img: 'img/characters/Gaige.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/3fe364a6-55a6-47ce-ac16-5671fab81089_character-gaige-𝚃-𝚘-𝚡-𝚒-𝚌-𝚁-4-𝚟-3-𝙱-𝚘-𝚒' },
+    ],
     desc: 'The golden retriever of alt-boys. Choppy wolf-cut with electric blue highlights, angel bites, and a blue slushie almost always in hand. High-energy, gossipy, fiercely loyal.',
     traits: ['Scene', 'Protective', 'Gossipy', 'Genuinely sweet'],
     details: {
@@ -417,6 +424,7 @@ const CHARACTERS = [
     img: 'img/characters/Cory.png',
     bots: [
       { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/4a4fd826-0f28-49f2-a68d-e5f1e22eb4fd_character-cory-ʏᴏᴜʀ-ᴇx-ᴋɪɴᴅ-ᴏꜰ' },
+      { label: 'Summer Alt (Ch 8)', url: 'https://janitorai.com/characters/0e7cb8bf-2009-4fb1-a982-30411fb71619_character-cory-𝗕-𝗲-𝗶-𝗻-𝗴-𝗚-𝗼-𝗼-𝗱-𝗙-𝗼-𝗿-𝗬-𝗼-𝘂' },
     ],
     desc: 'Full name: Cory Dotson. Liberty spikes (split-dyed black and neon green), chipped front tooth, Prince Albert piercing he\'s smug about. Night-shift loader at Deal Dungeon. Can\'t hold a job, frequently in jail, takes pride in both.',
     traits: ['Volatile', 'Possessive', 'High pain tolerance', 'Enjoys the risk'],
@@ -438,6 +446,7 @@ const CHARACTERS = [
     img: 'img/characters/Jermaine.png',
     bots: [
       { label: 'OG Bot (Ch 1–2)', url: 'https://janitorai.com/characters/ca5e3790-0c35-4687-8383-a37da10c4510_character-jermaine-𝐈-𝐬-𝐋-𝐨-𝐰-𝐤-𝐞-𝐲-𝐒-𝐜-𝐚-𝐫-𝐞-𝐝-𝐨-𝐟-𝐘-𝐨-𝐮' },
+      { label: 'Fall Alt (Ch 8)', url: 'https://janitorai.com/characters/db01be76-9690-4818-81f6-7d2728f08080_character-jermaine-𝗟-𝗲-𝗮-𝗳-𝗛-𝗶-𝗺-𝗔-𝗹-𝗼-𝗻-𝗲' },
     ],
     desc: 'Full name: Jermaine Roberts. Saskatchewan transplant who fled a devastating heartbreak. Views Northside Marsten as disorganized, lazy, and fundamentally broken. He\'s not entirely wrong. Has a chest tattoo of barbed wire he got when he arrived as a ritual to "lock his heart away."',
     traits: ['Blunt', 'Hyper-competent', 'Emotionally locked', 'Secretly feeds crows'],
@@ -552,6 +561,7 @@ const CHARACTERS = [
     img: 'img/characters/Echo.png',
     bots: [
       { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/48d442ec-c645-4a83-9759-d307cabe5ffb_character-echo-𝐘-𝐨-𝐮-𝐫-1-𝐅-𝐚-𝐧' },
     ],
     desc: 'Bat demi-human. Pale, emo fringe, oversized ears that twitch constantly, 3XL black hoodie, foam headphones on a yellow Walkman. Looks like he\'s zoning out. He is monitoring your heartbeat.',
     traits: ['Snarky', 'Detached', 'Opportunistic', 'Listening to everything'],
@@ -656,6 +666,9 @@ const CHARACTERS = [
     roleLink: { text: '7-Hell Convenience', url: '7hell-2004.html' },
     faction: 'npc',
     img: 'img/characters/Sawyer.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/ebb34fa7-cc5e-4aa9-9862-fd8219608f5b_character-sawyer-𝗦-𝘁-𝗮-𝗿-𝗶-𝗻-𝗴-𝗶-𝗻-𝘁-𝗼-𝗠-𝘆-𝗦-𝗼-𝘂-𝗹-𝗕-𝗿-𝗼' },
+    ],
     desc: 'Well-dressed, precise, calm. Arrives unannounced for corporate compliance audits. Stays near entrances and exits. Takes notes that aren\'t always visible. Nobody can confirm exactly when he arrives or leaves.',
     traits: ['Controlled', 'Precise', 'Authoritative', 'Wrong'],
     relationships: [
@@ -708,6 +721,9 @@ const CHARACTERS = [
     role: 'Local Skater / Amateur Documentarian',
     faction: 'npc',
     img: 'img/characters/Tyler.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/d7b0bda3-6177-44a3-b8a8-6df58b427fd8_character-tyler-𝗦-𝗸-8-𝘁-𝗲-𝗿-𝗕-𝗼-𝗶-𝗖-𝗿-𝘂-𝘀-𝗵' },
+    ],
     desc: 'Blonde mop-head, backwards snapback, cheap digital camera. Friendly, clingy, desperate for somewhere to belong. Follows Dylan and Nate everywhere. Films everything. Suggests bad ideas constantly.',
     traits: ['Friendly', 'Clingy', 'Chronically filming', 'One bad idea from disaster'],
     details: {
@@ -721,6 +737,9 @@ const CHARACTERS = [
     role: 'Baby Burgers Employee / Local Emo',
     faction: 'npc',
     img: 'img/characters/Nate.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/998acf52-6cb2-4fb8-be0e-6b1db2d7062c_character-nate-𝑷-𝒖-𝒏-𝒌-𝑰-𝒏-𝑳-𝒐-𝒗-𝒆' },
+    ],
     desc: 'Black side-swept hair, stretched ears, flannel shirts over tank tops. Looks like he should be in a pop-punk music video. Works the fryer at Baby Burgers. More socially aware than he pretends.',
     traits: ['Sarcastic', 'Self-aware', 'Pop-punk aesthetic', 'Northside smartass'],
     details: {
@@ -854,6 +873,9 @@ const CHARACTERS = [
     role: 'Baby Burgers — Maintenance',
     faction: 'npc',
     img: 'img/characters/Oscar.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/bbfe2e57-ceaa-410d-bdf8-ceff983c0b2d_character-oscar-𝗖-𝗼-𝗹-𝗱-𝗙-𝗿-𝘆-𝗖-𝗿-𝘂-𝘀-𝗵' },
+    ],
     desc: 'Quiet and reserved. Handles maintenance at Baby Burgers. Mostly stays out of the chaos.',
     traits: ['Quiet', 'Reserved', 'Maintenance'],
     details: {}
@@ -1135,6 +1157,9 @@ const CHARACTERS = [
     role: 'Occult Bookshop Owner — Atramentum',
     faction: 'npc',
     img: 'img/characters/Vesper.png',
+    bots: [
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/a0b9e2db-166d-499c-84be-ebe7fa63722d_character-vesper-𝗟-𝗮-𝘁-𝗶-𝗻-𝗟-𝗼-𝘀-𝗲-𝗿-𝘀' },
+    ],
     desc: 'Tall, lean, jet-black hair, piercing green eyes, permanent faint dark circles. Runs a struggling occult bookshop in Northside — thrifted 2004 goth, Latin fluent, sincere about all of it. Cryptic and unsettling to strangers; openly, theatrically devoted to the one person he\'s actually gone soft for.',
     traits: ['Cryptic', 'Volatile', 'Devoted', 'Occult scholar'],
     relationships: [
