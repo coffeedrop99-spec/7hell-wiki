@@ -1072,7 +1072,7 @@ const CHARACTERS = [
     id: 'marsha', name: 'Marsha', age: null,
     role: 'Gary\'s Mother',
     faction: 'npc',
-    img: null,
+    img: 'img/characters/Marsha.png',
     desc: 'Sweet, slightly over-protective, and the reason Gary\'s khakis are always freshly ironed. A maternal warmth that works as the counterweight to Sidney\'s bluster. Widowed in 1992; remarried in 1994. Still irons everything.',
     traits: ['Warm', 'Over-protective', 'Gossip girlie', 'The reason Gary turned out decent'],
     relationships: [
@@ -1089,7 +1089,7 @@ const CHARACTERS = [
     id: 'helen', name: 'Helen Byers', age: null,
     role: 'Romeo\'s Mother / Claims Clerk',
     faction: 'npc',
-    img: null,
+    img: 'img/characters/Helen.png',
     desc: 'Claims clerk at the Marsten insurance office — twenty years of paperwork nobody else wants to read. Practical, sharp-tongued, unimpressed by everything her son does and quietly proud of most of it.',
     traits: ['Practical', 'Sharp-tongued', 'Gossip girlie', 'Holds the leash'],
     relationships: [
@@ -1106,7 +1106,7 @@ const CHARACTERS = [
     id: 'lorraine', name: 'Lorraine', age: null,
     role: 'Presley\'s Mother',
     faction: 'npc',
-    img: null,
+    img: 'img/characters/Lorraine.png',
     desc: 'A faded woman on the north end who talks to the walls — decades of hallucinogens that never fully wore off. She talked to them through Presley\'s whole childhood. Still does. The neighborhood quietly keeps an eye on her without ever calling it that.',
     traits: ['Faded', 'Elsewhere', 'Looked after'],
     relationships: [
