@@ -155,6 +155,7 @@ const CHARACTERS = [
     img: 'img/characters/Zak.png',
     bots: [
       { label: 'Chapter V — Zak\'s Watch', url: 'https://janitorai.com/characters/1a645348-79e9-4285-962d-5d0dc626b881_character-zak-𝗗-𝗼-𝗻-𝘁-𝗔-𝘀-𝗸-𝗤-𝘂-𝗲-𝘀-𝘁-𝗶-𝗼-𝗻-𝘀' },
+      { label: 'Ch 9 Bot', url: 'https://janitorai.com/characters/3736f835-21c8-48cc-a746-2882024011cb_character-zak-𝐖-𝐚-𝐬-𝐧-𝐭-𝐘-𝐨-𝐮-𝐫-𝐬-𝐅-𝐢-𝐫-𝐬-𝐭' },
     ],
     desc: 'Clean-cut, efficient, unfailingly polite. Nobody can remember when he started — he\'s been there longer than almost anyone still on staff. Things just get done when Zak is around. Now Gary has him training the new hire, and the auditor has started paying attention to her. Zak has noticed.',
     traits: ['Calm', 'Observant', 'Evasive', 'Protective', 'Afraid'],
