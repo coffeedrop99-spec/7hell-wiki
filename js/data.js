@@ -756,6 +756,7 @@ const CHARACTERS = [
     img: 'img/characters/Sancho.png',
     bots: [
       { label: 'Ch 7 Bot', url: 'https://janitorai.com/characters/5c191d46-259d-4b32-a65c-cc3fbe364b76_character-sancho-𝐁-𝐞-𝐠-𝐠-𝐢-𝐧-𝐠-𝐓-𝐨-𝐁-𝐞-𝐊-𝐨-𝐮-𝐫-𝐬' },
+      { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/4b1551f0-bb89-4682-99f8-7914ece3073f_character-sancho-%F0%9D%90%87-%F0%9D%90%AE-%F0%9D%90%A7-%F0%9D%90%AD-%F0%9D%90%9E-%F0%9D%90%9D' },
     ],
     desc: 'White buzz cut, pink eyes, white raccoon ears and a fluffy ringed tail. Loudest person in Marsten. Treats every disagreement as a competition. Responds to aggression with "Love you too, man."',
     traits: ['Impulsive', 'Boundary-free', 'Loud', 'Genuinely unbothered'],
