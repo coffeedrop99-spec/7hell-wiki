@@ -498,6 +498,7 @@ const CHARACTERS = [
     img: 'img/characters/Micheal.png',
     bots: [
       { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+      { label: 'Michael (Drug Wars Alt)', url: 'https://janitorai.com/characters/d4f20eaa-96f2-41ea-b733-766cc8e44c90_character-michael-𝗥-𝗲-𝗮-𝗹-𝐅-𝐚-𝐤-𝐞-𝐇-𝐮-𝐬-𝐛-𝐚-𝐧-𝐝' },
     ],
     desc: 'Former Head of Security for Marsten Industrial Port. Left when ordered to falsify a report on a fatal accident. Founded the Iron Lung operation to run a version of order he actually controls.',
     traits: ['Stoic', 'Precise', 'Cynical', 'Iron-willed'],
