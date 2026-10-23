@@ -1163,6 +1163,7 @@ const CHARACTERS = [
     img: 'img/characters/Vesper.png',
     bots: [
       { label: 'Ch 8 Bot', url: 'https://janitorai.com/characters/a0b9e2db-166d-499c-84be-ebe7fa63722d_character-vesper-𝗟-𝗮-𝘁-𝗶-𝗻-𝗟-𝗼-𝘀-𝗲-𝗿-𝘀' },
+      { label: 'Halloween Alt (Ch 9)', url: 'https://janitorai.com/characters/03339457-d812-428d-af10-7153433e86b3_character-vesper-𝙷-𝚘-𝚙-𝚎-𝚕-𝚎-𝚜-𝚜-𝚕-𝚢-𝙳-𝚎-𝚟-𝚘-𝚝-𝚎-𝚍' },
     ],
     desc: 'Tall, lean, jet-black hair, piercing green eyes, permanent faint dark circles. Runs a struggling occult bookshop in Northside — thrifted 2004 goth, Latin fluent, sincere about all of it. Cryptic and unsettling to strangers; openly, theatrically devoted to the one person he\'s actually gone soft for.',
     traits: ['Cryptic', 'Volatile', 'Devoted', 'Occult scholar'],
