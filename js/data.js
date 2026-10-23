@@ -24,6 +24,7 @@ const CHARACTERS = [
       { label: 'Spring Alt (Ch 1–2)', url: 'https://janitorai.com/characters/b31c804c-f956-48b5-990e-0a88b5185b4f_character-romeo-ᴀᴛᴇ-ᴀʟʟ-ᴛʜᴇ-ᴄʜᴏᴄᴏʟᴀᴛᴇꜱ' },
       { label: 'Summer Alt (Ch 3–4)', url: 'https://janitorai.com/characters/598d067f-20ae-42ea-813b-7138cfd81e0e_character-romeo-𝗙-𝘂-𝗰-𝗸-𝗦-𝘂-𝗺-𝗺-𝗲-𝗿' },
       { label: 'August Alt (Ch 7–8)', url: 'https://janitorai.com/characters/7882db21-cb54-4560-963d-47773a80fd55_character-romeo-𝗗-𝘂-𝗺-𝗯-𝗮-𝘀-𝘀-𝗕-𝗼-𝘆-𝗳-𝗿-𝗶-𝗲-𝗻-𝗱-𝗧-𝗵-𝗶-𝗻-𝗴-𝘀' },
+      { label: 'Halloween Alt (Ch 9)', url: 'https://janitorai.com/characters/2aed2817-e529-43d5-9683-995ad138d97e' },
     ],
     desc: 'Bleached-blonde brawler who treats 7-Hell like his personal living room. Full-sleeve tattoo, scarred knuckles, zero tolerance for bullshit. Ignores Gary completely. Fiercely protective of what he considers his.',
     traits: ['Aggressive', 'Protective', 'Possessive', 'Sweet tooth'],
