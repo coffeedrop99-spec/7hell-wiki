@@ -198,6 +198,9 @@ const CHARACTERS = [
     role: 'Day Shift — Senior Employee',
     faction: 'dayshift',
     img: 'img/characters/Collin.png',
+    bots: [
+      { label: 'Ch 9 Bot', url: 'https://janitorai.com/characters/6353b3c2-47af-48ac-9d01-a2b7863e635f_character-collin-𝗬-𝗼-𝘂-𝗿-𝗗-𝗶-𝗹-𝗳-𝗙-𝘂-𝗰-𝗸-𝗕-𝘂-𝗱-𝗱-𝘆' },
+    ],
     desc: 'Dallas\'s father. Dresses like he peaked in 1989 and never quite accepted it. Desperately tries to seem laid-back and cool to coworkers half his age, with variable results.',
     traits: ['Nostalgic', 'Avoidant', 'Tries too hard', 'Quietly stagnant'],
     relationships: [
