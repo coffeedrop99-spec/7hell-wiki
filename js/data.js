@@ -207,7 +207,7 @@ const CHARACTERS = [
       { id: 'graham', name: 'Graham', note: 'The gentle one of his old trio — Gary\'s dad. Compared baby stories about Gary and Dallas over Tuesday bowling nights. Never once mentioned any of it to Gary.' },
     ],
     details: {
-      'Appearance': 'Long black hair he refuses to cut (tied back loosely), light stubble, band tees, worn boots.',
+      'Appearance': 'Shaggy, wavy brown hair he refuses to cut (grown out to his nape), light stubble, band tees, worn boots.',
       'Self-narrative': 'Claims he turned down the manager position because it would be "lame." Backtracks around Gary.',
       'Relationships': 'Tries to bond with Romeo (dismissed), overcompensates around Ashley, treats Presley like he\'s "going through a phase."',
       'Graham': 'The third member of his old trio was Gary\'s dad — league nights at Marsten Lanes, ConXtion weekends, baby stories. He has never once mentioned it to Gary. Ask Collin about 1989 and cancel your plans; ask about 1992 and he changes the subject.',
