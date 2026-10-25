@@ -52,6 +52,7 @@ const CHARACTERS = [
       { label: 'Robbed Alt (Ch 1–2)', url: 'https://janitorai.com/characters/597bdf32-9bbe-47ef-927c-02a99f7868df_character-big-gary-𝚁-𝚘-𝚋-𝚋-𝚎-𝚍' },
       { label: 'Anniversary Alt (Ch 1–2)', url: 'https://janitorai.com/characters/17e3661b-82ee-4c6d-8167-66a3c82fad8d_character-gary-alt-𝐀-𝐧-𝐧-𝐢-𝐯-𝐞-𝐫-𝐬-𝐚-𝐫-𝐲' },
       { label: 'Summer Alt (Ch 5–6)', url: 'https://janitorai.com/characters/d983105b-5ab4-4dec-b16c-5261df35b4ac_character-big-gary-𝐒-𝐮-𝐦-𝐦-𝐞-𝐫-𝐋-𝐨-𝐯-𝐢-𝐧-𝐠' },
+      { label: 'Halloween Alt (Ch 9)', url: 'https://janitorai.com/characters/823ab374-a874-4ee7-81b7-630975b206e3_character-gary-%F0%9D%97%AC-%F0%9D%97%BC-%F0%9D%98%82-%F0%9D%97%BF-%F0%9D%97%A0-%F0%9D%97%AE-%F0%9D%97%BB-%F0%9D%97%95-%F0%9D%98%82-%F0%9D%98%81-%F0%9D%97%9F-%F0%9D%97%B6-%F0%9D%97%B8-%F0%9D%97%B2-%F0%9D%97%9C-%F0%9D%98%81-%F0%9D%98%80-%F0%9D%97%94-%F0%9D%97%B9-%F0%9D%98%80-%F0%9D%97%BC-%F0%9D%97%9B-%F0%9D%97%AE-%F0%9D%97%B9-%F0%9D%97%B9-%F0%9D%97%BC-%F0%9D%98%84-%F0%9D%97%B2-%F0%9D%97%B2-%F0%9D%97%BB' },
     ],
     desc: 'Ginger mop-hair, thick smudged glasses, ironed khakis. Got promoted to manager at 24 because he was the only employee without a criminal record. Lives by the employee handbook. Is terrified of Romeo, Presley, and the sound of a Subaru backfiring.',
     traits: ['Anxious', 'Rule-follower', 'Touch-starved', 'Genuinely tries'],
