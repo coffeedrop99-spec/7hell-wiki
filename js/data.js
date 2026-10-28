@@ -952,6 +952,7 @@ const CHARACTERS = [
     img: 'img/characters/Holden.png',
     bots: [
       { label: 'Chapter IV — Holden\'s Playground', url: 'https://janitorai.com/characters/b8408886-bd2b-43fb-a507-672d8d14e28f_character-holden-𝐒-𝐚-𝐝-𝐢-𝐬-𝐭-𝐢-𝐜-𝐂-𝐮-𝐭-𝐢-𝐞' },
+      { label: 'Halloween Alt (Ch 9)', url: 'https://janitorai.com/characters/949de62c-c67c-4edb-a3a4-322f05608d2b_character-holden-𝗧-𝗼-𝘁-𝗮-𝗹-𝗹-𝘆-𝗡-𝗼-𝘁-𝗮-𝗠-𝘂-𝗿-𝗱-𝗲-𝗿-𝗲-𝗿' },
     ],
     desc: 'Human. 6\'3", reddish-brown hair, light green eyes, boyishly handsome with freckles and deep dimples. Looks like a trustworthy college intern. His family shipped him to Northside Marsten after one too many scandals, expecting it to humble him. It did not.',
     traits: ['Charming (on surface)', 'Manipulative', 'Corrupt', 'Wolf in sheep\'s clothing'],
