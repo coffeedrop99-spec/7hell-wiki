@@ -536,6 +536,7 @@ const CHARACTERS = [
     img: 'img/characters/Cody.png',
     bots: [
       { label: 'The Southside Rig MultiBot (Ch 1-2)', url: 'https://janitorai.com/characters/a2930abb-36e5-4783-a68b-5929fb35702f_character-ᴛʜᴇ-ꜱᴏᴜᴛʜꜱɪᴅᴇ-ᴅʀᴜɢ-ʀɪɢ-𝗧-𝗵-𝗲-𝘆-𝗧-𝗼-𝗼-𝗸-𝗬-𝗼-𝘂' },
+      { label: 'Cody (Drug Wars Alt)', url: 'https://janitorai.com/characters/0eddbe17-0041-43c8-bb33-8b71eae9d0d7_character-cody-𝗕-𝗶-𝗴-𝗖-𝗮-𝘁-𝗕-𝗶-𝗴-𝗙-𝗲-𝗲-𝗹-𝗶-𝗻-𝗴-𝘀' },
     ],
     desc: 'Jaguar demi-human. Rejected from the foster system for being "uncontrollable" — while the Beanie Baby Boys formed a brotherhood, Cody was left in Southside gutters. Found by Michael. Still has the temper.',
     traits: ['Volatile', 'Insecure', 'Fiercely loyal', 'Terrifyingly fast'],
